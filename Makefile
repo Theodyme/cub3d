@@ -6,7 +6,7 @@
 #    By: flplace <flplace@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 13:42:17 by flplace           #+#    #+#              #
-#    Updated: 2024/01/30 16:06:24 by flplace          ###   ########.fr        #
+#    Updated: 2024/01/30 17:16:10 by flplace          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,11 @@ END_COLOR	:= \033[0;39m
 # **************************************************************************** #
 # VARIABLES
 
-SRCS	=	srcs/main.c \
-LIB		=	mlx/libmlx.a \
-			lib/utils.a
+SRCS	=	srcs/main.c
+MLX		=	mlx/libmlx.a
+LIB		=	lib/utils.a
 OBJ		=	${SRCS:.c=.o}
-NAME	=	cub3d
+NAME	=	cub3D
 CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror
 
@@ -37,10 +37,11 @@ CFLAGS	=	-Wall -Wextra -Werror
 	@${CC} ${CFLAGS} -c -g $< -o $@
 	@echo "$(BLUE)Compiling $<...$(END_COLOR)"
 
+
 $(NAME):	${OBJ} Makefile
+	@make --no-print-directory -C lib all
 	@make --no-print-directory -C mlx
-	@make -C lib all
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIB) -lXext -lX11
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLX) $(LIB) -lXext -lX11
 	@echo "$(GREEN)Compiled $(NAME) :)$(END_COLOR)"
 
 all:	${NAME}

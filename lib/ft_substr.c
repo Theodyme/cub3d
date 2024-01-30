@@ -6,11 +6,11 @@
 /*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:01:40 by flplace           #+#    #+#             */
-/*   Updated: 2024/01/30 15:04:57 by flplace          ###   ########.fr       */
+/*   Updated: 2024/01/30 16:32:50 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "utils.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

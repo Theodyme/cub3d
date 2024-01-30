@@ -6,7 +6,7 @@
 #    By: flplace <flplace@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 13:42:17 by flplace           #+#    #+#              #
-#    Updated: 2024/01/30 16:06:08 by flplace          ###   ########.fr        #
+#    Updated: 2024/01/30 17:15:33 by flplace          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,20 +27,21 @@ SRCS	=	ft_is_in_charset.c \
 			ft_memset.c \
 			ft_strtrim.c \
 			ft_strcpy.c \
+			ft_strcmp.c \
 			ft_strdup.c \
 			ft_strchr.c \
 			ft_substr.c \
 			ft_strlen.c
 OBJ		=	${SRCS:.c=.o}
 NAME	=	utils.a
-CC		=	gcc
+CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror
 
 # **************************************************************************** #
 # RULES
 
 $(NAME):	${OBJ}
-	ar rc ${NAME} ${OBJ}
+	@ar rc ${NAME} ${OBJ}
 
 all:	${NAME}
 		@echo "$(GREEN)Built lib/utils.a!$(END_COLOR)"

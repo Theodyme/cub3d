@@ -6,11 +6,11 @@
 /*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:04:00 by flplace           #+#    #+#             */
-/*   Updated: 2024/01/30 15:04:49 by flplace          ###   ########.fr       */
+/*   Updated: 2024/01/30 16:32:16 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "utils.h"
 
 char	*ft_strchr(const char *s, int c)
 {

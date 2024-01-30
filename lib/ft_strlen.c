@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 13:42:23 by flplace           #+#    #+#             */
-/*   Updated: 2024/01/30 15:08:52 by mderkaou         ###   ########.fr       */
+/*   Created: 2024/01/30 15:02:54 by flplace           #+#    #+#             */
+/*   Updated: 2024/01/30 15:04:53 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3d.h"
+#include "../include/cub3d.h"
 
-int		main(int ac, char **av)
+size_t	ft_strlen(const char *str)
 {
-	if (ac == 2)
-	{
-		ft_parse(av[1]);
-	}
-	return (1);
-}
+	int	l;
 
+	l = 0;
+	while (str && str[l] != '\0')
+		l++;
+	return (l);
+}

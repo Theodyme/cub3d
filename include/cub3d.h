@@ -6,7 +6,7 @@
 /*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:42:25 by flplace           #+#    #+#             */
-/*   Updated: 2024/01/30 15:40:56 by flplace          ###   ########.fr       */
+/*   Updated: 2024/01/30 15:52:38 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,18 @@
 // ****************************************************************************
 // UTILS
 
-void	*ft_memset(void *b, int c, size_t len);
 void	*ft_calloc(size_t count, size_t size);
+int		ft_is_in_charset(const char c, const char *charset);
+void	*ft_memset(void *b, int c, size_t len);
+char	*ft_strchr(const char *s, int c);
 char	*ft_strcpy(char *dest, const char *src);
 char	*ft_strdup(const char *src);
-char	*ft_strchr(const char *s, int c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+size_t	ft_strlen(const char *str);
 char	*ft_strtrim(char *s1, char const *set);
 char	*ft_strtrim_free(char *s1, char const *set);
-size_t	ft_strlen(const char *str);
-int		ft_is_in_charset(const char c, const char *charset);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
+// ****************************************************************************
+// TITLE
 
 #endif

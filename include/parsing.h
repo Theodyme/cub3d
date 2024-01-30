@@ -1,25 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 13:42:23 by flplace           #+#    #+#             */
-/*   Updated: 2024/01/30 16:20:46 by flplace          ###   ########.fr       */
+/*   Created: 2024/01/30 16:13:01 by mderkaou          #+#    #+#             */
+/*   Updated: 2024/01/30 16:13:32 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3d.h"
+# ifndef PARSING_H
+# define PARSING_H
 
-int		main(int ac, char **av)
-{
-	(void)ac;
-	char *cpy;
 
-	cpy = ft_strtrim(av[1], WHITESPACES);
-	printf("%s\n", cpy);
-	free(cpy);
-	return (1);
-}
-
+#include "cub3d.h"

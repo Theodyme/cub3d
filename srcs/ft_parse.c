@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 13:42:23 by flplace           #+#    #+#             */
-/*   Updated: 2024/01/30 16:20:46 by flplace          ###   ########.fr       */
+/*   Created: 2024/01/30 15:12:25 by mderkaou          #+#    #+#             */
+/*   Updated: 2024/01/30 15:15:06 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub3d.h"
 
-int		main(int ac, char **av)
+
+void	ft_parse(char *path)
 {
-	(void)ac;
-	char *cpy;
-
-	cpy = ft_strtrim(av[1], WHITESPACES);
-	printf("%s\n", cpy);
-	free(cpy);
-	return (1);
+	printf("Parsing %s\n", path);
+	
 }
-

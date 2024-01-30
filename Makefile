@@ -6,7 +6,7 @@
 #    By: flplace <flplace@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 13:42:17 by flplace           #+#    #+#              #
-#    Updated: 2024/01/30 15:51:24 by flplace          ###   ########.fr        #
+#    Updated: 2024/01/30 16:06:24 by flplace          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,16 +23,8 @@ END_COLOR	:= \033[0;39m
 # VARIABLES
 
 SRCS	=	srcs/main.c \
-			lib/ft_is_in_charset.c \
-			lib/ft_calloc.c \
-			lib/ft_memset.c \
-			lib/ft_strtrim.c \
-			lib/ft_strcpy.c \
-			lib/ft_strdup.c \
-			lib/ft_strchr.c \
-			lib/ft_substr.c \
-			lib/ft_strlen.c
-LIB		=	mlx/libmlx.a
+LIB		=	mlx/libmlx.a \
+			lib/utils.a
 OBJ		=	${SRCS:.c=.o}
 NAME	=	cub3d
 CC		=	cc
@@ -47,6 +39,7 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 $(NAME):	${OBJ} Makefile
 	@make --no-print-directory -C mlx
+	@make -C lib all
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIB) -lXext -lX11
 	@echo "$(GREEN)Compiled $(NAME) :)$(END_COLOR)"
 
@@ -58,6 +51,7 @@ clean:
 
 fclean: clean
 	@make clean --no-print-directory -C mlx
+	@make clean --no-print-directory -C lib
 	@rm -f ${NAME}
 	@echo "$(YELLOW)Cleaned libraries and $(NAME) executable.$(END_COLOR)"
 

@@ -6,7 +6,7 @@
 #    By: flplace <flplace@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 13:42:17 by flplace           #+#    #+#              #
-#    Updated: 2024/01/30 17:15:33 by flplace          ###   ########.fr        #
+#    Updated: 2024/01/30 17:21:24 by flplace          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,12 +39,15 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 # **************************************************************************** #
 # RULES
+%.o: %.c
+	@${CC} ${CFLAGS} -c -g $< -o $@
 
 $(NAME):	${OBJ}
+	@echo "$(BLUE)Building the lib...$(END_COLOR)"
 	@ar rc ${NAME} ${OBJ}
 
 all:	${NAME}
-		@echo "$(GREEN)Built lib/utils.a!$(END_COLOR)"
+		@echo "$(GREEN)Lib/utils.a built!$(END_COLOR)"
 
 clean:
 		@rm -f ${OBJ}

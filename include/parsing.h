@@ -1,23 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 13:42:23 by flplace           #+#    #+#             */
-/*   Updated: 2024/01/30 15:08:52 by mderkaou         ###   ########.fr       */
+/*   Created: 2024/01/30 16:13:01 by mderkaou          #+#    #+#             */
+/*   Updated: 2024/01/30 16:13:32 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3d.h"
+# ifndef PARSING_H
+# define PARSING_H
 
-int		main(int ac, char **av)
-{
-	if (ac == 2)
-	{
-		ft_parse(av[1]);
-	}
-	return (1);
-}
 
+#include "cub3d.h"

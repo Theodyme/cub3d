@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:12:25 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/01/31 20:23:41 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/01/31 21:30:12 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_parse(char *path, t_parse *parse)
 {
-	printf("Parsing %s\n", path);
+	printf("path = %s\n", path);
 	if (name_checker(path, 0) == 1)
 	{
 		printf("Error\nWrong file extension\n");
@@ -31,7 +31,7 @@ void ft_open_file(char *path, t_parse *parse)
 
 	(void)parse;
 	i = 0;
-	fd = open(path, O_RDONLY | __O_DIRECTORY);
+	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
 		printf("Error\nCan't open file\n");

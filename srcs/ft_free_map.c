@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_free_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 13:42:23 by flplace           #+#    #+#             */
-/*   Updated: 2024/02/01 20:42:54 by diavolo          ###   ########.fr       */
+/*   Created: 2024/02/01 20:52:41 by diavolo           #+#    #+#             */
+/*   Updated: 2024/02/01 20:53:58 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int		main(int ac, char **av)
+void	ft_free_map(t_parse *parse)
 {
-	t_parse parse;
-	int i = -1;
-	if (ac == 2)
+	int i;
+
+	i = -1;
+	if (parse->len_map > 0)
 	{
-		ft_parse(av[1], &parse);
-		printf("\n");
-		while (++i < parse.len_textures)
+		while (++i < parse->len_map)
 		{
-			printf("texture = %s\n", parse.textures[i]);
+			free(parse->map[i]);
 		}
-		i = -1;
-		while (++i < parse.len_textures)
-		{
-			free(parse.textures[i]);
-		}
-		free(parse.textures);
+		free(parse->map);
 	}
-	else
-		printf("Error\nWrong number of arguments\n");
-	return (1);
+    if (parse->len_textures > 0)
+    {
+        i = -1;
+        while (++i < parse->len_textures)
+        {
+            free(parse->textures[i]);
+        }
+        free(parse->textures);
+    }
 }

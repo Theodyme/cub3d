@@ -1,7 +1,7 @@
-NO assets/NOblank.xpm
-SO assets/SOblank.xpm
-WE assets/WEblank.xpm
-EA assets/EAblank.xpm
+NO assets/eagle.xpm
+SO assets/greystone.xpm
+WE assets/purplestone.xpm
+EA assets/red.xpm
 
 F 255,255,255
 C 255,255,255

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:01:37 by flplace           #+#    #+#             */
-/*   Updated: 2024/01/30 16:32:46 by flplace          ###   ########.fr       */
+/*   Updated: 2024/02/01 15:09:31 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ char	*ft_strtrim(char *s1, char const *set)
 		else
 			str[j++] = start[i++];
 	}
+	if (j == 0)
+		{
+			free(str);
+			return (NULL);
+		}
 	return (str);
 }
 

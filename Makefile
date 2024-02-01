@@ -6,7 +6,7 @@
 #    By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 13:42:17 by flplace           #+#    #+#              #
-#    Updated: 2024/01/31 20:18:12 by diavolo          ###   ########.fr        #
+#    Updated: 2024/02/01 21:35:38 by diavolo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ END_COLOR	:= \033[0;39m
 # **************************************************************************** #
 # VARIABLES
 
-SRCS	=	srcs/main.c srcs/ft_parse.c srcs/ft_parse_utils.c srcs/get_next_line.c srcs/get_next_line_utils.c
+SRCS	=	srcs/main.c srcs/ft_parse.c srcs/ft_parse_utils2.c srcs/ft_parse_utils.c srcs/get_next_line.c srcs/get_next_line_utils.c srcs/ft_free_map.c
 MLX		=	mlx/libmlx.a
 LIB		=	lib/utils.a
 OBJ		=	${SRCS:.c=.o}
@@ -47,6 +47,8 @@ $(NAME):	${OBJ} Makefile
 all:	${NAME}
 
 clean:
+	@make clean --no-print-directory -C mlx
+	@make clean --no-print-directory -C lib
 	@rm -f ${OBJ}
 	@echo "$(YELLOW)Removed object files.$(END_COLOR)"
 

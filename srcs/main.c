@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:42:23 by flplace           #+#    #+#             */
-/*   Updated: 2024/02/01 20:42:54 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/05 19:38:22 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		main(int ac, char **av)
 	int i = -1;
 	if (ac == 2)
 	{
+		parse.rgb = NULL;
 		ft_parse(av[1], &parse);
 		printf("\n");
 		while (++i < parse.len_textures)

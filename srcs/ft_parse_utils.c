@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/01 21:38:36 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/05 19:09:52 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ int	ft_make_textures_tab(char *path, t_parse *parse, int i)
 	return (0);
 }
 
-void ft_change_texture(t_parse *parse, int i)
+void	ft_change_texture(t_parse *parse, int i)
 {
-	char *tmp;
-	int j;
+	char	*tmp;
+	int		j;
 
 	if (i < 4)
 		j = 2;
@@ -100,7 +100,7 @@ void	ft_open_textures(t_parse *parse)
 		fd = open(parse->textures[i], O_RDONLY);
 		if (fd == -1)
 			return (printf("Error\nCan't open textures\n"), ft_free_map(parse),
-					exit(0));
+				exit(0));
 		close(fd);
 	}
 }

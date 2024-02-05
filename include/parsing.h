@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:13:01 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/01 21:33:37 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/05 19:37:23 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_parse
 {
 	char	**textures;
 	int		len_textures;
+	int		*rgb;
 	char	**map;
 	int		len_map;
 }			t_parse;

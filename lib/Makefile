@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: flplace <flplace@student.42.fr>            +#+  +:+       +#+         #
+#    By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 13:42:17 by flplace           #+#    #+#              #
-#    Updated: 2024/01/30 17:21:24 by flplace          ###   ########.fr        #
+#    Updated: 2024/02/05 19:26:51 by diavolo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCS	=	ft_is_in_charset.c \
 			ft_strdup.c \
 			ft_strchr.c \
 			ft_substr.c \
-			ft_strlen.c
+			ft_strlen.c \
+			ft_atoi.c 
 OBJ		=	${SRCS:.c=.o}
 NAME	=	utils.a
 CC		=	cc

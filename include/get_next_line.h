@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:50:36 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/01/31 20:13:53 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/05 19:12:52 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@
 # include <sys/types.h>
 # include <unistd.h>
 
-
 typedef struct s_list
 {
 	char			*content;
 	struct s_list	*next;
 }					t_list;
-
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1

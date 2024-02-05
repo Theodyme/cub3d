@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:52:41 by diavolo           #+#    #+#             */
-/*   Updated: 2024/02/01 20:53:58 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/05 19:38:03 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_free_map(t_parse *parse)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (parse->len_map > 0)
@@ -25,13 +25,15 @@ void	ft_free_map(t_parse *parse)
 		}
 		free(parse->map);
 	}
-    if (parse->len_textures > 0)
-    {
-        i = -1;
-        while (++i < parse->len_textures)
-        {
-            free(parse->textures[i]);
-        }
-        free(parse->textures);
-    }
+	if (parse->len_textures > 0)
+	{
+		i = -1;
+		while (++i < parse->len_textures)
+		{
+			free(parse->textures[i]);
+		}
+		free(parse->textures);
+	}
+	if (parse->rgb != NULL)
+		free(parse->rgb);
 }

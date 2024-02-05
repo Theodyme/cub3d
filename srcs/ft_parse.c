@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:12:25 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/01 21:28:26 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/05 19:10:48 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_parse(char *path, t_parse *parse)
 	ft_open_file(path, parse);
 	ft_open_rgb(parse);
 }
+
 void	ft_open_file(char *path, t_parse *parse)
 {
 	int		fd;
@@ -34,7 +35,7 @@ void	ft_open_file(char *path, t_parse *parse)
 	i = ft_make_textures_tab(path, parse, 0);
 	if (i == -1)
 		return (printf("Error\nCan't open file\n"), ft_free_map(parse),
-				exit(0));
+			exit(0));
 	fd = open(path, O_RDONLY);
 	while (1)
 	{

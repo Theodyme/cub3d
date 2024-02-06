@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:12:25 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/05 19:10:48 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/06 17:13:54 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_open_file(char *path, t_parse *parse)
 		line = ft_strtrim_free(line, WHITESPACES);
 		if (line != NULL)
 		{
-			printf("%s\n", line);
+			printf("gnl a donne %s\n", line);
 			parse->textures[i] = ft_strdup(line);
 			i++;
 			free(line);

@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:50:36 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/05 19:12:52 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/09 22:18:46 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_list
 }					t_list;
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 100
 # endif
 
 char				*get_next_line(int fd);

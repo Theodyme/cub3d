@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_map.c                                      :+:      :+:    :+:   */
+/*   ft_useful.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 20:52:41 by diavolo           #+#    #+#             */
-/*   Updated: 2024/02/09 22:47:19 by diavolo          ###   ########.fr       */
+/*   Created: 2024/02/09 22:27:34 by diavolo           #+#    #+#             */
+/*   Updated: 2024/02/09 22:53:45 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	ft_free_map(t_parse *parse)
+void	ft_len_map(t_parse *parse)
 {
 	int	i;
+	int	j;
 
-	i = -1;
-	if (parse->len_map > 0)
+	i = 6;
+	j = 0;
+	while (parse->textures[i] != NULL)
 	{
-		while (++i < parse->len_map)
-		{
-			free(parse->map[i]);
-		}
-		free(parse->map);
+		i++;
+		j++;
 	}
-	if (parse->len_textures > 0)
+	parse->map = malloc(sizeof(char *) * (j + 1));
+	parse->map[j] = NULL;
+	parse->len_map = j;
+	i = 6;
+	j = 0;
+	while (parse->textures[i] != NULL)
 	{
-		i = -1;
-		while (++i < parse->len_textures)
-		{
-			free(parse->textures[i]);
-		}
-		free(parse->textures);
+		parse->map[j] = ft_strdup(parse->textures[i]);
+		i++;
+		j++;
 	}
-	if (parse->rgb != NULL)
-		free(parse->rgb);
 }

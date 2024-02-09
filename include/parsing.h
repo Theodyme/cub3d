@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:13:01 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/05 19:37:23 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/09 22:48:46 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void		ft_open_textures(t_parse *parse);
 void		ft_free_map(t_parse *parse);
 void		ft_open_rgb(t_parse *parse);
 void		ft_change_texture(t_parse *parse, int i);
+void		ft_len_map(t_parse *parse);
 
 #endif

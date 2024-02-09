@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:12:25 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/06 17:13:54 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/09 22:54:10 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	ft_parse(char *path, t_parse *parse)
 {
+	int	i;
+
+	i = 0;
 	printf("path = %s\n", path);
 	parse->len_map = -1;
 	parse->len_textures = -1;
@@ -24,6 +27,12 @@ void	ft_parse(char *path, t_parse *parse)
 	}
 	ft_open_file(path, parse);
 	ft_open_rgb(parse);
+	ft_len_map(parse);
+	while (parse->map[i] != NULL)
+	{
+		printf("map = %s\n", parse->map[i]);
+		i++;
+	}
 }
 
 void	ft_open_file(char *path, t_parse *parse)

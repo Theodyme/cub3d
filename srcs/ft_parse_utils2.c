@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:28:39 by diavolo           #+#    #+#             */
-/*   Updated: 2024/02/06 17:49:30 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/09 23:07:02 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	ft_open_rgb(t_parse *parse)
 	else
 		return (printf("C RGB Error\n"), ft_free_map(parse), exit(0));
 	parse->rgb = malloc(sizeof(int) * 6);
+	if (parse->rgb == NULL)
+		return (printf("Malloc error\n"), ft_free_map(parse), exit(0));
 	ft_count_virgule(parse, 4);
 	ft_verif_rgb(parse, 4, 0, 0);
 	ft_verif_rgb(parse, 5, 3, 0);

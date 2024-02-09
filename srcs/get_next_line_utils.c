@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:53:58 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/01/31 20:26:43 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/09 23:07:33 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,6 @@ void	generate_line(char **line, t_list *stock)
 		stock = stock->next;
 	}
 	*line = malloc(sizeof(char) * (len + 1));
+	if (*line == NULL)
+		return ;
 }

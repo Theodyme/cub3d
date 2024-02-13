@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:42:25 by flplace           #+#    #+#             */
-/*   Updated: 2024/02/07 16:17:26 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/13 18:36:20 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,36 @@
 
 
 # define WHITESPACES "\t\r\v\f\n "
+# define WINHEIGHT 800
+# define WINWIDTH 1200
 # define TILESIZE 20
+
+typedef struct s_img
+{
+    void	*mlx_img;
+    char	*addr;
+    int		bpp; /* bits per pixel */
+    int		line_len;
+    int		endian;
+}	t_img;
+
+typedef struct s_tile
+{
+    int	x;
+    int	y;
+    int width;
+    int height;
+    int color;
+}	t_tile;
+
+typedef struct s_parse
+{
+    char    **textures;
+    int        len_textures;
+    int        *rgb;
+    char    **map;
+    int        len_map;
+}            t_parse;
 
 typedef struct s_map
 {
@@ -51,9 +80,24 @@ typedef struct s_mlx
 {
 	void		*mlx;
 	void		*win;
+	t_img		img;
 	t_map		*lvl;
 	// t_assets	*assets;
 }				t_mlx;
+
+/*
+
+	- player pos x
+	- player pos y
+	- the ray should be positive
+	- the wall should be between 0 to x
+
+	- a function that find the player position
+	- handle multiple collision points
+
+	for movements;
+	(player pos + player dir) * movespeed
+*/
 
 // ****************************************************************************
 // UTILS

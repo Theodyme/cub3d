@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:28:39 by diavolo           #+#    #+#             */
-/*   Updated: 2024/02/09 23:07:02 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/13 16:52:01 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ void	ft_open_rgb(t_parse *parse)
 {
 	if (parse->textures[4][0] == 'F' && parse->textures[4][1] >= '0'
 		&& parse->textures[4][1] <= '9')
-		ft_change_texture(parse, 4);
+		ft_change_texture(parse, 4, 1);
 	else
 		return (printf("F RGB Error\n"), ft_free_map(parse), exit(0));
 	if (parse->textures[5][0] == 'C' && parse->textures[5][1] >= '0'
 		&& parse->textures[5][1] <= '9')
-		ft_change_texture(parse, 5);
+		ft_change_texture(parse, 5, 1);
 	else
 		return (printf("C RGB Error\n"), ft_free_map(parse), exit(0));
 	parse->rgb = malloc(sizeof(int) * 6);

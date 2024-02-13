@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:42:23 by flplace           #+#    #+#             */
-/*   Updated: 2024/02/06 17:50:30 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/13 16:52:37 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int ac, char **av)
 		}
 		i = -1;
 		ft_free_map(&parse);
+		printf("\nbien fini\n");
 	}
 	else
 		printf("Error\nWrong number of arguments\n");

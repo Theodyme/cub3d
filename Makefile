@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+         #
+#    By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 13:42:17 by flplace           #+#    #+#              #
-#    Updated: 2024/02/09 22:41:58 by diavolo          ###   ########.fr        #
+#    Updated: 2024/02/13 16:37:51 by mderkaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ END_COLOR	:= \033[0;39m
 # **************************************************************************** #
 # VARIABLES
 
-SRCS	=	srcs/main.c srcs/ft_parse.c srcs/ft_parse_utils2.c srcs/ft_parse_utils.c srcs/get_next_line.c srcs/get_next_line_utils.c srcs/ft_free_map.c srcs/ft_useful.c
+SRCS	=	srcs/main.c srcs/ft_parse.c srcs/ft_parse_utils2.c srcs/ft_parse_utils.c srcs/get_next_line.c srcs/get_next_line_utils.c srcs/ft_free_map.c srcs/ft_useful.c srcs/ft_flood_fill.c srcs/ft_verif_map.c
 MLX		=	mlx/libmlx.a
 LIB		=	lib/utils.a
 OBJ		=	${SRCS:.c=.o}

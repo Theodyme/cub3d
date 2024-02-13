@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: flplace <flplace@student.42.fr>            +#+  +:+       +#+         #
+#    By: theophane <theophane@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 13:42:17 by flplace           #+#    #+#              #
-#    Updated: 2024/01/30 17:16:10 by flplace          ###   ########.fr        #
+#    Updated: 2024/02/07 15:35:42 by theophane        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ END_COLOR	:= \033[0;39m
 # **************************************************************************** #
 # VARIABLES
 
-SRCS	=	srcs/main.c
+SRCS	=	srcs/main.c \
+			srcs/ft_init_window.c
 MLX		=	mlx/libmlx.a
 LIB		=	lib/utils.a
 OBJ		=	${SRCS:.c=.o}

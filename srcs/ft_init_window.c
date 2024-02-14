@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_window.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/13 18:51:38 by flplace          ###   ########.fr       */
+/*   Updated: 2024/02/14 14:19:34 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void    init_testmap(t_mlx *vars)
     t_map   lvl;
 
     lvl.map = NULL;
-    lvl.map = ft_calloc(6, sizeof(char *));
+    lvl.map = ft_calloc(9, sizeof(char *));
     for (int i = 0; i < 4; i++)
         lvl.map[i] = ft_calloc((17 + 1), sizeof(char));
     lvl.map[0] = ft_strdup("1111111111111111");
@@ -110,12 +110,16 @@ int	key_hook(int keycode, t_mlx *vars)
 
 int	game_launcher(t_mlx *vars)
 {
+    vars->mlx = mlx_init();
+    if (vars->mlx == NULL)
+		return 1;
 	vars->win = mlx_new_window(vars->mlx, WINWIDTH,
 			WINHEIGHT, "cub3d");
-	vars->img.mlx_img = mlx_new_image(vars->mlx, WINWIDTH, WINHEIGHT);
-	mlx_get_data_addr(&vars->img.mlx_img, &vars->img.bpp, &vars->img.line_len, &vars->img.endian);
     if (vars->win == NULL)
 	  	return (1);
+	vars->img.mlx_img = mlx_new_image(vars->mlx, WINWIDTH, WINHEIGHT);
+	vars->img.addr = mlx_get_data_addr(vars->img.mlx_img, &vars->img.bpp, &vars->img.line_len, &vars->img.endian);
+    printf("img->bpp = %d\n", vars->img.bpp);
 	mlx_loop_hook(vars->mlx, &handle_no_event, vars);
    	mlx_hook(vars->win, 17, 1L << 5, destroy_win, vars);
     mlx_hook(vars->win, KeyPress, KeyPressMask, &key_hook, vars);
@@ -126,9 +130,6 @@ int	game_launcher(t_mlx *vars)
 void    map_init()
 {
     t_mlx   vars;
-    vars.mlx = mlx_init();
-    if (vars.mlx == NULL)
-		return ;
     init_testmap(&vars);
     game_launcher(&vars);
     return ;

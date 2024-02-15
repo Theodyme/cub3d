@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:13:01 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/13 17:55:06 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:43:42 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ typedef struct s_parse
 	int		*rgb;
 	char	**map;
 	int		len_map;
+	int		count;
+	int		n;
+	int		s;
+	int		e;
+	int		w;
+	int		f;
+	int		c;
 	int		v;
 }			t_parse;
 
@@ -37,5 +44,7 @@ void		ft_len_map(t_parse *parse);
 int			ft_parsing(t_parse *parse, int tablen);
 void		ft_verif_map(t_parse *parse);
 int			ft_check_wall(t_parse *parse, int i, int o);
+void		init_parse(t_parse *parse);
+void		ft_verif_nswe_two(t_parse *parse, int i);
 
 #endif

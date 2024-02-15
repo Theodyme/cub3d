@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/13 16:03:27 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:44:38 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	ft_make_textures_tab(char *path, t_parse *parse, int i)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		line = ft_strtrim_free(line, WHITESPACES);
 		if (line != NULL)
 		{
 			i++;
@@ -64,6 +63,9 @@ void	ft_change_texture(t_parse *parse, int i, int o)
 	char	*tmp;
 	int		j;
 
+	if (parse->n > 1 || parse->s > 1 || parse->e > 1 || parse->w > 1
+		|| parse->f > 1 || parse->c > 1)
+		return (printf("Error\nWRONG TEXTURES\n"), ft_free_map(parse), exit(0));
 	if (i < 4 && o == 0)
 		j = 2;
 	else
@@ -78,22 +80,24 @@ void	ft_change_texture(t_parse *parse, int i, int o)
 
 void	ft_verif_nswe(t_parse *parse)
 {
-	if (parse->textures[0][0] == 'N' && parse->textures[0][1] == 'O')
-		ft_change_texture(parse, 0, 0);
-	else if (parse->textures[0][0] == 'N')
-		ft_change_texture(parse, 0, 1);
-	if (parse->textures[1][0] == 'S' && parse->textures[1][1] == 'O')
-		ft_change_texture(parse, 1, 0);
-	else if (parse->textures[1][0] == 'S')
-		ft_change_texture(parse, 1, 1);
-	if (parse->textures[2][0] == 'W' && parse->textures[2][1] == 'E')
-		ft_change_texture(parse, 2, 0);
-	else if (parse->textures[2][0] == 'W')
-		ft_change_texture(parse, 2, 1);
-	if (parse->textures[3][0] == 'E' && parse->textures[3][1] == 'A')
-		ft_change_texture(parse, 3, 0);
-	else if (parse->textures[3][0] == 'E')
-		ft_change_texture(parse, 3, 1);
+	int	i;
+
+	i = -1;
+	parse->count = 0;
+	while (++i < 4)
+	{
+		if (parse->textures[i][0] == 'N' && parse->textures[i][1] == 'O')
+		{
+			parse->n++;
+			ft_change_texture(parse, i, 0);
+		}
+		else if (parse->textures[i][0] == 'N')
+		{
+			parse->n++;
+			ft_change_texture(parse, i, 1);
+		}
+		ft_verif_nswe_two(parse, i);
+	}
 }
 
 void	ft_open_textures(t_parse *parse)
@@ -108,7 +112,7 @@ void	ft_open_textures(t_parse *parse)
 		fd = open(parse->textures[i], O_RDONLY);
 		if (fd == -1)
 			return (printf("Error\nCan't open textures\n"), ft_free_map(parse),
-					exit(0));
+				exit(0));
 		close(fd);
 	}
 }

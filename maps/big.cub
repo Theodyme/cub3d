@@ -1,9 +1,9 @@
 NO assets/eagle.xpm
-SO assets/greystone.xpm
-WE assets/purplestone.xpm
-EA assets/red.xpm
-         F 100,100,100
+SO assets/purplestone.xpm
+EA assets/greystone.xpm
+WE assets/red.xpm
                   C 135,206,235
+         F 100,100,100
 
              1
             101

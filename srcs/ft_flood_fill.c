@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_flood_fill.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:25:45 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/13 18:10:02 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:24:16 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	ft_last_verif(t_parse *parse)
 		o = -1;
 		while (parse->map[i][++o])
 		{
-			if (parse->map[i][o] != '1' && parse->map[i][o] != '0')
+			if (ft_is_in_charset(parse->map[i][o], "01\t \n") == 0)
 				return (1);
 		}
 	}
@@ -97,14 +97,8 @@ int	ft_parsing(t_parse *parse, int tablen)
 	o = ft_p_poso(parse->map);
 	ft_paint(parse, i, o, tablen);
 	if (parse->v == 1)
-		return (printf("Map error\n"), ft_free_map(parse), exit(0), 1);
-	i = 0;
-	while (parse->map[i] != NULL)
-	{
-		printf("map flood = %s\n", parse->map[i]);
-		i++;
-	}
+		return (printf("Error\nMap\n"), ft_free_map(parse), exit(0), 1);
 	if (ft_last_verif(parse) == 1)
-		return (printf("Map error\n"), ft_free_map(parse), exit(0), 1);
+		return (printf("Error\nMap\n"), ft_free_map(parse), exit(0), 1);
 	return (0);
 }

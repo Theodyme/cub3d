@@ -6,7 +6,7 @@
 #    By: theophane <theophane@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 13:42:17 by flplace           #+#    #+#              #
-#    Updated: 2024/02/07 15:35:42 by theophane        ###   ########.fr        #
+#    Updated: 2024/02/16 16:46:43 by theophane        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,10 @@ END_COLOR	:= \033[0;39m
 # VARIABLES
 
 SRCS	=	srcs/main.c \
-			srcs/ft_init_window.c
+			srcs/ft_init_window.c \
+			srcs/ft_movements.c \
+			srcs/ft_draw_utils.c \
+			srcs/ft_printers.c
 MLX		=	mlx/libmlx.a
 LIB		=	lib/utils.a
 OBJ		=	${SRCS:.c=.o}

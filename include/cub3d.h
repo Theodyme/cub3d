@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:42:25 by flplace           #+#    #+#             */
-/*   Updated: 2024/02/14 14:27:46 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/16 21:44:27 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_mlx
 	void		*win;
 	t_img		img;
 	t_map		*lvl;
+	int			player[2];
 	// t_assets	*assets;
 }				t_mlx;
 
@@ -100,9 +101,32 @@ typedef struct s_mlx
 */
 
 // ****************************************************************************
-// UTILS
+// DRAW UTILS
+
+void	img_pix_put(t_img *img, int x, int y, int color);
+int		render_tile(t_img *img, t_tile tile);
+void	render_background(t_img *img, int color);
+
+// ****************************************************************************
+// PRINTERS
+
+void    ft_map_printer(char **map, int y);
+
+
+// ****************************************************************************
+// MOVEMENTS
+
+int 	ft_strchr_charset(char *str, char *charset);
+void    ft_player_finder(t_mlx **vars);
+
+// ****************************************************************************
+// MINIMAP
+
+// ****************************************************************************
+// INIT_WINDOW
 
 void    map_init();
+
 
 // ****************************************************************************
 // TITLE

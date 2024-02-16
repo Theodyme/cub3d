@@ -6,13 +6,13 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/14 14:19:34 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/16 21:59:16 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	destroy_win(t_mlx *vars)
+int     destroy_win(t_mlx *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
@@ -21,82 +21,36 @@ int	destroy_win(t_mlx *vars)
 
 void    init_testmap(t_mlx *vars)
 {
-    t_map   lvl;
+    t_map   *lvl;
 
-    lvl.map = NULL;
-    lvl.map = ft_calloc(9, sizeof(char *));
-    for (int i = 0; i < 4; i++)
-        lvl.map[i] = ft_calloc((17 + 1), sizeof(char));
-    lvl.map[0] = ft_strdup("1111111111111111");
-    lvl.map[1] = ft_strdup("10000000000000001");
-    lvl.map[2] = ft_strdup("1000000010000001");
-    lvl.map[3] = ft_strdup("10000000100000001");
-    lvl.map[4] = ft_strdup("10000111100000001");
-    lvl.map[5] = ft_strdup("10000000000000001");
-    lvl.map[6] = ft_strdup("10000000000000001");
-    lvl.map[7] = ft_strdup("10000000000000001");
-    lvl.map[8] = ft_strdup("1111111111111111");
-    lvl.y = 8;
-    lvl.x = 17;
-    vars->lvl = &lvl;
-    printf("lvl y = %d\nlvl x = %d\n", lvl.y, lvl.x);
+    lvl = malloc(sizeof(t_map));
+    lvl->map = ft_calloc((9 + 1), sizeof(char *));
+    for (int i = 0; i < 9; i++)
+        lvl->map[i] = ft_calloc((17 + 2), sizeof(char));
+    lvl->map[0] = ft_strdup("1111111111111111");
+    lvl->map[1] = ft_strdup("10000000000000001");
+    lvl->map[2] = ft_strdup("10000000100000001");
+    lvl->map[3] = ft_strdup("10000000100000001");
+    lvl->map[4] = ft_strdup("10000111100000001");
+    lvl->map[5] = ft_strdup("10000000000000001");
+    lvl->map[6] = ft_strdup("10000000000N00001");
+    lvl->map[7] = ft_strdup("10000000000000001");
+    lvl->map[8] = ft_strdup("1111111111111111");
+    lvl->map[9] = '\0';
+    lvl->x = 17;
+    lvl->y = 8;
+    vars->lvl = lvl;
+    printf("lvl y = %d\nlvl x = %d\n", lvl->y, lvl->x);
     return ;
 }
-void	img_pix_put(t_img *img, int x, int y, int color)
+
+int     handle_no_event(t_mlx *vars)
 {
-    char    *pixel;
-    int		i;
-
-    i = img->bpp - 8;
-    pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-    while (i >= 0)
-    {
-        /* big endian, MSB is the leftmost bit */
-        if (img->endian != 0)
-            *pixel++ = (color >> i) & 0xFF;
-        /* little endian, LSB is the leftmost bit */
-        else
-            *pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
-        i -= 8;
-    }
-}
-
-int render_tile(t_img *img, t_tile tile)
-{
-    int	i;
-    int j;
-
-    i = tile.y;
-    while (i < tile.y + tile.height)
-    {
-        j = tile.x;
-        while (j < tile.x + tile.width)
-            img_pix_put(img, j++, i, tile.color);
-        ++i;
-    }
-    return (0);
-}
-void	render_background(t_img *img, int color)
-{
-    int	i;
-    int	j;
-
-    i = 0;
-    while (i < WINHEIGHT)
-    {
-        j = 0;
-        while (j < WINWIDTH)
-        {
-            img_pix_put(img, j++, i, color);
-        }
-        ++i;
-    }
-}
-
-int	handle_no_event(t_mlx *vars)
-{
-	render_background(&vars->img, 0xFFFFFF);
-	render_tile(&vars->img, (t_tile){0, 0, TILESIZE, TILESIZE, 0xFF00});
+    ft_player_finder(&vars);
+    printf("player is at (%d, %d)\n", vars->player[0], vars->player[1]);
+	render_tile(&vars->img, (t_tile){vars->player[0], vars->player[1], TILESIZE, TILESIZE, 0x5555FF});
+    render_background(&vars->img, 0xFFFFFF);
+	render_tile(&vars->img, (t_tile){0, 0, TILESIZE, TILESIZE, 0xFF5555});
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.mlx_img, 0, 0);
 	return (0);
 }
@@ -131,6 +85,7 @@ void    map_init()
 {
     t_mlx   vars;
     init_testmap(&vars);
+    // ft_map_printer(vars.lvl->map, vars.lvl->y);
     game_launcher(&vars);
     return ;
 }

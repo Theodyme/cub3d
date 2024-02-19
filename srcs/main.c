@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/19 16:21:44 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/19 16:39:41 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(int ac, char **av)
 		parse.rgb = NULL;
 		ft_parse(av[1], &parse);
 		printf("\n");
-		ft_free_map(&parse);
 		printf("\nbien fini\n");
-		map_init();
+		map_init(&parse);
+		ft_free_map(&parse);
 	}
 	else
 		printf("Error\nWrong number of arguments\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_window.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/19 16:22:24 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/19 16:38:56 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,14 @@ int	destroy_win(t_mlx *data)
 **		kill it with fire.
 */
 
-void	init_testmap(t_mlx *data)
+void	init_testmap(t_mlx *data, t_parse *parse)
 {
 	t_map	*lvl;
 
 	lvl = malloc(sizeof(t_map));
-	lvl->map = ft_calloc((9 + 1), sizeof(char *));
-	for (int i = 0; i < 9; i++)
-		lvl->map[i] = ft_calloc((17 + 2), sizeof(char));
-	lvl->map[0] = ft_strdup("11111111111111111");
-	lvl->map[1] = ft_strdup("10000000000000001");
-	lvl->map[2] = ft_strdup("10000000100000001");
-	lvl->map[3] = ft_strdup("10000000100010001");
-	lvl->map[4] = ft_strdup("10000111100000001");
-	lvl->map[5] = ft_strdup("10000000000000001");
-	lvl->map[6] = ft_strdup("10000000000N00001");
-	lvl->map[7] = ft_strdup("10000111000000001");
-	lvl->map[8] = ft_strdup("11111111111111111");
-	lvl->map[9] = '\0';
+	if (lvl == NULL)
+		return (printf("Error\nMalloc\n"), exit(0));
+	lvl->map = parse->map;
 	lvl->x = 17;
 	lvl->y = 8;
 	data->lvl = lvl;
@@ -133,11 +123,11 @@ int	game_launcher(t_mlx *data)
 **		voir si ça peut pas être décalé dans game_launcher directement après avoir viré init_testmap.
 */
 
-void	map_init(void)
+void	map_init(t_parse *parse)
 {
 	t_mlx	data;
 
-	init_testmap(&data);
+	init_testmap(&data, parse);
 	game_launcher(&data);
 	return ;
 }

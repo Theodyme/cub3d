@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:01:37 by flplace           #+#    #+#             */
-/*   Updated: 2024/01/30 16:32:46 by flplace          ###   ########.fr       */
+/*   Updated: 2024/02/19 15:13:57 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ char	*ft_strtrim(char *s1, char const *set)
 	char			*str;
 	char			*start;
 	unsigned int	size;
-	int i;
-	int j;
+	int				i;
+	int				j;
 
 	i = 0;
 	j = 0;

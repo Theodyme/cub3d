@@ -6,13 +6,13 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:42:23 by flplace           #+#    #+#             */
-/*   Updated: 2024/02/07 15:33:54 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/19 14:28:19 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;

@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:42:25 by flplace           #+#    #+#             */
-/*   Updated: 2024/02/16 21:44:27 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/19 15:18:09 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,38 +23,28 @@
 # include "../lib/utils.h"
 # include "../mlx/mlx.h"
 
-
 # define WHITESPACES "\t\r\v\f\n "
 # define WINHEIGHT 800
 # define WINWIDTH 1200
-# define TILESIZE 20
+# define TILESIZE 5
 
 typedef struct s_img
 {
-    void	*mlx_img;
-    char	*addr;
-    int		bpp; /* bits per pixel */
-    int		line_len;
-    int		endian;
+	void	*mlx_img;
+	char	*addr;
+	int		bpp; /* bits per pixel */
+	int		line_len;
+	int		endian;
 }	t_img;
 
 typedef struct s_tile
 {
-    int	x;
-    int	y;
-    int width;
-    int height;
-    int color;
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+	int	color;
 }	t_tile;
-
-typedef struct s_parse
-{
-    char    **textures;
-    int        len_textures;
-    int        *rgb;
-    char    **map;
-    int        len_map;
-}            t_parse;
 
 typedef struct s_map
 {
@@ -87,7 +77,6 @@ typedef struct s_mlx
 }				t_mlx;
 
 /*
-
 	- player pos x
 	- player pos y
 	- the ray should be positive
@@ -101,32 +90,29 @@ typedef struct s_mlx
 */
 
 // ****************************************************************************
-// DRAW UTILS
+// MINIMAP DISPLAY
 
 void	img_pix_put(t_img *img, int x, int y, int color);
+int		render_flat_walls(t_mlx *vars);
 int		render_tile(t_img *img, t_tile tile);
-void	render_background(t_img *img, int color);
+void	render_background(t_img *img, int color, int height, int width);
+void	render_minimap(t_mlx *vars);
 
 // ****************************************************************************
 // PRINTERS
 
-void    ft_map_printer(char **map, int y);
-
+void	map_printer(char **map, int y);
 
 // ****************************************************************************
 // MOVEMENTS
 
-int 	ft_strchr_charset(char *str, char *charset);
-void    ft_player_finder(t_mlx **vars);
-
-// ****************************************************************************
-// MINIMAP
+int		strchr_charset(char *str, char *charset);
+void	player_finder(t_mlx **vars);
 
 // ****************************************************************************
 // INIT_WINDOW
 
-void    map_init();
-
+void	map_init(void);
 
 // ****************************************************************************
 // TITLE

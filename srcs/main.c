@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/19 16:15:07 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/19 16:21:44 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	main(int ac, char **av)
 		printf("\n");
 		ft_free_map(&parse);
 		printf("\nbien fini\n");
+		map_init();
 	}
 	else
 		printf("Error\nWrong number of arguments\n");
-	map_init();
 	return (1);
 }

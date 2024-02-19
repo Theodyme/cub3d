@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/19 16:10:57 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/19 16:19:20 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include "colors.h"
 # include "../lib/utils.h"
 # include "../mlx/mlx.h"
+# include "get_next_line.h"
+# include "parsing.h"
 
 # define WHITESPACES "\t\r\v\f\n "
 # define WINHEIGHT 800

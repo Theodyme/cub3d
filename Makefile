@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+         #
+#    By: theophane <theophane@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/30 13:42:17 by flplace           #+#    #+#              #
-#    Updated: 2024/02/15 16:37:07 by diavolo          ###   ########.fr        #
+#    Created: Invalid date        by                   #+#    #+#              #
+#    Updated: 2024/02/19 16:12:44 by theophane        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 
 # **************************************************************************** #
@@ -22,7 +23,21 @@ END_COLOR	:= \033[0;39m
 # **************************************************************************** #
 # VARIABLES
 
-SRCS	=	srcs/main.c srcs/ft_parse.c srcs/ft_parse_utils2.c srcs/ft_parse_utils.c srcs/get_next_line.c srcs/get_next_line_utils.c srcs/ft_free_map.c srcs/ft_useful.c srcs/ft_flood_fill.c srcs/ft_verif_map.c srcs/ft_nswe.c
+SRCS	=	srcs/main.c \
+			srcs/ft_init_window.c \
+			srcs/ft_movements.c \
+			srcs/ft_minimap_display.c \
+			srcs/ft_printers.c \
+			srcs/ft_parse.c \
+			srcs/ft_parse_utils2.c \
+			srcs/ft_parse_utils.c \
+			srcs/get_next_line.c \
+			srcs/get_next_line_utils.c \
+			srcs/ft_free_map.c \
+			srcs/ft_useful.c \
+			srcs/ft_flood_fill.c \
+			srcs/ft_verif_map.c \
+			srcs/ft_nswe.c
 MLX		=	mlx/libmlx.a
 LIB		=	lib/utils.a
 OBJ		=	${SRCS:.c=.o}

@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 15:01:37 by flplace           #+#    #+#             */
-/*   Updated: 2024/02/01 15:09:31 by diavolo          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/02/19 16:13:14 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "utils.h"
 
@@ -17,8 +18,8 @@ char	*ft_strtrim(char *s1, char const *set)
 	char			*str;
 	char			*start;
 	unsigned int	size;
-	int i;
-	int j;
+	int				i;
+	int				j;
 
 	i = 0;
 	j = 0;

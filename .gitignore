@@ -2,4 +2,4 @@
 */*.o
 */*/*.o
 .vscode/*
-cub3d
+cub3D

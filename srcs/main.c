@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 13:42:23 by flplace           #+#    #+#             */
-/*   Updated: 2024/02/15 16:37:50 by diavolo          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/02/19 16:15:07 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../include/cub3d.h"
 
@@ -26,5 +27,6 @@ int	main(int ac, char **av)
 	}
 	else
 		printf("Error\nWrong number of arguments\n");
+	map_init();
 	return (1);
 }

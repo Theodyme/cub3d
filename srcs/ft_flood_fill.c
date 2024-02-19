@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:25:45 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/15 16:24:16 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/19 19:19:47 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,18 @@ int	ft_parsing(t_parse *parse, int tablen)
 
 	i = ft_p_posi(parse->map);
 	o = ft_p_poso(parse->map);
+	ft_cpy_map(parse);
 	ft_paint(parse, i, o, tablen);
 	if (parse->v == 1)
 		return (printf("Error\nMap\n"), ft_free_map(parse), exit(0), 1);
 	if (ft_last_verif(parse) == 1)
 		return (printf("Error\nMap\n"), ft_free_map(parse), exit(0), 1);
+	i = -1;
+	while (parse->map[++i])
+	{
+		free(parse->map[i]);
+	}
+	free(parse->map);
+	parse->map = parse->map_cpy;
 	return (0);
 }

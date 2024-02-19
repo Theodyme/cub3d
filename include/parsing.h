@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/19 16:13:27 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/19 19:18:21 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PARSING_H
 # define PARSING_H
@@ -22,6 +21,7 @@ typedef struct s_parse
 	int		len_textures;
 	int		*rgb;
 	char	**map;
+	char	**map_cpy;
 	int		len_map;
 	int		count;
 	int		n;
@@ -47,5 +47,6 @@ void		ft_verif_map(t_parse *parse);
 int			ft_check_wall(t_parse *parse, int i, int o);
 void		init_parse(t_parse *parse);
 void		ft_verif_nswe_two(t_parse *parse, int i);
+void		ft_cpy_map(t_parse *parse);
 
 #endif

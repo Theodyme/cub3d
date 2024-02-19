@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/19 16:40:22 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/19 17:04:25 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_mlx
 	void		*win;
 	t_img		img;
 	t_map		*lvl;
+	t_parse		*parse;
 	int			player[2];
 	// t_assets	*assets;
 }				t_mlx;

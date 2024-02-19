@@ -6,7 +6,7 @@
 /*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/19 16:38:56 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/19 19:10:09 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,20 @@ int	destroy_win(t_mlx *data)
 void	init_testmap(t_mlx *data, t_parse *parse)
 {
 	t_map	*lvl;
+	int i = 0;
 
 	lvl = malloc(sizeof(t_map));
 	if (lvl == NULL)
 		return (printf("Error\nMalloc\n"), exit(0));
 	lvl->map = parse->map;
-	lvl->x = 17;
-	lvl->y = 8;
+	while (lvl->map[i] != NULL)
+	{
+		printf("%s\n", lvl->map[i]);
+		i++;
+	}
+	
+	lvl->x = 2;
+	lvl->y = 3;
 	data->lvl = lvl;
 	printf("lvl y = %d\nlvl x = %d\n", lvl->y, lvl->x);
 	return ;
@@ -82,7 +89,7 @@ int	handle_no_event(t_mlx *data)
 int	key_hook(int keycode, t_mlx *data)
 {
 	if (keycode == XK_Escape)
-		destroy_win(data);
+		return (destroy_win(data), ft_free_map(data->parse),exit(0), 0);
 	return (0);
 }
 

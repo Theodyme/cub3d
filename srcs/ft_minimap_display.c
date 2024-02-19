@@ -6,11 +6,25 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/19 15:12:16 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/19 15:57:43 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+/* ------------------------------- img_pix_put() ---------------------------------- */
+/*
+**		c'est l'équivalent du mlx_pixel_put() de Abrabant (cf tuto sur google).
+**		je me mens peut être à moi-même, mais je compte comprendre en détail
+**		comment elle fonctionne dès qu'on aura un raycasting qui tourne et un
+**		peu de temps. ça m'embête d'avoir un truc que j'ai pas codé et que je
+**		comprends pas complètement dans mon projet.
+**
+**		dans les grandes lignes, c'est une fonction qui écrit des pixels aux
+**		coordonnées x et y, de la couleur color. elle prend en compte les bits
+**		par pixel, la taille de ton image, et si ton système lit les bits de
+**		gauche à droite ou de droite à gauche.
+*/
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
@@ -31,21 +45,29 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	}
 }
 
-int	render_flat_walls(t_mlx *vars)
+/* ------------------------------- render_*() ---------------------------------- */
+/*
+**		render des trucs avec un équivalent du mlx_pixel_put()!
+**		pour rappel, ces fonctions n'affichent pas directement, elles écrivent
+**		sur l'image avant qu'on ne l'envoie au display. si tu fais un img_pix_put()
+**		sans put_img_to_window ensuite, rien ne s'affichera.
+*/
+
+int	render_flat_walls(t_mlx *data)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (vars->lvl->map[++i])
+	while (data->lvl->map[++i])
 	{
 		j = -1;
-		while (vars->lvl->map[i][++j])
+		while (data->lvl->map[i][++j])
 		{
 			// printf("printing walls: checking position (%d, %d)\n", j, i);
-			if (vars->lvl->map[i][j] == '1')
+			if (data->lvl->map[i][j] == '1')
 			{
-				render_tile(&vars->img, (t_tile){(j * TILESIZE),
+				render_tile(&data->img, (t_tile){(j * TILESIZE),
 					(i * TILESIZE), TILESIZE, TILESIZE, 0x5DA69B});
 			}
 		}
@@ -86,11 +108,20 @@ void	render_background(t_img *img, int color, int height, int width)
 	}
 }
 
-void	render_minimap(t_mlx *vars)
+/* ------------------------------- render_minimap() ---------------------------------- */
+/*
+**		rassemble toutes les fonctions de render, dans l'ordre:
+**		- le fond
+**		- le player
+**		- les murs
+**		/!\ l'ordre dans lequel tu les écris va affecter quel pixel prendra la priorité sur l'autre!
+*/
+
+void	render_minimap(t_mlx *data)
 {
-	render_background(&vars->img, 0xAACFCF, (vars->lvl->y * TILESIZE),
-		(vars->lvl->x * TILESIZE));
-	render_tile(&vars->img, (t_tile){(vars->player[0] * TILESIZE),
-		(vars->player[1] * TILESIZE), TILESIZE, TILESIZE, 0xDE7955});
-	render_flat_walls(vars);
+	render_background(&data->img, 0xAACFCF, (data->lvl->y * TILESIZE),
+		(data->lvl->x * TILESIZE));
+	render_tile(&data->img, (t_tile){(data->player[0] * TILESIZE),
+		(data->player[1] * TILESIZE), TILESIZE, TILESIZE, 0xDE7955});
+	render_flat_walls(data);
 }

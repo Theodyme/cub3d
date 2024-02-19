@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:42:25 by flplace           #+#    #+#             */
-/*   Updated: 2024/02/19 15:18:09 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/19 15:30:30 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,17 @@ typedef struct s_map
 	int		x;
 }				t_map;
 
-typedef struct s_data {
+typedef struct s_asset_img {
 	void	*img;
-}				t_data;
+}				t_asset_img;
 
 typedef struct s_assets {
-	t_data	*nwall;
-	t_data	*swall;
-	t_data	*wwall;
-	t_data	*ewall;
-	t_data	*bg;
-	t_data	*start;
+	t_asset_img	*nwall;
+	t_asset_img	*swall;
+	t_asset_img	*wwall;
+	t_asset_img	*ewall;
+	t_asset_img	*bg;
+	t_asset_img	*start;
 }				t_assets;
 
 typedef struct s_mlx
@@ -93,10 +93,10 @@ typedef struct s_mlx
 // MINIMAP DISPLAY
 
 void	img_pix_put(t_img *img, int x, int y, int color);
-int		render_flat_walls(t_mlx *vars);
+int		render_flat_walls(t_mlx *data);
 int		render_tile(t_img *img, t_tile tile);
 void	render_background(t_img *img, int color, int height, int width);
-void	render_minimap(t_mlx *vars);
+void	render_minimap(t_mlx *data);
 
 // ****************************************************************************
 // PRINTERS
@@ -107,7 +107,7 @@ void	map_printer(char **map, int y);
 // MOVEMENTS
 
 int		strchr_charset(char *str, char *charset);
-void	player_finder(t_mlx **vars);
+void	player_finder(t_mlx **data);
 
 // ****************************************************************************
 // INIT_WINDOW

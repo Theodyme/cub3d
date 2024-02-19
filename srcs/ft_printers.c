@@ -6,13 +6,20 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/19 14:29:24 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/19 15:59:19 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	ft_map_printer(char **map, int y)
+/* ------------------------------- map_printer() ---------------------------------- */
+/*
+**		print la map!
+**		le paramètre y est là pour vérifier qu'on a bien pu imprimer la map en entier.
+**		elle est là pour débuguer mais je pense qu'on pourra la virer ensuite!
+*/
+
+void	map_printer(char **map, int y)
 {
 	int	i;
 

@@ -6,11 +6,17 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/19 15:07:18 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/19 16:03:06 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+/* ------------------------------- strchr_charset() ---------------------------------- */
+/*
+**		c'est un strchr mais qui cherche tout caractère appartenant au charset précisé.
+**		je l'ai utilisé parce que le player peut être désigné par NSWE.
+*/
 
 int	strchr_charset(char *str, char *charset)
 {
@@ -27,19 +33,28 @@ int	strchr_charset(char *str, char *charset)
 	return (-1);
 }
 
-void	player_finder(t_mlx **vars)
+/* ------------------------------- player_finder() ---------------------------------- */
+/*
+**		récupère les coordonnées du joueur à l'instant T et les stockes dans les data,
+**		dans le tableau d'int data->player[1] et data->player[2].
+**		par convention, l'axe des abscisses (x, à l'horizontal) est toujours cité en premier,
+**		suivi de l'axe des ordonnées (y, à la verticale). pour plus de clarté, j'ai respecté
+**		cette convention!
+*/
+
+void	player_finder(t_mlx **data)
 {
 	int	i;
 
 	i = -1;
-	// ft_map_printer((*vars)->lvl->map, (*vars)->lvl->y);
-	while ((*vars)->lvl->map[++i])
+	// map_printer((*data)->lvl->map, (*data)->lvl->y);
+	while ((*data)->lvl->map[++i])
 	{
-		(*vars)->player[0] = strchr_charset((*vars)->lvl->map[i], "NSEW");
-		if ((*vars)->player[0] != -1)
+		(*data)->player[0] = strchr_charset((*data)->lvl->map[i], "NSEW");
+		if ((*data)->player[0] != -1)
 		{
-			// printf("Found player at (%d, %d)\n", ((*vars)->player[0]), i);
-			(*vars)->player[1] = i;
+			// printf("Found player at (%d, %d)\n", ((*data)->player[0]), i);
+			(*data)->player[1] = i;
 			return ;
 		}
 	}

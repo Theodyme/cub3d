@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_useful.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 22:27:34 by diavolo           #+#    #+#             */
-/*   Updated: 2024/02/19 19:17:32 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/20 16:13:14 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	init_parse(t_parse *parse)
 	parse->f = 0;
 	parse->c = 0;
 	parse->map = NULL;
+	parse->len_map = -1;
 }
 
 void	ft_cpy_map(t_parse *parse)

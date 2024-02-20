@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:12:25 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/19 18:29:16 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/20 16:19:11 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	count_max_len(t_parse *parse)
+{
+	int	i;
+	int	j;
+	int	max_len;
+
+	i = -1;
+	max_len = 0;
+	while (parse->map[++i] != NULL)
+	{
+		j = -1;
+		while (parse->map[i][++j] != '\0')
+		{
+			if (j > max_len)
+				max_len = j;
+		}
+	}
+	parse->max_len = max_len;
+	if (parse->max_len < 0)
+		return (printf("Error\nMap too small\n"), ft_free_map(parse), exit(0));
+}
 
 void	ft_parse(char *path, t_parse *parse)
 {
@@ -24,6 +46,7 @@ void	ft_parse(char *path, t_parse *parse)
 	ft_len_map(parse);
 	ft_verif_map(parse);
 	ft_parsing(parse, parse->len_map);
+	count_max_len(parse);
 }
 
 void	ft_open_file(char *path, t_parse *parse)

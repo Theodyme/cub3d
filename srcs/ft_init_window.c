@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_window.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/19 19:10:09 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/20 16:19:00 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,8 @@ void	init_testmap(t_mlx *data, t_parse *parse)
 		printf("%s\n", lvl->map[i]);
 		i++;
 	}
-	
-	lvl->x = 2;
-	lvl->y = 3;
+	lvl->x = parse->max_len;
+	lvl->y = parse->len_map;
 	data->lvl = lvl;
 	printf("lvl y = %d\nlvl x = %d\n", lvl->y, lvl->x);
 	return ;

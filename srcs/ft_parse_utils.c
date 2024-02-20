@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/15 16:44:38 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/20 17:28:11 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,9 @@ void	ft_change_texture(t_parse *parse, int i, int o)
 		j = 2;
 	else
 		j = 1;
-	tmp = malloc(sizeof(char) * ((ft_strlen(parse->textures[i]) - j) + 1));
+	tmp = ft_strdup(parse->textures[i] + j);
 	if (tmp == NULL)
 		return (printf("Error\nMalloc error\n"), ft_free_map(parse));
-	tmp = ft_strcpy(tmp, parse->textures[i] + j);
 	free(parse->textures[i]);
 	parse->textures[i] = tmp;
 }

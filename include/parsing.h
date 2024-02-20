@@ -6,7 +6,7 @@
 /*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/20 17:17:25 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:43:54 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int			ft_check_wall(t_parse *parse, int i, int o);
 void		init_parse(t_parse *parse);
 void		ft_verif_nswe_two(t_parse *parse, int i);
 void		ft_cpy_map(t_parse *parse);
+void		ft_free_map_cpy(t_parse *parse);
 
 #endif

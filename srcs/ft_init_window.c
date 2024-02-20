@@ -6,7 +6,7 @@
 /*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/20 16:19:00 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:40:12 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	init_testmap(t_mlx *data, t_parse *parse)
 	lvl->x = parse->max_len;
 	lvl->y = parse->len_map;
 	data->lvl = lvl;
+	data->parse = parse;
 	printf("lvl y = %d\nlvl x = %d\n", lvl->y, lvl->x);
 	return ;
 }
@@ -88,7 +89,7 @@ int	handle_no_event(t_mlx *data)
 int	key_hook(int keycode, t_mlx *data)
 {
 	if (keycode == XK_Escape)
-		return (destroy_win(data), ft_free_map(data->parse),exit(0), 0);
+		return (ft_free_map(data->parse), destroy_win(data), exit(0), 0);
 	return (0);
 }
 

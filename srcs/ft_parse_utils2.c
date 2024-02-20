@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:28:39 by diavolo           #+#    #+#             */
-/*   Updated: 2024/02/15 16:44:57 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/20 17:24:06 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,14 @@ void	ft_open_rgb_two(t_parse *parse, int i)
 		&& parse->textures[i][1] <= '9')
 	{
 		parse->f++;
+		parse->rgb_f = i;
 		ft_change_texture(parse, i, 1);
 	}
 	else if (parse->textures[i][0] == 'C' && parse->textures[i][1] >= '0'
 			&& parse->textures[i][1] <= '9')
 	{
 		parse->c++;
+		parse->rgb_c = i;
 		ft_change_texture(parse, i, 1);
 	}
 	else
@@ -91,6 +93,7 @@ void	ft_open_rgb(t_parse *parse)
 	if (parse->rgb == NULL)
 		return (printf("Error\nMalloc\n"), ft_free_map(parse), exit(0));
 	ft_count_virgule(parse, 4);
-	ft_verif_rgb(parse, 4, 0, 0);
-	ft_verif_rgb(parse, 5, 3, 0);
+	printf("rgb_f = %d\n", parse->rgb_f);
+	ft_verif_rgb(parse, parse->rgb_f, 0, 0);
+	ft_verif_rgb(parse, parse->rgb_c, 3, 0);
 }

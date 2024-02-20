@@ -6,7 +6,7 @@
 /*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 22:27:34 by diavolo           #+#    #+#             */
-/*   Updated: 2024/02/20 16:13:14 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:17:41 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	init_parse(t_parse *parse)
 	parse->c = 0;
 	parse->map = NULL;
 	parse->len_map = -1;
+	parse->rgb_f = 0;
+	parse->rgb_c = 0;
 }
 
 void	ft_cpy_map(t_parse *parse)

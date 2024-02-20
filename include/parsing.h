@@ -6,7 +6,7 @@
 /*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/20 16:14:38 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:17:25 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef struct s_parse
 	char	**textures;
 	int		len_textures;
 	int		*rgb;
+	int		rgb_c;
+	int		rgb_f;
 	char	**map;
 	char	**map_cpy;
 	int		len_map;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/20 17:28:11 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:45:12 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,13 @@ void	ft_verif_nswe(t_parse *parse)
 		if (parse->textures[i][0] == 'N' && parse->textures[i][1] == 'O')
 		{
 			parse->n++;
+			parse->n_id = i;
 			ft_change_texture(parse, i, 0);
 		}
 		else if (parse->textures[i][0] == 'N')
 		{
 			parse->n++;
+			parse->n_id = i;
 			ft_change_texture(parse, i, 1);
 		}
 		ft_verif_nswe_two(parse, i);

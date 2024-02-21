@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/20 17:43:54 by mderkaou         ###   ########.fr       */
+/*   Created: 2024/02/21 17:04:20 by diavolo           #+#    #+#             */
+/*   Updated: 2024/02/21 17:04:31 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ typedef struct s_parse
 	int		*rgb;
 	int		rgb_c;
 	int		rgb_f;
+	int		n_id;
+	int		s_id;
+	int		e_id;
+	int		w_id;
 	char	**map;
 	char	**map_cpy;
 	int		len_map;

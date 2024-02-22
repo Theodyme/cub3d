@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/21 15:45:12 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/22 15:33:47 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_change_texture(t_parse *parse, int i, int o)
 	if (parse->n > 1 || parse->s > 1 || parse->e > 1 || parse->w > 1
 		|| parse->f > 1 || parse->c > 1)
 		return (printf("Error\nWRONG TEXTURES\n"), ft_free_map(parse), exit(0));
-	if (i < 4 && o == 0)
+	if (o == 0 && parse->textures[i][0] != 'F' && parse->textures[i][0] != 'C')
 		j = 2;
 	else
 		j = 1;
@@ -83,7 +83,7 @@ void	ft_verif_nswe(t_parse *parse)
 
 	i = -1;
 	parse->count = 0;
-	while (++i < 4)
+	while (++i < 6)
 	{
 		if (parse->textures[i][0] == 'N' && parse->textures[i][1] == 'O')
 		{
@@ -97,7 +97,8 @@ void	ft_verif_nswe(t_parse *parse)
 			parse->n_id = i;
 			ft_change_texture(parse, i, 1);
 		}
-		ft_verif_nswe_two(parse, i);
+		else
+			ft_verif_nswe_two(parse, i);
 	}
 }
 
@@ -108,12 +109,16 @@ void	ft_open_textures(t_parse *parse)
 
 	i = -1;
 	ft_verif_nswe(parse);
-	while (++i < 4)
+	while (++i < 6)
 	{
-		fd = open(parse->textures[i], O_RDONLY);
-		if (fd == -1)
-			return (printf("Error\nCan't open textures\n"), ft_free_map(parse),
-				exit(0));
-		close(fd);
+		if (i == parse->n_id || i == parse->s_id || i == parse->e_id
+			|| i == parse->w_id)
+		{
+			fd = open(parse->textures[i], O_RDONLY);
+			if (fd == -1)
+				return (printf("Error\nCan't open textures\n"),
+					ft_free_map(parse), exit(0));
+			close(fd);
+		}
 	}
 }

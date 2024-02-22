@@ -1,10 +1,12 @@
+F 34,252,55
 EA assets/eagle.xpm
 WE assets/purplestone.xpm
-SO assets/greystone.xpm
-NO assets/red.xpm
-
-F 34,252,55
 C 54,55,56
+SO 					     assets/greystone.xpm
+
+
+							NO assets/red.xpm
+
 
 11111011
 100110011100111

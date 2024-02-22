@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:04:45 by diavolo           #+#    #+#             */
-/*   Updated: 2024/02/21 17:04:51 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/02/22 15:33:18 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_img
 {
 	void		*mlx_img;
 	char		*addr;
-	int bpp; /* bits per pixel */
+	int	bpp; /* bits per pixel */
 	int			line_len;
 	int			endian;
 }				t_img;

@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/20 16:08:34 by mderkaou         ###   ########.fr       */
+/*   Created: 2024/02/22 15:34:21 by mderkaou          #+#    #+#             */
+/*   Updated: 2024/02/22 15:34:42 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../include/cub3d.h"
 

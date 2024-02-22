@@ -6,7 +6,7 @@
 /*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:28:39 by diavolo           #+#    #+#             */
-/*   Updated: 2024/02/20 17:24:06 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:27:24 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,18 @@ void	ft_count_virgule(t_parse *parse, int i)
 	{
 		j = 0;
 		count = 0;
-		while (parse->textures[i][j] != '\0')
+		if (i == parse->rgb_f || i == parse->rgb_c)
 		{
-			if (parse->textures[i][j] == ',')
-				count++;
-			j++;
+			while (parse->textures[i][j] != '\0')
+			{
+				if (parse->textures[i][j] == ',')
+					count++;
+				j++;
+			}
+			if (count != 2)
+				return (printf("Error\nRGB ','\n"), ft_free_map(parse),
+					exit(0));
 		}
-		if (count != 2)
-			return (printf("Error\nRGB ','\n"), ft_free_map(parse), exit(0));
 		i++;
 	}
 }
@@ -78,7 +82,7 @@ void	ft_open_rgb_two(t_parse *parse, int i)
 		parse->rgb_c = i;
 		ft_change_texture(parse, i, 1);
 	}
-	else
+	else if (i == 5 && (parse->f > 1 || parse->c > 1))
 		return (printf("Error\nRGB\n"), ft_free_map(parse), exit(0));
 }
 
@@ -86,14 +90,15 @@ void	ft_open_rgb(t_parse *parse)
 {
 	int	i;
 
-	i = 3;
+	i = -1;
 	while (++i < 6)
 		ft_open_rgb_two(parse, i);
 	parse->rgb = malloc(sizeof(int) * 6);
 	if (parse->rgb == NULL)
 		return (printf("Error\nMalloc\n"), ft_free_map(parse), exit(0));
 	ft_count_virgule(parse, 4);
-	printf("rgb_f = %d\n", parse->rgb_f);
+	printf("rgb_f = %s\n", parse->textures[parse->rgb_f]);
+	printf("rgb_c = %s\n", parse->textures[parse->rgb_c]);
 	ft_verif_rgb(parse, parse->rgb_f, 0, 0);
 	ft_verif_rgb(parse, parse->rgb_c, 3, 0);
 }

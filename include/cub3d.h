@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/27 15:53:37 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/27 16:30:18 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ typedef struct s_mlx
 	int			*ceiling;
 	int			*floor;
 	t_map		*lvl;
-	// t_parse		*parse;
 	t_pos		*pos;
 	t_square	*square;
 	t_dir		*dir;
@@ -134,9 +133,13 @@ typedef struct s_mlx
 
 void	data_alloc(t_mlx *data);
 void	data_init(t_mlx *data);
-void	data_freer(t_mlx *data);
 void	assets_init(t_assets *assets);
+
+/* ------------------------------- ft_data_clear -------------------------------- */
+
+void	data_freer(t_mlx *data);
 void	lvl_freer(t_map *lvl);
+void	clear_all(t_mlx *data);
 
 /* ------------------------------- ft_minimap_display -------------------------------- */
 
@@ -162,6 +165,7 @@ int		fetch_map_data(t_mlx *data, t_parse *parse);
 
 /* ------------------------------- ft_init_window -------------------------------- */
 
+int		destroy_win(t_mlx *data);
 int		loop_process(t_mlx *data);
 int		game_launcher(t_mlx *data);
 int		data_builder(t_parse *parse, t_mlx *data);

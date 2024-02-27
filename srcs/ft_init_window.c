@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/27 16:18:52 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/27 16:31:21 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ int	destroy_win(t_mlx *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
-	free(data->assets);
-	free(data->lvl);
-	exit(0);
+	return (0);
 }
 
 /* ------------------------------- init_testmap() ---------------------------------- */
@@ -53,9 +51,6 @@ void	init_textures(t_parse *parse, t_mlx *data)
 	if (data->assets == NULL)
 		return (printf("Error\nMalloc\n"), ft_free_map(parse), exit(0));
 	assets_init(data->assets);
-	printf("parse->n_id = %d\n", parse->n_id);
-	printf("parse->textures[n_id] = [%s]\n", parse->textures[parse->n_id]);
-	// printf("data->assets->nwall = [%p]\n", data->assets->nwall);
 	data->assets->nwall = mlx_xpm_file_to_image(data->mlx,
 												parse->textures[parse->n_id],
 												&width,
@@ -76,8 +71,6 @@ void	init_textures(t_parse *parse, t_mlx *data)
 			parse->rgb[2]);
 	data->assets->ceiling = rgb_to_int(parse->rgb[3], parse->rgb[4],
 			parse->rgb[5]);
-	printf("nwall = %p\nswall = %p\nwwall = %p\n", data->assets->nwall,
-			data->assets->swall, data->assets->wwall);
 }
 
 /* --------------------------- handle_no_event() ------------------------------- */
@@ -114,7 +107,7 @@ int	loop_process(t_mlx *data)
 int	key_hook(int keycode, t_mlx *data)
 {
 	if (keycode == XK_Escape)
-		return (lvl_freer(data->lvl), destroy_win(data), exit(0), 0);
+		return (clear_all(data), exit(0), 0);
 	return (0);
 }
 

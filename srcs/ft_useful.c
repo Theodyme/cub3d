@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_useful.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 22:27:34 by diavolo           #+#    #+#             */
-/*   Updated: 2024/02/20 16:13:14 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:05:18 by diavolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,17 @@ void	init_parse(t_parse *parse)
 	parse->c = 0;
 	parse->map = NULL;
 	parse->len_map = -1;
+	parse->rgb_f = 0;
+	parse->rgb_c = 0;
+	parse->n_id = 0;
+	parse->s_id = 0;
+	parse->e_id = 0;
+	parse->w_id = 0;
 }
 
 void	ft_cpy_map(t_parse *parse)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	parse->map_cpy = malloc(sizeof(char *) * (parse->len_map + 1));

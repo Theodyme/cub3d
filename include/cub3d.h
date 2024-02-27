@@ -6,25 +6,24 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/23 19:37:48 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/27 15:23:30 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../lib/utils.h"
+# include "../mlx/mlx.h"
+# include "colors.h"
+# include "get_next_line.h"
+# include "parsing.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
+# include <X11/keysymdef.h>
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <X11/keysymdef.h>
-# include <X11/keysym.h>
-# include <X11/X.h>
-# include "colors.h"
-# include "../lib/utils.h"
-# include "../mlx/mlx.h"
-# include "get_next_line.h"
-# include "parsing.h"
 
 # define WHITESPACES "\t\r\v\f\n "
 # define WINHEIGHT 800
@@ -33,34 +32,39 @@
 
 typedef struct s_img
 {
-	void	*mlx_img;
-	char	*addr;
-	int		bpp; /* bits per pixel */
-	int		line_len;
-	int		endian;
-}	t_img;
+	void		*mlx_img;
+	char		*addr;
+	int	bpp; /* bits per pixel */
+	int			line_len;
+	int			endian;
+}				t_img;
 
 typedef struct s_tile
 {
-	int	x;
-	int	y;
-	int	width;
-	int	height;
-	int	color;
-}	t_tile;
+	int			x;
+	int			y;
+	int			width;
+	int			height;
+	int			color;
+}				t_tile;
 
 typedef struct s_map
 {
-	char	**map;
-	int		lenX;
-	int		lenY;
+	char		**map;
+	int			lenX;
+	int			lenY;
 }				t_map;
 
-typedef struct s_assets {
-	void	*nwall;
-	void	*swall;
-	void	*wwall;
-	void	*ewall;
+typedef struct s_assets
+{
+	int			width;
+	int			height;
+	void		*nwall;
+	void		*swall;
+	void		*wwall;
+	void		*ewall;
+	int			floor;
+	int			ceiling;
 }				t_assets;
 
 typedef struct s_pos
@@ -125,7 +129,7 @@ typedef struct s_mlx
 	t_rayDir	*rayDir;
 	t_deltaDist	*delta;
 	t_sideDist	*side;
-	// t_assets	*assets;
+	t_assets	*assets;
 }				t_mlx;
 
 /* ------------------------------- ft_data_handler -------------------------------- */
@@ -151,9 +155,9 @@ void	player_finder(t_mlx **data);
 
 void	map_printer(char **map, int y);
 
-/* ------------------------------- ft_fetch_data -------------------------------- */
+/* ------------------------------- ft_fetch_data -------------------------------- */ 
 
-int map_cpy(t_parse *parse, t_mlx *data);
+int 	map_cpy(t_parse *parse, t_mlx *data);
 int		fetch_map_data(t_mlx *data, t_parse *parse);
 
 /* ------------------------------- ft_init_window -------------------------------- */

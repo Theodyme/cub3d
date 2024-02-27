@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/23 19:39:15 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/27 15:16:38 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ typedef struct s_parse
 	char	**textures;
 	int		len_textures;
 	int		*rgb;
+	int		rgb_c;
+	int		rgb_f;
+	int		n_id;
+	int		s_id;
+	int		e_id;
+	int		w_id;
 	char	**map;
 	char	**map_cpy;
 	int		len_map;
@@ -49,5 +55,6 @@ int			ft_check_wall(t_parse *parse, int i, int o);
 void		init_parse(t_parse *parse);
 void		ft_verif_nswe_two(t_parse *parse, int i);
 void		ft_cpy_map(t_parse *parse);
+void		ft_free_map_cpy(t_parse *parse);
 
 #endif

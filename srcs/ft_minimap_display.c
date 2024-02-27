@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/19 15:57:43 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/23 14:54:13 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	render_tile(t_img *img, t_tile tile)
 	return (0);
 }
 
-void	render_background(t_img *img, int color, int height, int width)
+void	render_background(t_img *img, int color, int width, int height)
 {
 	int	i;
 	int	j;
@@ -119,9 +119,9 @@ void	render_background(t_img *img, int color, int height, int width)
 
 void	render_minimap(t_mlx *data)
 {
-	render_background(&data->img, 0xAACFCF, (data->lvl->y * TILESIZE),
-		(data->lvl->x * TILESIZE));
-	render_tile(&data->img, (t_tile){(data->player[0] * TILESIZE),
-		(data->player[1] * TILESIZE), TILESIZE, TILESIZE, 0xDE7955});
+	render_background(&data->img, 0xAACFCF, (data->lvl->lenX * TILESIZE),
+		(data->lvl->lenY * TILESIZE));
+	render_tile(&data->img, (t_tile){(data->square->x * TILESIZE),
+		(data->square->y * TILESIZE), TILESIZE, TILESIZE, 0xDE7955});
 	render_flat_walls(data);
 }

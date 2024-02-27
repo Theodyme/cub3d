@@ -3,27 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/20 16:08:34 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:02:48 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../include/cub3d.h"
 
 int	main(int ac, char **av)
 {
 	t_parse	parse;
+	t_mlx	data;
 
 	if (ac == 2)
 	{
 		parse.rgb = NULL;
 		ft_parse(av[1], &parse);
 		printf("\nbien fini\n");
-		map_init(&parse);
+		data_builder(&parse, &data);
 		ft_free_map(&parse);
+		game_launcher(&data);
+		data_freer(&data);
 	}
 	else
 		printf("Error\nWrong number of arguments\n");

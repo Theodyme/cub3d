@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_window.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/20 16:19:00 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/02/23 15:57:34 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,34 +28,6 @@ int	destroy_win(t_mlx *data)
 	exit(0);
 }
 
-/* ------------------------------- init_testmap() ---------------------------------- */
-/*
-**		écrit une map en dur et la balance dans data->lvl en affichant bien la size.
-**
-**		kill it with fire.
-*/
-
-void	init_testmap(t_mlx *data, t_parse *parse)
-{
-	t_map	*lvl;
-	int i = 0;
-
-	lvl = malloc(sizeof(t_map));
-	if (lvl == NULL)
-		return (printf("Error\nMalloc\n"), exit(0));
-	lvl->map = parse->map;
-	while (lvl->map[i] != NULL)
-	{
-		printf("%s\n", lvl->map[i]);
-		i++;
-	}
-	lvl->x = parse->max_len;
-	lvl->y = parse->len_map;
-	data->lvl = lvl;
-	printf("lvl y = %d\nlvl x = %d\n", lvl->y, lvl->x);
-	return ;
-}
-
 /* --------------------------- handle_no_event() ------------------------------- */
 /*
 **		fonction appelée par mlx_loop_hook(),
@@ -70,10 +42,9 @@ void	init_testmap(t_mlx *data, t_parse *parse)
 **		et on l'envoie ensuite à chaque frame à travers mlx_put_image_to_window().
 */
 
-int	handle_no_event(t_mlx *data)
+int	loop_process(t_mlx *data)
 {
 	player_finder(&data);
-	printf("player is at (%d, %d)\n", data->player[0], data->player[1]);
 	render_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_img, 0, 0);
 	return (0);
@@ -115,8 +86,7 @@ int	game_launcher(t_mlx *data)
 	data->img.mlx_img = mlx_new_image(data->mlx, WINWIDTH, WINHEIGHT);
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
 			&data->img.line_len, &data->img.endian);
-	printf("img->bpp = %d\n", data->img.bpp);
-	mlx_loop_hook(data->mlx, &handle_no_event, data);
+	mlx_loop_hook(data->mlx, &loop_process, data);
 	mlx_hook(data->win, 17, 1L << 5, destroy_win, data);
 	mlx_hook(data->win, KeyPress, KeyPressMask, &key_hook, data);
 	mlx_loop(data->mlx);
@@ -129,11 +99,13 @@ int	game_launcher(t_mlx *data)
 **		voir si ça peut pas être décalé dans game_launcher directement après avoir viré init_testmap.
 */
 
-void	map_init(t_parse *parse)
-{
-	t_mlx	data;
-
-	init_testmap(&data, parse);
-	game_launcher(&data);
-	return ;
+int	data_builder(t_parse *parse, t_mlx *data)
+{		
+	data_init(data);
+	if (data == NULL)
+		return (1);
+	if (fetch_map_data(data, parse) == 1)
+		return (1);
+	return (0);
 }
+

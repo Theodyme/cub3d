@@ -6,7 +6,7 @@
 #    By: theophane <theophane@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/02/19 16:12:44 by theophane        ###   ########.fr        #
+#    Updated: 2024/02/23 15:54:13 by theophane        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,10 @@ END_COLOR	:= \033[0;39m
 
 SRCS	=	srcs/main.c \
 			srcs/ft_init_window.c \
-			srcs/ft_movements.c \
+			srcs/ft_minimap_movements.c \
 			srcs/ft_minimap_display.c \
+			srcs/ft_data_handler.c \
+			srcs/ft_fetch_data.c \
 			srcs/ft_printers.c \
 			srcs/ft_parse.c \
 			srcs/ft_parse_utils2.c \

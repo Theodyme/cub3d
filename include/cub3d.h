@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/20 16:07:45 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:37:48 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,49 +52,89 @@ typedef struct s_tile
 typedef struct s_map
 {
 	char	**map;
-	int		y;
-	int		x;
+	int		lenX;
+	int		lenY;
 }				t_map;
 
-typedef struct s_asset_img {
-	void	*img;
-}				t_asset_img;
-
 typedef struct s_assets {
-	t_asset_img	*nwall;
-	t_asset_img	*swall;
-	t_asset_img	*wwall;
-	t_asset_img	*ewall;
-	t_asset_img	*bg;
-	t_asset_img	*start;
+	void	*nwall;
+	void	*swall;
+	void	*wwall;
+	void	*ewall;
 }				t_assets;
+
+typedef struct s_pos
+{
+	double	x;
+	double	y;
+}				t_pos;
+
+typedef struct s_square
+{
+	int		x;
+	int 	y;
+}				t_square;
+
+typedef struct s_dir
+{
+	double	x;
+	double	y;
+}				t_dir;
+
+typedef struct s_plane
+{
+	double	x;
+	double	y;
+}				t_plane;
+
+typedef struct s_rayDir
+{
+	double	x;
+	double	y;
+}				t_rayDir;
+
+typedef struct s_deltaDist
+{
+	double	x;
+	double	y;
+}				t_deltaDist;
+
+typedef struct s_sideDist
+{
+	double	x;
+	double	y;
+}				t_sideDist;
+
 
 typedef struct s_mlx
 {
 	void		*mlx;
 	void		*win;
 	t_img		img;
+	int			*ceiling;
+	int			*floor;
 	t_map		*lvl;
 	t_parse		*parse;
-	int			player[2];
+	t_pos		*pos;
+	t_square	*square;
+	t_dir		*dir;
+	t_plane		*plane;
+	double		camerax;
+	double		time;
+	double		oldTime;
+	t_rayDir	*rayDir;
+	t_deltaDist	*delta;
+	t_sideDist	*side;
 	// t_assets	*assets;
 }				t_mlx;
 
-/*
-	- player pos x
-	- player pos y
-	- the ray should be positive
-	- the wall should be between 0 to x
+/* ------------------------------- ft_data_handler -------------------------------- */
 
-	- a function that find the player position
-	- handle multiple collision points
+void	data_alloc(t_mlx *data);
+void	data_init(t_mlx *data);
+void	data_freer(t_mlx *data);
 
-	for movements;
-	(player pos + player dir) * movespeed
-*/
-
-// ****************************************************************************
-// MINIMAP DISPLAY
+/* ------------------------------- ft_minimap_display -------------------------------- */
 
 void	img_pix_put(t_img *img, int x, int y, int color);
 int		render_flat_walls(t_mlx *data);
@@ -102,23 +142,24 @@ int		render_tile(t_img *img, t_tile tile);
 void	render_background(t_img *img, int color, int height, int width);
 void	render_minimap(t_mlx *data);
 
-// ****************************************************************************
-// PRINTERS
-
-void	map_printer(char **map, int y);
-
-// ****************************************************************************
-// MOVEMENTS
+/* ------------------------------- ft_minimap_update -------------------------------- */
 
 int		strchr_charset(char *str, char *charset);
 void	player_finder(t_mlx **data);
 
-// ****************************************************************************
-// INIT_WINDOW
+/* ------------------------------- ft_printers -------------------------------- */
 
-void	map_init(t_parse *parse);
+void	map_printer(char **map, int y);
 
-// ****************************************************************************
-// TITLE
+/* ------------------------------- ft_fetch_data -------------------------------- */
+
+int map_cpy(t_parse *parse, t_mlx *data);
+int		fetch_map_data(t_mlx *data, t_parse *parse);
+
+/* ------------------------------- ft_init_window -------------------------------- */
+
+int		loop_process(t_mlx *data);
+int		game_launcher(t_mlx *data);
+int		data_builder(t_parse *parse, t_mlx *data);
 
 #endif

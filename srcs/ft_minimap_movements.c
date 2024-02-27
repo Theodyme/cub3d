@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_movements.c                                     :+:      :+:    :+:   */
+/*   ft_minimap_movements.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/19 16:03:06 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/23 14:30:22 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,12 @@ void	player_finder(t_mlx **data)
 	int	i;
 
 	i = -1;
-	// map_printer((*data)->lvl->map, (*data)->lvl->y);
 	while ((*data)->lvl->map[++i])
 	{
-		(*data)->player[0] = strchr_charset((*data)->lvl->map[i], "NSEW");
-		if ((*data)->player[0] != -1)
+		(*data)->square->x = strchr_charset((*data)->lvl->map[i], "NSEW");
+		if ((*data)->square->x != -1)
 		{
-			// printf("Found player at (%d, %d)\n", ((*data)->player[0]), i);
-			(*data)->player[1] = i;
+			(*data)->square->y = i;
 			return ;
 		}
 	}

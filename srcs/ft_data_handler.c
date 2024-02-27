@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/23 14:16:55 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/27 15:57:04 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,38 @@ void	data_freer(t_mlx *data)
 		free(data->side);
 	// free(data);
 	// data = NULL; 
+}
+
+/* ------------------------------- assets_init() -------------------------------- */
+/*
+**		initialise les structures d'assets.
+*/
+
+void	assets_init(t_assets *assets)
+{
+	assets->nwall = NULL;
+	assets->swall = NULL;
+	assets->wwall = NULL;
+	assets->ewall = NULL;
+	assets->floor = 0;
+	assets->ceiling = 0;
+}
+
+/* ------------------------------- lvl_freer() -------------------------------- */
+/*
+**		free la structure lvl.
+*/
+
+void	lvl_freer(t_map *lvl)
+{
+	int	i;
+
+	i = -1;
+	if (lvl->lenY > 0)
+	{
+		while (++i < lvl->lenY)
+			free(lvl->map[i]);
+		free(lvl->map);
+	}
+	free(lvl);
 }

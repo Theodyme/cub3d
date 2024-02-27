@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/27 15:23:30 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/27 15:53:37 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ typedef struct s_map
 
 typedef struct s_assets
 {
-	int			width;
-	int			height;
 	void		*nwall;
 	void		*swall;
 	void		*wwall;
@@ -118,7 +116,7 @@ typedef struct s_mlx
 	int			*ceiling;
 	int			*floor;
 	t_map		*lvl;
-	t_parse		*parse;
+	// t_parse		*parse;
 	t_pos		*pos;
 	t_square	*square;
 	t_dir		*dir;
@@ -137,6 +135,8 @@ typedef struct s_mlx
 void	data_alloc(t_mlx *data);
 void	data_init(t_mlx *data);
 void	data_freer(t_mlx *data);
+void	assets_init(t_assets *assets);
+void	lvl_freer(t_map *lvl);
 
 /* ------------------------------- ft_minimap_display -------------------------------- */
 
@@ -165,5 +165,7 @@ int		fetch_map_data(t_mlx *data, t_parse *parse);
 int		loop_process(t_mlx *data);
 int		game_launcher(t_mlx *data);
 int		data_builder(t_parse *parse, t_mlx *data);
+
+void	init_textures(t_parse *parse, t_mlx *data);
 
 #endif

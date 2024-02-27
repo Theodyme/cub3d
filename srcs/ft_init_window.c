@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/27 15:22:53 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/27 16:18:52 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,33 +42,40 @@ int	rgb_to_int(int r, int g, int b)
 	return ((r << 16) | (g << 8) | b);
 }
 
-void	init_textures(t_mlx *data)
+void	init_textures(t_parse *parse, t_mlx *data)
 {
+	int width;
+	int height;
+
+	width = WINWIDTH;
+	height = WINHEIGHT;
 	data->assets = malloc(sizeof(t_assets));
-	data->assets->width = WINWIDTH;
-	data->assets->height = WINHEIGHT;
 	if (data->assets == NULL)
-		return (printf("Error\nMalloc\n"), ft_free_map(data->parse), exit(0));
+		return (printf("Error\nMalloc\n"), ft_free_map(parse), exit(0));
+	assets_init(data->assets);
+	printf("parse->n_id = %d\n", parse->n_id);
+	printf("parse->textures[n_id] = [%s]\n", parse->textures[parse->n_id]);
+	// printf("data->assets->nwall = [%p]\n", data->assets->nwall);
 	data->assets->nwall = mlx_xpm_file_to_image(data->mlx,
-												data->parse->textures[data->parse->n_id],
-												&data->assets->width,
-												&data->assets->height);
+												parse->textures[parse->n_id],
+												&width,
+												&height);
 	data->assets->swall = mlx_xpm_file_to_image(data->mlx,
-												data->parse->textures[data->parse->s_id],
-												&data->assets->width,
-												&data->assets->height);
+												parse->textures[parse->s_id],
+												&width,
+												&height);
 	data->assets->wwall = mlx_xpm_file_to_image(data->mlx,
-												data->parse->textures[data->parse->w_id],
-												&data->assets->width,
-												&data->assets->height);
+												parse->textures[parse->w_id],
+												&width,
+												&height);
 	data->assets->ewall = mlx_xpm_file_to_image(data->mlx,
-												data->parse->textures[data->parse->e_id],
-												&data->assets->width,
-												&data->assets->height);
-	data->assets->floor = rgb_to_int(data->parse->rgb[0], data->parse->rgb[1],
-			data->parse->rgb[2]);
-	data->assets->ceiling = rgb_to_int(data->parse->rgb[3], data->parse->rgb[4],
-			data->parse->rgb[5]);
+												parse->textures[parse->e_id],
+												&width,
+												&height);
+	data->assets->floor = rgb_to_int(parse->rgb[0], parse->rgb[1],
+			parse->rgb[2]);
+	data->assets->ceiling = rgb_to_int(parse->rgb[3], parse->rgb[4],
+			parse->rgb[5]);
 	printf("nwall = %p\nswall = %p\nwwall = %p\n", data->assets->nwall,
 			data->assets->swall, data->assets->wwall);
 }
@@ -107,7 +114,7 @@ int	loop_process(t_mlx *data)
 int	key_hook(int keycode, t_mlx *data)
 {
 	if (keycode == XK_Escape)
-		return (ft_free_map(data->parse), destroy_win(data), exit(0), 0);
+		return (lvl_freer(data->lvl), destroy_win(data), exit(0), 0);
 	return (0);
 }
 
@@ -126,10 +133,10 @@ int	key_hook(int keycode, t_mlx *data)
 
 int	game_launcher(t_mlx *data)
 {
-	data->mlx = mlx_init();
-	if (data->mlx == NULL)
-		return (1);
-	init_textures(data);
+	// data->mlx = mlx_init();
+	// if (data->mlx == NULL)
+	// 	return (1);
+	// init_textures(data);
 	data->win = mlx_new_window(data->mlx, WINWIDTH, WINHEIGHT, "cub3d");
 	if (data->win == NULL)
 		return (1);

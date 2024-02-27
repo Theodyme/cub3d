@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/27 15:14:16 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/27 16:10:43 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ int	main(int ac, char **av)
 		ft_parse(av[1], &parse);
 		printf("\nbien fini\n");
 		data_builder(&parse, &data);
+		data.mlx = mlx_init();
+		if (data.mlx == NULL)
+			return (1);
+		init_textures(&parse, &data);
 		ft_free_map(&parse);
 		game_launcher(&data);
 		data_freer(&data);

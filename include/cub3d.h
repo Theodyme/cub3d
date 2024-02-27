@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/27 16:30:18 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/27 17:19:40 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_img
 {
 	void		*mlx_img;
 	char		*addr;
-	int	bpp; /* bits per pixel */
+	int			bpp; /* bits per pixel */
 	int			line_len;
 	int			endian;
 }				t_img;
@@ -67,44 +67,44 @@ typedef struct s_assets
 
 typedef struct s_pos
 {
-	double	x;
-	double	y;
+	double		x;
+	double		y;
 }				t_pos;
 
 typedef struct s_square
 {
-	int		x;
-	int 	y;
+	int			x;
+	int 		y;
 }				t_square;
 
 typedef struct s_dir
 {
-	double	x;
-	double	y;
+	double		x;
+	double		y;
 }				t_dir;
 
 typedef struct s_plane
 {
-	double	x;
-	double	y;
+	double		x;
+	double		y;
 }				t_plane;
 
 typedef struct s_rayDir
 {
-	double	x;
-	double	y;
+	double		x;
+	double		y;
 }				t_rayDir;
 
 typedef struct s_deltaDist
 {
-	double	x;
-	double	y;
+	double		x;
+	double		y;
 }				t_deltaDist;
 
 typedef struct s_sideDist
 {
-	double	x;
-	double	y;
+	double		x;
+	double		y;
 }				t_sideDist;
 
 
@@ -134,6 +134,8 @@ typedef struct s_mlx
 void	data_alloc(t_mlx *data);
 void	data_init(t_mlx *data);
 void	assets_init(t_assets *assets);
+int		rgb_to_int(int r, int g, int b);
+void	init_textures(t_parse *parse, t_mlx *data);
 
 /* ------------------------------- ft_data_clear -------------------------------- */
 

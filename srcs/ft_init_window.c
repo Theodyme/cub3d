@@ -6,74 +6,13 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/27 16:31:21 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/27 17:21:07 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-/* ------------------------------- destroy_window() ---------------------------------- */
-/*
-**		appelée dans le hook de la touche échap et de la fermeture de la fenêtre.
-**		assez straightforward: elle détruit l'image et le display, puis exit.
-**
-**		il faudra peut être ajouter des étapes de free() là dedans une fois qu'on
-**		aura des structures plus définitives!
-*/
-
-int	destroy_win(t_mlx *data)
-{
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	return (0);
-}
-
-/* ------------------------------- init_testmap() ---------------------------------- */
-/*
-**		écrit une map en dur et la balance dans data->lvl en affichant bien la size.
-**
-**		kill it with fire.
-*/
-
-int	rgb_to_int(int r, int g, int b)
-{
-	return ((r << 16) | (g << 8) | b);
-}
-
-void	init_textures(t_parse *parse, t_mlx *data)
-{
-	int width;
-	int height;
-
-	width = WINWIDTH;
-	height = WINHEIGHT;
-	data->assets = malloc(sizeof(t_assets));
-	if (data->assets == NULL)
-		return (printf("Error\nMalloc\n"), ft_free_map(parse), exit(0));
-	assets_init(data->assets);
-	data->assets->nwall = mlx_xpm_file_to_image(data->mlx,
-												parse->textures[parse->n_id],
-												&width,
-												&height);
-	data->assets->swall = mlx_xpm_file_to_image(data->mlx,
-												parse->textures[parse->s_id],
-												&width,
-												&height);
-	data->assets->wwall = mlx_xpm_file_to_image(data->mlx,
-												parse->textures[parse->w_id],
-												&width,
-												&height);
-	data->assets->ewall = mlx_xpm_file_to_image(data->mlx,
-												parse->textures[parse->e_id],
-												&width,
-												&height);
-	data->assets->floor = rgb_to_int(parse->rgb[0], parse->rgb[1],
-			parse->rgb[2]);
-	data->assets->ceiling = rgb_to_int(parse->rgb[3], parse->rgb[4],
-			parse->rgb[5]);
-}
-
-/* --------------------------- handle_no_event() ------------------------------- */
+/* --------------------------- loop_process() ------------------------------- */
 /*
 **		fonction appelée par mlx_loop_hook(),
 **		gère le comportement par défaut s'il n'y a pas d'action particulière.

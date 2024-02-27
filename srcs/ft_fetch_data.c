@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/23 16:02:15 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/27 17:19:20 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,52 @@ int	fetch_map_data(t_mlx *data, t_parse *parse)
 	data->lvl->lenX = parse->max_len;
 	data->lvl->lenY = parse->len_map;
 	return (0);
+}
+
+/* ------------------------------- rgb_to_int() ---------------------------------- */
+/*
+**		convertit une valeur rgb en int grâce à des décalages binaires.
+*/
+
+int		rgb_to_int(int r, int g, int b)
+{
+	return ((r << 16) | (g << 8) | b);
+}
+
+/* ------------------------------- init_textures() ---------------------------------- */
+/*
+**		récupère les textures et les stockes dans data.
+*/
+
+void	init_textures(t_parse *parse, t_mlx *data)
+{
+	int width;
+	int height;
+
+	width = WINWIDTH;
+	height = WINHEIGHT;
+	data->assets = malloc(sizeof(t_assets));
+	if (data->assets == NULL)
+		return (printf("Error\nMalloc\n"), ft_free_map(parse), exit(0));
+	assets_init(data->assets);
+	data->assets->nwall = mlx_xpm_file_to_image(data->mlx,
+												parse->textures[parse->n_id],
+												&width,
+												&height);
+	data->assets->swall = mlx_xpm_file_to_image(data->mlx,
+												parse->textures[parse->s_id],
+												&width,
+												&height);
+	data->assets->wwall = mlx_xpm_file_to_image(data->mlx,
+												parse->textures[parse->w_id],
+												&width,
+												&height);
+	data->assets->ewall = mlx_xpm_file_to_image(data->mlx,
+												parse->textures[parse->e_id],
+												&width,
+												&height);
+	data->assets->floor = rgb_to_int(parse->rgb[0], parse->rgb[1],
+			parse->rgb[2]);
+	data->assets->ceiling = rgb_to_int(parse->rgb[3], parse->rgb[4],
+			parse->rgb[5]);
 }

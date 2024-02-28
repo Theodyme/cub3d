@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/27 17:19:40 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/28 21:16:48 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,12 @@ typedef struct s_square
 	int 		y;
 }				t_square;
 
+typedef struct s_step
+{
+	int			x;
+	int			y;
+}				t_step;
+
 typedef struct s_dir
 {
 	double		x;
@@ -89,11 +95,11 @@ typedef struct s_plane
 	double		y;
 }				t_plane;
 
-typedef struct s_rayDir
+typedef struct s_ray
 {
 	double		x;
 	double		y;
-}				t_rayDir;
+}				t_ray;
 
 typedef struct s_deltaDist
 {
@@ -112,18 +118,21 @@ typedef struct s_mlx
 {
 	void		*mlx;
 	void		*win;
-	t_img		img;
-	int			*ceiling;
-	int			*floor;
+	int			rot_r;
+	int			sideHit;
+	t_img		minimap;
+	t_img		raycasting;
 	t_map		*lvl;
 	t_pos		*pos;
+	t_step		*step;
 	t_square	*square;
 	t_dir		*dir;
 	t_plane		*plane;
 	double		camerax;
+	double		perpWallDist;
 	double		time;
 	double		oldTime;
-	t_rayDir	*rayDir;
+	t_ray		*ray;
 	t_deltaDist	*delta;
 	t_sideDist	*side;
 	t_assets	*assets;
@@ -171,6 +180,19 @@ int		destroy_win(t_mlx *data);
 int		loop_process(t_mlx *data);
 int		game_launcher(t_mlx *data);
 int		data_builder(t_parse *parse, t_mlx *data);
+
+/* ------------------------------- ft_raycasting -------------------------------- */
+
+void    ray_calculator(int i, t_mlx *data);
+void    delta_calculator(t_mlx *data);
+void    side_calculator(t_mlx *data);
+void    hitpoint_calculator(t_mlx *data);
+void    main_process(t_mlx *data);
+
+/* ------------------------------- ft_raycast_display -------------------------------- */
+
+void    stripe_cast(int x, t_mlx *data, int start, int end);
+void    wall_cast(int x, t_mlx *data);
 
 void	init_textures(t_parse *parse, t_mlx *data);
 

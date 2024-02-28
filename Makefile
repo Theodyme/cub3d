@@ -6,7 +6,7 @@
 #    By: theophane <theophane@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/02/27 16:27:54 by theophane        ###   ########.fr        #
+#    Updated: 2024/02/28 18:38:27 by theophane        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ SRCS	=	srcs/main.c \
 			srcs/ft_init_window.c \
 			srcs/ft_minimap_movements.c \
 			srcs/ft_minimap_display.c \
+			srcs/ft_raycasting.c \
+			srcs/ft_raycast_display.c \
 			srcs/ft_data_handler.c \
 			srcs/ft_data_clear.c \
 			srcs/ft_fetch_data.c \
@@ -59,7 +61,7 @@ CFLAGS	=	-Wall -Wextra -Werror
 $(NAME):	${OBJ} Makefile
 	@make --no-print-directory -C lib all
 	@make --no-print-directory -C mlx
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLX) $(LIB) -lXext -lX11
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLX) $(LIB) -lXext -lX11 -lm
 	@echo "$(GREEN)Compiled $(NAME) :)$(END_COLOR)"
 
 all:	${NAME}

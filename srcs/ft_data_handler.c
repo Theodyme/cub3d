@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/27 16:24:23 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/28 15:55:18 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@ void	data_alloc(t_mlx *data)
 	if (data != NULL)
 	{
 		data->pos = malloc(sizeof(t_pos));
+		data->step = malloc(sizeof(t_step));
 		data->square = malloc(sizeof(t_square));
 		data->dir = malloc(sizeof(t_dir));
 		data->plane = malloc(sizeof(t_plane));
-		data->rayDir = malloc(sizeof(t_rayDir));
+		data->ray = malloc(sizeof(t_ray));
 		data->delta = malloc(sizeof(t_deltaDist));
 		data->side = malloc(sizeof(t_sideDist));
 	}
-	if (!(data->pos) || !(data->square) || !(data->dir) || !(data->plane) || !(data->rayDir) || !(data->delta) || !(data->side))
+	if (!(data->pos) || !(data->step) || !(data->square) || !(data->dir) || !(data->plane) || !(data->ray) || !(data->delta) || !(data->side))
 		data_freer(data);
 	return ;
 }
@@ -44,6 +45,8 @@ void	data_init(t_mlx *data)
 	data_alloc(data);
 	data->pos->x = 0;
 	data->pos->y = 0;
+	data->step->x = 0;
+	data->step->y = 0;
 	data->square->x = 0;
 	data->square->y = 0;
 	data->dir->x = 0;
@@ -53,8 +56,8 @@ void	data_init(t_mlx *data)
 	data->camerax = 0;
 	data->time = 0;
 	data->oldTime = 0;
-	data->rayDir->x = 0;
-	data->rayDir->y = 0;
+	data->ray->x = 0;
+	data->ray->y = 0;
 	data->delta->x = 0;
 	data->delta->y = 0;
 	data->side->x = 0;

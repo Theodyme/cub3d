@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/27 17:22:51 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/28 15:38:05 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 int	    destroy_win(t_mlx *data)
 {
+	// mlx_destroy_image(data->mlx, &data->raycasting);
+	// mlx_destroy_image(data->mlx, &data->minimap);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	return (0);
@@ -41,8 +43,8 @@ void	data_freer(t_mlx *data)
 		free(data->dir);
 	if (data->plane)
 		free(data->plane);
-	if (data->rayDir)
-		free(data->rayDir);
+	if (data->ray)
+		free(data->ray);
 	if (data->delta)
 		free(data->delta);
 	if (data->side)

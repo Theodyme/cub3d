@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/27 15:24:44 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/27 19:52:27 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,9 @@ int	render_flat_walls(t_mlx *data)
 		j = -1;
 		while (data->lvl->map[i][++j])
 		{
-			// printf("printing walls: checking position (%d, %d)\n", j, i);
 			if (data->lvl->map[i][j] == '1')
 			{
-				render_tile(&data->img, (t_tile){(j * TILESIZE),
+				render_tile(&data->minimap, (t_tile){(j * TILESIZE),
 					(i * TILESIZE), TILESIZE, TILESIZE, 0x5DA69B});
 			}
 		}
@@ -119,9 +118,9 @@ void	render_background(t_img *img, int color, int width, int height)
 
 void	render_minimap(t_mlx *data)
 {
-	render_background(&data->img, 0xAACFCF, (data->lvl->lenX * TILESIZE),
+	render_background(&data->minimap, 0xAACFCF, (data->lvl->lenX * TILESIZE),
 		(data->lvl->lenY * TILESIZE));
-	render_tile(&data->img, (t_tile){(data->square->x * TILESIZE),
+	render_tile(&data->minimap, (t_tile){(data->square->x * TILESIZE),
 		(data->square->y * TILESIZE), TILESIZE, TILESIZE, 0xDE7955});
 	render_flat_walls(data);
 }

@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/19 15:59:19 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/28 16:14:42 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ void	map_printer(char **map, int y)
 	int	i;
 
 	i = 0;
-	while (map[i] && i <= y)
+	while (map[i])
 	{
 		printf(BL "map[%d] = [%s]\n" RESET, i, map[i]);
 		i++;
 	}
-	if (i != y + 1)
+	printf("i = %d, y = %d\n", i, y);
+	if (i != y)
 		printf(RE "ERROR: Couldn't print the full map.\n" RESET);
 	return ;
 }

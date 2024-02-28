@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/27 17:19:20 by theophane        ###   ########.fr       */
+/*   Updated: 2024/02/28 16:44:36 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ int map_cpy(t_parse *parse, t_mlx *data)
    	data->lvl = malloc(sizeof(t_map));
 	if (data->lvl == NULL)
 		return (printf(RE "Error: Couldn't allocate map.\n" RESET), 1);
+	data->lvl->lenX = parse->max_len;
+	data->lvl->lenY = parse->len_map;
 	data->lvl->map = malloc(sizeof(char *) * (parse->len_map + 1));
 	if (data->lvl->map == NULL)
 		return (1);
 	data->lvl->map[parse->len_map] = '\0';
 	while (parse->map[i])
 	{
-		data->lvl->map[i] = ft_strdup(parse->map[i]);
+		data->lvl->map[i] = ft_strdup(ft_strtrim_free(parse->map[i], WHITESPACES));
 		i++;
 	}
 	return (0);
@@ -46,8 +48,7 @@ int	fetch_map_data(t_mlx *data, t_parse *parse)
 {
 	if (map_cpy(parse, data) == 1)
 		return (printf(RE "Error: Couldn't allocate map.\n" RESET), 1);
-	data->lvl->lenX = parse->max_len;
-	data->lvl->lenY = parse->len_map;
+	// map_printer(data->lvl->map, data->lvl->lenY);
 	return (0);
 }
 

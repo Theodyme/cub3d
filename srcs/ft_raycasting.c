@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/28 21:38:41 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/06 20:04:26 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,8 @@
 void    ray_calculator(int i, t_mlx *data)
 {
     data->camerax = 2 * (double)i / (double)WINWIDTH - 1.0;
-    printf("camerax = %f\n", data->camerax);
-    printf("dir = (%f, %f)\n", data->dir->x, data->dir->y);
-    printf("plane = (%f, %f)\n", data->plane->x, data->plane->y);
-    printf("%f = %f + %f * %f\n", (data->dir->x + (data->plane->x * data->camerax)), data->dir->x, data->plane->x, data->camerax);
     data->ray->x = data->dir->x + data->plane->x * data->camerax;
     data->ray->y = data->dir->y + data->plane->y * data->camerax;
-    // printf("ray = (%f, %f)\n", data->ray->x, data->ray->y);
 }
 
 /* ------------------------------- delta_calculator() -------------------------------- */
@@ -38,7 +33,7 @@ void    ray_calculator(int i, t_mlx *data)
 
 void    delta_calculator(t_mlx *data)
 {
-    printf("ray = (%f, %f)\n", data->ray->x, data->ray->y);
+    // printf("ray = (%f, %f)\n", data->ray->x, data->ray->y);
     if (data->ray->x == 0)
         data->delta->x = 1;
     else if (data->ray->y == 0)
@@ -106,24 +101,19 @@ void    hitpoint_calculator(t_mlx *data)
     {
         if (data->side->x < data->side->y)
         {
-            printf("side = (%f, %f)\n", data->side->x, data->side->y);
             data->side->x += data->delta->x;
-            printf("side = (%f, %f)\n", data->side->x, data->side->y);
             data->square->x += data->step->x;
             data->sideHit = 0;
         }
         else
         {
-            printf("side = (%f, %f)\n", data->side->x, data->side->y);
             data->side->y += data->delta->y;
-            printf("side = (%f, %f)\n", data->side->x, data->side->y);
             data->square->y += data->step->y;
             data->sideHit = 1;
         }
         if (data->lvl->map[data->square->y][data->square->x] == '1')
             hit = 1;
     }
-    printf("sideHit = %d\n", data->sideHit);
     // if (data->sideHit == 0)
     //     data->perpWallDist = data->side->x - data->delta->x;
     // else
@@ -153,26 +143,19 @@ void    main_process(t_mlx *data)
     
     i = 0;
     data->plane->x = 0;
-    data->plane->y = 0.75;
+    data->plane->y = 0.66;
     data->dir->x = -1;
     data->dir->y = 0;
-    map_printer(data->lvl->map, data->lvl->lenY);
+    // map_printer(data->lvl->map, data->lvl->lenY);
     while (i < WINWIDTH)
     {
-        printf("///////////////////\n");
         data->square->x = (int)data->pos->x;
         data->square->y = (int)data->pos->y;
         ray_calculator(i, data);
-        // printf("ray = (%f, %f)\n", data->ray->x, data->ray->y);
         delta_calculator(data);
-        printf("delta = (%f, %f)\n", data->delta->x, data->delta->y);
         side_calculator(data);
-        printf("step = (%d, %d)\n", data->step->x, data->step->y);
-        printf("side = (%f, %f)\n", data->side->x, data->side->y);
         hitpoint_calculator(data);
-        printf("perpWallDist = (%f)\n", data->perpWallDist);
         wall_cast(i, data);
-        printf("///////////////////\n");
         i++;
     }
 }

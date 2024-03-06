@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 19:04:05 by thenry            #+#    #+#             */
-/*   Updated: 2024/02/05 19:19:32 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/03/06 20:36:05 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return (nb * sign);
 }
-
-/*
-#include <stdlib.h>
-#include <stdio.h>
-int	main()
-{
-	char *num = "\e546";
-	printf("%d\n", ft_atoi(num));
-	printf("%d\n", atoi(num));
-	return (0);
-}
-*/

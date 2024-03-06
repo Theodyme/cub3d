@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_data_handler.c                                  :+:      :+:    :+:   */
+/*   ft_data_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/28 15:55:18 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/06 17:30:17 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,34 @@ void	data_alloc(t_mlx *data)
 {
 	if (data != NULL)
 	{
-		data->pos = malloc(sizeof(t_pos));
+		data->moves = malloc(sizeof(t_moves));
+		data->pos = malloc(sizeof(t_vector));
 		data->step = malloc(sizeof(t_step));
 		data->square = malloc(sizeof(t_square));
-		data->dir = malloc(sizeof(t_dir));
-		data->plane = malloc(sizeof(t_plane));
-		data->ray = malloc(sizeof(t_ray));
-		data->delta = malloc(sizeof(t_deltaDist));
-		data->side = malloc(sizeof(t_sideDist));
+		data->dir = malloc(sizeof(t_vector));
+		data->plane = malloc(sizeof(t_vector));
+		data->ray = malloc(sizeof(t_vector));
+		data->delta = malloc(sizeof(t_vector));
+		data->side = malloc(sizeof(t_vector));
 	}
 	if (!(data->pos) || !(data->step) || !(data->square) || !(data->dir) || !(data->plane) || !(data->ray) || !(data->delta) || !(data->side))
 		data_freer(data);
 	return ;
+}
+
+/* ------------------------------- moves_init() -------------------------------- */
+/*
+**		initialise les structures d'assets.
+*/
+
+void	moves_init(t_moves *moves)
+{
+	moves->backward = 0;
+	moves->forward = 0;
+	moves->left = 0;
+	moves->right = 0;
+	moves->rotate_left = 0;
+	moves->rotate_right = 0;	
 }
 
 /* ------------------------------- data_init() -------------------------------- */
@@ -43,6 +59,7 @@ void	data_alloc(t_mlx *data)
 void	data_init(t_mlx *data)
 {
 	data_alloc(data);
+	moves_init(data->moves);
 	data->pos->x = 0;
 	data->pos->y = 0;
 	data->step->x = 0;

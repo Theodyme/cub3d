@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/28 21:25:55 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/06 15:52:40 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    stripe_cast(int x, t_mlx *data, int start, int end)
 
     y = 0;
     // printf("pos = (%f, %f)\n", data->pos->x, data->pos->y);
-    printf("start = %d, end = %d\n", start, end);
+    // printf("start = %d, end = %d\n", start, end);
     while (y < WINHEIGHT)
     {
         // printf("y = %d\n", y);
@@ -33,23 +33,23 @@ void    stripe_cast(int x, t_mlx *data, int start, int end)
         {
             // render_tile(&data->raycasting, (t_tile){x, y, 1, 1, 0xffff99});
             // printf("%d goes in start\n", y);
-            img_pix_put(&data->raycasting, x, y, 0xFFFF99);
+            img_pix_put(&data->raycasting, x, y, 0x77b6d1);
         }
         else if (y > end)
         {
             // render_tile(&data->raycasting, (t_tile){x, y, 1, 1, 0x99ffff});
             // printf("%d goes in end\n", y);
-            img_pix_put(&data->raycasting, x, y, 0x99FFFF);
+            img_pix_put(&data->raycasting, x, y, 0x8ed468);
         }
         else
         {
             // printf("%d goes in walls\n", y);
             if (data->sideHit == 1)
                 // render_tile(&data->raycasting, (t_tile){x, y, 1, 1, 0xff99ff});
-                img_pix_put(&data->raycasting, x, y, 0xFF99FF);
+                img_pix_put(&data->raycasting, x, y, 0x7672b0);
             else
                 // render_tile(&data->raycasting, (t_tile){x, y, 1, 1, (0xff99ff / 2)});
-                img_pix_put(&data->raycasting, x, y, (0xFF99FF / 2));
+                img_pix_put(&data->raycasting, x, y, 0x9894d6);
         }
         y++;
     }
@@ -78,6 +78,5 @@ void    wall_cast(int x, t_mlx *data)
     end = lineheight / 2 + WINHEIGHT / 2;
     if (end >= WINHEIGHT)
         end = WINHEIGHT - 1;
-    printf("perpW = %f, lineheight = %d\n", data->perpWallDist, lineheight);
     stripe_cast(x, data, start, end);
 }

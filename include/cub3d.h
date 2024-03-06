@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/28 21:16:48 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/06 20:54:25 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../lib/utils.h"
 # include "../mlx/mlx.h"
 # include "colors.h"
+# include "linux_keys.h"
 # include "get_next_line.h"
 # include "parsing.h"
 # include <X11/X.h>
@@ -26,8 +27,10 @@
 # include <stdlib.h>
 
 # define WHITESPACES "\t\r\v\f\n "
-# define WINHEIGHT 800
-# define WINWIDTH 1200
+# define WINHEIGHT 600
+# define WINWIDTH 800
+# define MOVE_SPEED 1.6
+# define ROT_SPEED 1.6
 # define TILESIZE 5
 
 typedef struct s_img
@@ -65,11 +68,15 @@ typedef struct s_assets
 	int			ceiling;
 }				t_assets;
 
-typedef struct s_pos
+typedef struct s_moves
 {
-	double		x;
-	double		y;
-}				t_pos;
+	int		forward;
+	int		backward;
+	int		left;
+	int		right;
+	int		rotate_left;
+	int		rotate_right;
+}				t_moves;
 
 typedef struct s_square
 {
@@ -83,60 +90,48 @@ typedef struct s_step
 	int			y;
 }				t_step;
 
-typedef struct s_dir
+typedef struct s_vector
 {
 	double		x;
-	double		y;
-}				t_dir;
-
-typedef struct s_plane
-{
-	double		x;
-	double		y;
-}				t_plane;
-
-typedef struct s_ray
-{
-	double		x;
-	double		y;
-}				t_ray;
-
-typedef struct s_deltaDist
-{
-	double		x;
-	double		y;
-}				t_deltaDist;
-
-typedef struct s_sideDist
-{
-	double		x;
-	double		y;
-}				t_sideDist;
-
+	double		y;	
+}				t_vector;
 
 typedef struct s_mlx
 {
 	void		*mlx;
 	void		*win;
-	int			rot_r;
+	t_moves		*moves;
 	int			sideHit;
 	t_img		minimap;
 	t_img		raycasting;
 	t_map		*lvl;
-	t_pos		*pos;
+	t_vector		*pos;
 	t_step		*step;
 	t_square	*square;
-	t_dir		*dir;
-	t_plane		*plane;
+	t_vector		*dir;
+	t_vector		*plane;
 	double		camerax;
 	double		perpWallDist;
 	double		time;
 	double		oldTime;
-	t_ray		*ray;
-	t_deltaDist	*delta;
-	t_sideDist	*side;
+	t_vector		*ray;
+	t_vector	*delta;
+	t_vector	*side;
 	t_assets	*assets;
 }				t_mlx;
+
+/* ------------------------------- ft_key_hooks ----------------------------------- */
+
+int		keyrelease_hook(int keycode, t_mlx *data);
+int		keypress_hook(int keycode, t_mlx *data);
+
+/* --------------------------------- ft_moves ----------------------------------- */
+
+void	move_forward(t_mlx *data);
+void	move_backward(t_mlx *data);
+void	move_right(t_mlx *data);
+void	move_left(t_mlx *data);
+void	rotation(t_mlx *data);
 
 /* ------------------------------- ft_data_handler -------------------------------- */
 

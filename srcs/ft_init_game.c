@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_window.c                                   :+:      :+:    :+:   */
+/*   ft_init_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/28 19:55:09 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/06 20:54:29 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	rotate_right(t_mlx *data)
-{
-	double old;
+/* ------------------------------- move_update() -------------------------------- */
+/*
+**		applique les mouvements.
+*/
 
-	old = data->dir->y;
-	data->dir->y = data->dir->x * sin(0.0524321) + old * cos(0.0524321);
-	data->dir->x = data->dir->x * cos(0.0524321) - old * sin(0.0524321);
-	old = data->plane->x;
-	data->plane->x = data->plane->x * cos(0.0524321) - data->plane->y * sin(0.0524321);
-	data->plane->y = old * sin(0.0524321) + data->plane->y * cos(0.0524321);
+void	move_update(t_mlx *data)
+{
+	if (data->moves->forward)
+		move_forward(data);
+	if (data->moves->backward)
+		move_backward(data);
+	if (data->moves->left)
+		move_left(data);
+	if (data->moves->right)
+		move_right(data);
+	if (data->moves->rotate_left || data->moves->rotate_right)
+		rotation(data);
+	return ;
 }
+
 
 /* --------------------------- loop_process() ------------------------------- */
 /*
@@ -40,33 +49,22 @@ void	rotate_right(t_mlx *data)
 
 int	loop_process(t_mlx *data)
 {
-	if (data->rot_r == 1)
-		rotate_right(data);
-	data->rot_r = 0;
-	player_finder(&data);
-	data->pos->x = data->square->x + 0.5;
-	data->pos->y = data->square->y + 0.5;
-	// printf("p = %p\n", data->pos);
-    // printf("pos = (%f, %f)\n", data->pos->x, data->pos->y);
-	render_minimap(data);
+	// player_finder(&data);
+	// data->pos->x = data->square->x + 0.5;
+	// data->pos->y = data->square->y + 0.5;
+	// printf("move Z =	%d\n", data->moves->forward);
+	// printf("move S =	%d\n", data->moves->backward);
+	// printf("move Q =	%d\n", data->moves->left);
+	// printf("move D =	%d\n", data->moves->right);
+	// printf("move left =	%d\n", data->moves->rotate_left);
+	// printf("move up =	%d\n", data->moves->rotate_right);
+	// printf("\n");
+
+	move_update(data);
+	// render_minimap(data);
 	// mlx_put_image_to_window(data->mlx, data->win, data->minimap.mlx_img, 0, 0);
 	main_process(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->raycasting.mlx_img, 0, 0);
-	return (0);
-}
-
-/* ------------------------------- key_hook() ---------------------------------- */
-/*
-**		parle d'elle même; est appelée dans mlx_hook() pour binder des touches à des actions.
-**		actuellement, j'ai simplement ajouté la touche echap!
-*/
-
-int	key_hook(int keycode, t_mlx *data)
-{
-	if (keycode == XK_Escape)
-		return (clear_all(data), 0);
-	if (keycode == 100)
-		data->rot_r = 1;
 	return (0);
 }
 
@@ -94,7 +92,8 @@ int	game_launcher(t_mlx *data)
 			&data->raycasting.line_len, &data->raycasting.endian);
 	mlx_loop_hook(data->mlx, &loop_process, data);
 	mlx_hook(data->win, 17, 1L << 5, destroy_win, data);
-	mlx_hook(data->win, KeyPress, KeyPressMask, &key_hook, data);
+	mlx_hook(data->win, KeyPress, KeyPressMask, &keypress_hook, data);
+	mlx_hook(data->win, KeyRelease, KeyReleaseMask, &keyrelease_hook, data);
 	mlx_loop(data->mlx);
 	return (0);
 }
@@ -112,8 +111,9 @@ int	data_builder(t_parse *parse, t_mlx *data)
 		return (1);
 	if (fetch_map_data(data, parse) == 1)
 		return (1);
-	data->rot_r = 0;
-    // map_printer(data->lvl->map, data->lvl->lenY);
+	player_finder(&data);
+	data->pos->x = data->square->x + 0.5;
+	data->pos->y = data->square->y + 0.5;
 	return (0);
 }
 

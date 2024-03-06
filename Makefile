@@ -6,7 +6,7 @@
 #    By: theophane <theophane@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/02/28 18:38:27 by theophane        ###   ########.fr        #
+#    Updated: 2024/03/06 19:56:35 by theophane        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,16 @@ END_COLOR	:= \033[0;39m
 # VARIABLES
 
 SRCS	=	srcs/main.c \
-			srcs/ft_init_window.c \
+			srcs/ft_init_game.c \
 			srcs/ft_minimap_movements.c \
 			srcs/ft_minimap_display.c \
+			srcs/ft_key_hooks.c \
 			srcs/ft_raycasting.c \
 			srcs/ft_raycast_display.c \
-			srcs/ft_data_handler.c \
+			srcs/ft_data_init.c \
 			srcs/ft_data_clear.c \
 			srcs/ft_fetch_data.c \
+			srcs/ft_moves.c \
 			srcs/ft_printers.c \
 			srcs/ft_parse.c \
 			srcs/ft_parse_utils2.c \

@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/07 14:46:59 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/07 15:38:42 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@
 # define WHITESPACES "\t\r\v\f\n "
 # define WINHEIGHT 600
 # define WINWIDTH 800
-# define MOVE_SPEED 1.6
-# define ROT_SPEED 0.4
+# define MOVE_SPEED 0.009777
+# define ROT_SPEED 0.006522
 # define TILESIZE 5
 
 typedef struct s_img
 {
 	void		*mlx_img;
-	char		*addr;
+	int			*addr;
 	int			bpp; /* bits per pixel */
 	int			line_len;
 	int			endian;
@@ -105,16 +105,16 @@ typedef struct s_mlx
 	t_img		minimap;
 	t_img		raycasting;
 	t_map		*lvl;
-	t_vector		*pos;
+	t_vector	*pos;
 	t_step		*step;
 	t_square	*square;
-	t_vector		*dir;
-	t_vector		*plane;
+	t_vector	*dir;
+	t_vector	*plane;
 	double		camerax;
 	double		perpWallDist;
 	double		time;
 	double		oldTime;
-	t_vector		*ray;
+	t_vector	*ray;
 	t_vector	*delta;
 	t_vector	*side;
 	t_assets	*assets;

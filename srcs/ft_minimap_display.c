@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/27 19:52:27 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/07 15:37:05 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	char	*pixel;
 	int		i;
 
+	(void)x;
+	(void)y;
 	i = img->bpp - 8;
-	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	// pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	while (i >= 0)
 	{
 		/* big endian, MSB is the leftmost bit */

@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/07 14:45:15 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/07 15:35:45 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 void	move_update(t_mlx *data)
 {
+	printf("move speed = %f\n", MOVE_SPEED);
 	if (data->moves->forward)
 		move_forward(data);
 	if (data->moves->backward)
@@ -28,10 +29,7 @@ void	move_update(t_mlx *data)
 	if (data->moves->right)
 		move_right(data);
 	if (data->moves->rotate_left || data->moves->rotate_right)
-	{
-		printf("pouuuuuuuuuet\n");
 		rotation(data);
-	}
 	return ;
 }
 
@@ -80,10 +78,10 @@ int	game_launcher(t_mlx *data)
 	if (data->win == NULL)
 		return (1);
 	data->minimap.mlx_img = mlx_new_image(data->mlx, WINWIDTH, WINHEIGHT);
-	data->minimap.addr = mlx_get_data_addr(data->minimap.mlx_img, &data->minimap.bpp,
+	data->minimap.addr = (int *)mlx_get_data_addr(data->minimap.mlx_img, &data->minimap.bpp,
 			&data->minimap.line_len, &data->minimap.endian);
 	data->raycasting.mlx_img = mlx_new_image(data->mlx, WINWIDTH, WINHEIGHT);
-	data->raycasting.addr = mlx_get_data_addr(data->raycasting.mlx_img, &data->raycasting.bpp,
+	data->raycasting.addr = (int *)mlx_get_data_addr(data->raycasting.mlx_img, &data->raycasting.bpp,
 			&data->raycasting.line_len, &data->raycasting.endian);
 	mlx_loop_hook(data->mlx, &loop_process, data);
 	mlx_hook(data->win, 17, 1L << 5, destroy_win, data);

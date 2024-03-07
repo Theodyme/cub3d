@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:10:26 by theophane         #+#    #+#             */
-/*   Updated: 2024/03/07 14:37:20 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/07 15:34:18 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ void	rotation(t_mlx *data)
 {
 	double old;
 
-	printf("rotation\n");
-	printf("data->dir: %f, %f\n", data->dir->x, data->dir->y);
-	printf("data->plane: %f, %f\n", data->plane->x, data->plane->y);
     if (data->moves->rotate_left)
     {
 		
@@ -81,7 +78,6 @@ void	rotation(t_mlx *data)
     }
 	if (data->moves->rotate_right)
 	{
-		printf("pouet right\n");
 		old = data->dir->y;
 		data->dir->y = data->dir->x * sin(-ROT_SPEED) + old * cos(-ROT_SPEED);
 		data->dir->x = data->dir->x * cos(-ROT_SPEED) - old * sin(-ROT_SPEED);
@@ -89,6 +85,4 @@ void	rotation(t_mlx *data)
 		data->plane->x = data->plane->x * cos(-ROT_SPEED) - data->plane->y * sin(-ROT_SPEED);
 		data->plane->y = old * sin(-ROT_SPEED) + data->plane->y * cos(-ROT_SPEED);
 	}
-	printf("data->dir: %f, %f\n", data->dir->x, data->dir->y);
-	printf("data->plane: %f, %f\n", data->plane->x, data->plane->y);
 }

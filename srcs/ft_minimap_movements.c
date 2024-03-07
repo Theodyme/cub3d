@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/27 21:52:56 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/07 14:46:32 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	strchr_charset(char *str, char *charset)
 **		cette convention!
 */
 
-void	player_finder(t_mlx **data)
+char	player_finder(t_mlx **data)
 {
 	int	i;
 
@@ -53,8 +53,8 @@ void	player_finder(t_mlx **data)
 		if ((*data)->square->x != -1)
 		{
 			(*data)->square->y = i;
-			return ;
+			return ((*data)->lvl->map[i][(*data)->square->x]);
 		}
 	}
-	return ;
+	return ('0');
 }

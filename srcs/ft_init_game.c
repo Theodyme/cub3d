@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/06 20:54:29 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/07 14:45:15 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ void	move_update(t_mlx *data)
 	if (data->moves->right)
 		move_right(data);
 	if (data->moves->rotate_left || data->moves->rotate_right)
+	{
+		printf("pouuuuuuuuuet\n");
 		rotation(data);
+	}
 	return ;
 }
 
@@ -52,14 +55,6 @@ int	loop_process(t_mlx *data)
 	// player_finder(&data);
 	// data->pos->x = data->square->x + 0.5;
 	// data->pos->y = data->square->y + 0.5;
-	// printf("move Z =	%d\n", data->moves->forward);
-	// printf("move S =	%d\n", data->moves->backward);
-	// printf("move Q =	%d\n", data->moves->left);
-	// printf("move D =	%d\n", data->moves->right);
-	// printf("move left =	%d\n", data->moves->rotate_left);
-	// printf("move up =	%d\n", data->moves->rotate_right);
-	// printf("\n");
-
 	move_update(data);
 	// render_minimap(data);
 	// mlx_put_image_to_window(data->mlx, data->win, data->minimap.mlx_img, 0, 0);
@@ -104,14 +99,36 @@ int	game_launcher(t_mlx *data)
 **		voir si ça peut pas être décalé dans game_launcher directement après avoir viré init_testmap.
 */
 
+int	orientation_finder(t_mlx *data, char c)
+{
+	printf("player is on [%c]\n", c);
+	if (c == 'N')
+	{
+		data->plane->x = 0;
+		data->plane->y = 0.66;
+		data->dir->x = -1;
+		data->dir->y = 0;
+	}
+	return (0);
+}
+
+/* ------------------------------- data_builder() -------------------------------- */
+/*
+**		initialise la structure de données data et lance le game_launcher.
+**		voir si ça peut pas être décalé dans game_launcher directement après avoir viré init_testmap.
+*/
+
 int	data_builder(t_parse *parse, t_mlx *data)
 {		
+	char orientation;
+	
 	data_init(data);
 	if (data == NULL)
 		return (1);
 	if (fetch_map_data(data, parse) == 1)
 		return (1);
-	player_finder(&data);
+	orientation = player_finder(&data);
+	orientation_finder(data, orientation);
 	data->pos->x = data->square->x + 0.5;
 	data->pos->y = data->square->y + 0.5;
 	return (0);

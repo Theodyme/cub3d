@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 19:52:00 by theophane         #+#    #+#             */
-/*   Updated: 2024/03/06 20:16:56 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/07 14:53:30 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	keyrelease_hook(int keycode, t_mlx *data)
         data->moves->rotate_left = 0;
     if (keycode == KEY_RIGHT)
     {
-        data->moves->rotate_left = 0; //FAUT CHANGER LES TOUCHES
+        data->moves->rotate_right = 0; //FAUT CHANGER LES TOUCHES
     }
     return (0);
 }
@@ -59,7 +59,7 @@ int	keypress_hook(int keycode, t_mlx *data)
         data->moves->rotate_left = 1;
     if (keycode == KEY_RIGHT)
     {
-        data->moves->rotate_left = 1;
+        data->moves->rotate_right = 1;
     }
     return (0); //FAUT CHANGER LES TOUCHES
 }

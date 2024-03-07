@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/06 20:54:25 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/07 14:46:59 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define WINHEIGHT 600
 # define WINWIDTH 800
 # define MOVE_SPEED 1.6
-# define ROT_SPEED 1.6
+# define ROT_SPEED 0.4
 # define TILESIZE 5
 
 typedef struct s_img
@@ -158,7 +158,7 @@ void	render_minimap(t_mlx *data);
 /* ------------------------------- ft_minimap_update -------------------------------- */
 
 int		strchr_charset(char *str, char *charset);
-void	player_finder(t_mlx **data);
+char	player_finder(t_mlx **data);
 
 /* ------------------------------- ft_printers -------------------------------- */
 

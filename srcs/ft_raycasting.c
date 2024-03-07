@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/06 20:04:26 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/07 14:57:58 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void    hitpoint_calculator(t_mlx *data)
             data->square->y += data->step->y;
             data->sideHit = 1;
         }
-        if (data->lvl->map[data->square->y][data->square->x] == '1')
+        if (data->lvl->map[data->square->y][data->square->x] != '0')
             hit = 1;
     }
     // if (data->sideHit == 0)
@@ -142,11 +142,6 @@ void    main_process(t_mlx *data)
     int i;
     
     i = 0;
-    data->plane->x = 0;
-    data->plane->y = 0.66;
-    data->dir->x = -1;
-    data->dir->y = 0;
-    // map_printer(data->lvl->map, data->lvl->lenY);
     while (i < WINWIDTH)
     {
         data->square->x = (int)data->pos->x;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/07 14:57:58 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/08 17:32:25 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void    ray_calculator(int i, t_mlx *data)
     data->camerax = 2 * (double)i / (double)WINWIDTH - 1.0;
     data->ray->x = data->dir->x + data->plane->x * data->camerax;
     data->ray->y = data->dir->y + data->plane->y * data->camerax;
+	printf("dir = (%f, %f)\n", data->dir->x, data->dir->y);
+	printf("ray = (%f, %f)\n", data->ray->x, data->ray->y);
+	printf("camerax = (%f)\n", data->camerax);
+
 }
 
 /* ------------------------------- delta_calculator() -------------------------------- */
@@ -33,13 +37,11 @@ void    ray_calculator(int i, t_mlx *data)
 
 void    delta_calculator(t_mlx *data)
 {
-    // printf("ray = (%f, %f)\n", data->ray->x, data->ray->y);
     if (data->ray->x == 0)
         data->delta->x = 1;
     else if (data->ray->y == 0)
         data->delta->x = 0;
     else
-        // data->delta->x = fabs(1 / data->ray->x);
         data->delta->x = sqrt(1 + (data->ray->y * data->ray->y) / (data->ray->x * data->ray->x));
 
     if (data->ray->x == 0)
@@ -47,7 +49,6 @@ void    delta_calculator(t_mlx *data)
     else if (data->ray->y == 0)
         data->delta->y = 1;
     else
-        // data->delta->y = fabs(1 / data->ray->y);
         data->delta->y = sqrt(1 + (data->ray->x * data->ray->x) / (data->ray->y * data->ray->y));
 
 }
@@ -95,7 +96,9 @@ void    side_calculator(t_mlx *data)
 void    hitpoint_calculator(t_mlx *data)
 {
     int hit;
-    
+	double	step_dist_x;
+	double	step_dist_y;
+
     hit = 0;
     while (hit == 0)
     {
@@ -114,13 +117,6 @@ void    hitpoint_calculator(t_mlx *data)
         if (data->lvl->map[data->square->y][data->square->x] != '0')
             hit = 1;
     }
-    // if (data->sideHit == 0)
-    //     data->perpWallDist = data->side->x - data->delta->x;
-    // else
-    //     data->perpWallDist = data->side->y - data->delta->y;
-    double	step_dist_x;
-	double	step_dist_y;
-
 	step_dist_x = (data->square->x - data->pos->x + (1 - data->step->x) / 2 );
 	step_dist_y = (data->square->y - data->pos->y + (1 - data->step->y) / 2 );
 	if (data->sideHit == 0)
@@ -140,7 +136,7 @@ void    hitpoint_calculator(t_mlx *data)
 void    main_process(t_mlx *data)
 {
     int i;
-    
+
     i = 0;
     while (i < WINWIDTH)
     {

@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/28 16:42:36 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/08 16:54:08 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	main(int ac, char **av)
+int main(int ac, char **av)
 {
-	t_parse	parse;
-	t_mlx	data;
+	// int i = 0;
+	t_parse parse;
+	t_mlx data;
 
 	if (ac == 2)
 	{
@@ -28,6 +29,15 @@ int	main(int ac, char **av)
 			return (1);
 		init_textures(&parse, &data);
 		// ft_free_map(&parse);
+		// if (parse.len_textures > 0)
+		// {
+		// 	i = -1;
+		// 	while (++i < parse.len_textures)
+		// 		free(parse.textures[i]);
+		// 	free(parse.textures);
+		// }
+		// if (parse.rgb != NULL)
+		// 	free(parse.rgb);
 		game_launcher(&data);
 		data_freer(&data);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast_display.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/07 15:09:59 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/08 17:03:29 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,36 +25,24 @@ void    stripe_cast(int x, t_mlx *data, int start, int end)
     int pixel;
 
     y = 0;
-    // printf("pos = (%f, %f)\n", data->pos->x, data->pos->y);
-    // printf("start = %d, end = %d\n", start, end);
+
     while (y < WINHEIGHT)
     {
     	pixel = x + y * WINWIDTH;
-        // printf("y = %d\n", y);
         if (y < start)
         {
     		data->raycasting.addr[pixel] = 0x77b6d1;
-            // render_tile(&data->raycasting, (t_tile){x, y, 1, 1, 0xffff99});
-            // printf("%d goes in start\n", y);
-            // img_pix_put(&data->raycasting, x, y, 0x77b6d1);
         }
         else if (y > end)
         {
-            // render_tile(&data->raycasting, (t_tile){x, y, 1, 1, 0x99ffff});
-            // printf("%d goes in end\n", y);
     		data->raycasting.addr[pixel] = 0x8ed468;
         }
         else
         {
-            // printf("%d goes in walls\n", y);
             if (data->sideHit == 1)
-                // render_tile(&data->raycasting, (t_tile){x, y, 1, 1, 0xff99ff});
           		data->raycasting.addr[pixel] = 0x7672b0;
-                // img_pix_put(&data->raycasting, x, y, 0x7672b0);
             else
           		data->raycasting.addr[pixel] = 0x9894d6;
-                // render_tile(&data->raycasting, (t_tile){x, y, 1, 1, (0xff99ff / 2)});
-                // img_pix_put(&data->raycasting, x, y, 0x9894d6);
         }
         y++;
     }
@@ -72,7 +60,7 @@ void    wall_cast(int x, t_mlx *data)
     int lineheight;
     int end;
     int start;
-    
+
     lineheight = 0;
     start = 0;
     end = 0;

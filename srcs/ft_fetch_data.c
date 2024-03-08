@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fetch_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/28 16:44:36 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/08 17:12:43 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ int map_cpy(t_parse *parse, t_mlx *data)
 	data->lvl->map = malloc(sizeof(char *) * (parse->len_map + 1));
 	if (data->lvl->map == NULL)
 		return (1);
-	data->lvl->map[parse->len_map] = '\0';
+	data->lvl->map[parse->len_map] = NULL;
 	while (parse->map[i])
 	{
-		data->lvl->map[i] = ft_strdup(ft_strtrim_free(parse->map[i], WHITESPACES));
+		data->lvl->map[i] = ft_strdup(ft_strtrim_free(parse->map[i], "\n"));
 		i++;
 	}
+	// data->lvl->map[i][0] = '\0';
 	return (0);
 }
 
@@ -78,19 +79,20 @@ void	init_textures(t_parse *parse, t_mlx *data)
 	if (data->assets == NULL)
 		return (printf("Error\nMalloc\n"), ft_free_map(parse), exit(0));
 	assets_init(data->assets);
-	data->assets->nwall = mlx_xpm_file_to_image(data->mlx,
+	data->assets->nwall->mlx_img = mlx_xpm_file_to_image(data->mlx,
 												parse->textures[parse->n_id],
 												&width,
 												&height);
-	data->assets->swall = mlx_xpm_file_to_image(data->mlx,
+	data->assets->nwall->addr = (int *)mlx_get_data_addr(data->assets->nwall->mlx_img, &data->assets->nwall->bpp, &data->assets->nwall->line_len, &data->assets->nwall->endian);
+	data->assets->swall->mlx_img = mlx_xpm_file_to_image(data->mlx,
 												parse->textures[parse->s_id],
 												&width,
 												&height);
-	data->assets->wwall = mlx_xpm_file_to_image(data->mlx,
+	data->assets->wwall->mlx_img = mlx_xpm_file_to_image(data->mlx,
 												parse->textures[parse->w_id],
 												&width,
 												&height);
-	data->assets->ewall = mlx_xpm_file_to_image(data->mlx,
+	data->assets->ewall->mlx_img = mlx_xpm_file_to_image(data->mlx,
 												parse->textures[parse->e_id],
 												&width,
 												&height);

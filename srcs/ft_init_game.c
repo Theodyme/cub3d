@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/07 15:35:45 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/08 17:21:14 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 void	move_update(t_mlx *data)
 {
-	printf("move speed = %f\n", MOVE_SPEED);
 	if (data->moves->forward)
 		move_forward(data);
 	if (data->moves->backward)
@@ -99,11 +98,25 @@ int	game_launcher(t_mlx *data)
 
 int	orientation_finder(t_mlx *data, char c)
 {
-	printf("player is on [%c]\n", c);
+	data->plane->x = 0;
+	data->plane->y = 0.66;
 	if (c == 'N')
 	{
-		data->plane->x = 0;
-		data->plane->y = 0.66;
+		data->dir->x = 0;
+		data->dir->y = -1;
+	}
+	else if (c == 'S')
+	{
+		data->dir->x = 0;
+		data->dir->y = 1;
+	}
+	else if (c == 'W')
+	{
+		data->dir->x = 1;
+		data->dir->y = 0;
+	}
+	else if (c == 'E')
+	{
 		data->dir->x = -1;
 		data->dir->y = 0;
 	}
@@ -117,9 +130,9 @@ int	orientation_finder(t_mlx *data, char c)
 */
 
 int	data_builder(t_parse *parse, t_mlx *data)
-{		
+{
 	char orientation;
-	
+
 	data_init(data);
 	if (data == NULL)
 		return (1);

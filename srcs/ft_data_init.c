@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_data_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/06 17:30:17 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/08 17:11:49 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	moves_init(t_moves *moves)
 	moves->left = 0;
 	moves->right = 0;
 	moves->rotate_left = 0;
-	moves->rotate_right = 0;	
+	moves->rotate_right = 0;
 }
 
 /* ------------------------------- data_init() -------------------------------- */
@@ -89,10 +89,10 @@ void	data_init(t_mlx *data)
 
 void	assets_init(t_assets *assets)
 {
-	assets->nwall = NULL;
-	assets->swall = NULL;
-	assets->wwall = NULL;
-	assets->ewall = NULL;
+	assets->nwall = malloc(sizeof(t_img));
+	assets->swall = malloc(sizeof(t_img));
+	assets->wwall = malloc(sizeof(t_img));
+	assets->ewall = malloc(sizeof(t_img));
 	assets->floor = 0;
 	assets->ceiling = 0;
 }

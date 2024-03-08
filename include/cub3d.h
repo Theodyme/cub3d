@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/07 15:38:42 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/08 17:12:10 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ typedef struct s_map
 
 typedef struct s_assets
 {
-	void		*nwall;
-	void		*swall;
-	void		*wwall;
-	void		*ewall;
+	t_img		*nwall;
+	t_img		*swall;
+	t_img		*wwall;
+	t_img		*ewall;
 	int			floor;
 	int			ceiling;
 }				t_assets;
@@ -93,7 +93,7 @@ typedef struct s_step
 typedef struct s_vector
 {
 	double		x;
-	double		y;	
+	double		y;
 }				t_vector;
 
 typedef struct s_mlx
@@ -164,7 +164,7 @@ char	player_finder(t_mlx **data);
 
 void	map_printer(char **map, int y);
 
-/* ------------------------------- ft_fetch_data -------------------------------- */ 
+/* ------------------------------- ft_fetch_data -------------------------------- */
 
 int 	map_cpy(t_parse *parse, t_mlx *data);
 int		fetch_map_data(t_mlx *data, t_parse *parse);

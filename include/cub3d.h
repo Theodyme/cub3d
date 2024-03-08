@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/08 17:12:10 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/08 20:50:00 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define WHITESPACES "\t\r\v\f\n "
 # define WINHEIGHT 600
 # define WINWIDTH 800
-# define MOVE_SPEED 0.009777
-# define ROT_SPEED 0.006522
+# define MOVE_SPEED 0.00009777
+# define ROT_SPEED 0.00006522
 # define TILESIZE 5
 
 typedef struct s_img

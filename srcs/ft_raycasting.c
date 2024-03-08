@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/08 17:32:25 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/08 20:48:37 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void    ray_calculator(int i, t_mlx *data)
     data->camerax = 2 * (double)i / (double)WINWIDTH - 1.0;
     data->ray->x = data->dir->x + data->plane->x * data->camerax;
     data->ray->y = data->dir->y + data->plane->y * data->camerax;
-	printf("dir = (%f, %f)\n", data->dir->x, data->dir->y);
-	printf("ray = (%f, %f)\n", data->ray->x, data->ray->y);
-	printf("camerax = (%f)\n", data->camerax);
+	// printf("dir = (%f, %f)\n", data->dir->x, data->dir->y);
+	// printf("ray = (%f, %f)\n", data->ray->x, data->ray->y);
+	// printf("camerax = (%f)\n", data->camerax);
 
 }
 

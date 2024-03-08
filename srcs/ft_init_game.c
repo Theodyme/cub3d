@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/08 17:21:14 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/08 20:42:48 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,27 +98,33 @@ int	game_launcher(t_mlx *data)
 
 int	orientation_finder(t_mlx *data, char c)
 {
-	data->plane->x = 0;
-	data->plane->y = 0.66;
 	if (c == 'N')
 	{
 		data->dir->x = 0;
 		data->dir->y = -1;
+		data->plane->x = -0.66;
+		data->plane->y = 0;
 	}
 	else if (c == 'S')
 	{
 		data->dir->x = 0;
 		data->dir->y = 1;
+		data->plane->x = 0.66;
+		data->plane->y = 0;
 	}
 	else if (c == 'W')
 	{
 		data->dir->x = 1;
 		data->dir->y = 0;
+		data->plane->x = 0;
+		data->plane->y = -0.66;
 	}
 	else if (c == 'E')
 	{
 		data->dir->x = -1;
 		data->dir->y = 0;
+		data->plane->x = 0;
+		data->plane->y = 0.66;
 	}
 	return (0);
 }

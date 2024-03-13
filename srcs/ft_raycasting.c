@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/08 20:48:37 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/13 19:13:45 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,18 +135,18 @@ void    hitpoint_calculator(t_mlx *data)
 
 void    main_process(t_mlx *data)
 {
-    int i;
+    int x;
 
-    i = 0;
-    while (i < WINWIDTH)
+    x = 0;
+    while (x < WINWIDTH)
     {
         data->square->x = (int)data->pos->x;
         data->square->y = (int)data->pos->y;
-        ray_calculator(i, data);
+        ray_calculator(x, data);
         delta_calculator(data);
         side_calculator(data);
         hitpoint_calculator(data);
-        wall_cast(i, data);
-        i++;
+        wall_cast(x, data);
+        x++;
     }
 }

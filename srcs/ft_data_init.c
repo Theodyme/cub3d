@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_data_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/08 17:11:49 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/13 16:19:44 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ void	data_alloc(t_mlx *data)
 	{
 		data->moves = malloc(sizeof(t_moves));
 		data->pos = malloc(sizeof(t_vector));
-		data->step = malloc(sizeof(t_step));
-		data->square = malloc(sizeof(t_square));
+		data->step = malloc(sizeof(t_vint));
+		data->square = malloc(sizeof(t_vint));
 		data->dir = malloc(sizeof(t_vector));
 		data->plane = malloc(sizeof(t_vector));
 		data->ray = malloc(sizeof(t_vector));
 		data->delta = malloc(sizeof(t_vector));
 		data->side = malloc(sizeof(t_vector));
+		data->draw = malloc(sizeof(t_draw));
 	}
 	if (!(data->pos) || !(data->step) || !(data->square) || !(data->dir) || !(data->plane) || !(data->ray) || !(data->delta) || !(data->side))
 		data_freer(data);
@@ -79,6 +80,9 @@ void	data_init(t_mlx *data)
 	data->delta->y = 0;
 	data->side->x = 0;
 	data->side->y = 0;
+	data->draw->lineheight = 0;
+	data->draw->start = 0;
+	data->draw->end = 0;
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/08 20:42:48 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/13 16:08:02 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,8 @@ int	data_builder(t_parse *parse, t_mlx *data)
 		return (1);
 	if (fetch_map_data(data, parse) == 1)
 		return (1);
-	orientation = player_finder(&data);
+	// map_printer(data->lvl->map, data->lvl->lenY);
+	orientation = player_finder(data);
 	orientation_finder(data, orientation);
 	data->pos->x = data->square->x + 0.5;
 	data->pos->y = data->square->y + 0.5;

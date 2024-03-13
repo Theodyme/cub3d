@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/07 14:46:32 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/13 16:07:41 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,19 @@ int	strchr_charset(char *str, char *charset)
 **		cette convention!
 */
 
-char	player_finder(t_mlx **data)
+char	player_finder(t_mlx *data)
 {
 	int	i;
 
 	i = -1;
-	while ((*data)->lvl->map[++i])
+	while (data->lvl->map[++i])
 	{
-		(*data)->square->x = strchr_charset((*data)->lvl->map[i], "NSEW");
-		if ((*data)->square->x != -1)
+		printf("checking i[%d]\n", i);
+		data->square->x = strchr_charset(data->lvl->map[i], "NSEW");
+		if (data->square->x != -1)
 		{
-			(*data)->square->y = i;
-			return ((*data)->lvl->map[i][(*data)->square->x]);
+			data->square->y = i;
+			return (data->lvl->map[i][data->square->x]);
 		}
 	}
 	return ('0');

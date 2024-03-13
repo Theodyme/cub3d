@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/08 20:50:00 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/13 19:53:21 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@
 # define WHITESPACES "\t\r\v\f\n "
 # define WINHEIGHT 600
 # define WINWIDTH 800
-# define MOVE_SPEED 0.00009777
-# define ROT_SPEED 0.00006522
+# define MOVE_SPEED 0.09777
+# define ROT_SPEED 0.06522
 # define TILESIZE 5
+# define ASSET_W 64
+# define ASSET_H 64
 
 typedef struct s_img
 {
@@ -40,6 +42,8 @@ typedef struct s_img
 	int			bpp; /* bits per pixel */
 	int			line_len;
 	int			endian;
+	int			height;
+	int			width;
 }				t_img;
 
 typedef struct s_tile
@@ -78,23 +82,24 @@ typedef struct s_moves
 	int		rotate_right;
 }				t_moves;
 
-typedef struct s_square
-{
-	int			x;
-	int 		y;
-}				t_square;
-
-typedef struct s_step
-{
-	int			x;
-	int			y;
-}				t_step;
-
 typedef struct s_vector
 {
 	double		x;
 	double		y;
 }				t_vector;
+
+typedef struct s_vint
+{
+	int		x;
+	int		y;
+}				t_vint;
+
+typedef struct s_draw
+{
+	int		lineheight;
+	int		start;
+	int		end;
+}				t_draw;
 
 typedef struct s_mlx
 {
@@ -102,12 +107,13 @@ typedef struct s_mlx
 	void		*win;
 	t_moves		*moves;
 	int			sideHit;
+	t_draw		*draw;
 	t_img		minimap;
 	t_img		raycasting;
 	t_map		*lvl;
 	t_vector	*pos;
-	t_step		*step;
-	t_square	*square;
+	t_vint		*step;
+	t_vint		*square;
 	t_vector	*dir;
 	t_vector	*plane;
 	double		camerax;
@@ -158,7 +164,7 @@ void	render_minimap(t_mlx *data);
 /* ------------------------------- ft_minimap_update -------------------------------- */
 
 int		strchr_charset(char *str, char *charset);
-char	player_finder(t_mlx **data);
+char	player_finder(t_mlx *data);
 
 /* ------------------------------- ft_printers -------------------------------- */
 

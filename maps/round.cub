@@ -1,12 +1,12 @@
-NO assets/anorth.xpm
-SO assets/asouth.xpm
-EA assets/aeast.xpm
-WE assets/awest.xpm
+NO assets/nord.xpm
+SO assets/sud.xpm
+EA assets/est.xpm
+WE assets/ouest.xpm
 C 47,71,90
 F 31,33,47
 
 	 1111
 	110001
 	111011
-	1000N1
+	1000W1
 	 1111

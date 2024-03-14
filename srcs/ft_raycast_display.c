@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/14 18:28:23 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/14 22:06:54 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,20 @@ t_img	*get_orientation(t_mlx *data)
 	if (data->ray->x < 0)
 	{
 		if (data->sideHit == 0)
-			return (data->assets->nwall);
-		else if (data->ray->y < 0)
 			return (data->assets->wwall);
+		else if (data->ray->y < 0)
+			return (data->assets->nwall);
 		else
-			return (data->assets->ewall);
+			return (data->assets->swall);
 	}
 	else
 	{
 		if (data->sideHit == 0)
-			return (data->assets->swall);
-		else if (data->ray->y > 0)
 			return (data->assets->ewall);
+		else if (data->ray->y > 0)
+			return (data->assets->swall);
 		else
-			return (data->assets->wwall);
+			return (data->assets->nwall);
 	}
 }
 

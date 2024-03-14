@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:10:26 by theophane         #+#    #+#             */
-/*   Updated: 2024/03/14 21:15:34 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/14 21:34:16 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,25 +114,24 @@ void	move_left(t_mlx *data)
 
 void	rotation(t_mlx *data)
 {
-	double old;
+	double oldDirY;
 
-    if (data->moves->rotate_left)
+    if (data->moves->rotate_right)
     {
-		
-		old = data->dir->y;
-		data->dir->y = data->dir->x * sin(ROT_SPEED) + old * cos(ROT_SPEED);
-		data->dir->x = data->dir->x * cos(ROT_SPEED) - old * sin(ROT_SPEED);
-		old = data->plane->x;
+		oldDirY = data->dir->y;
+		data->dir->y = data->dir->x * sin(ROT_SPEED) + oldDirY * cos(ROT_SPEED);
+		data->dir->x = data->dir->x * cos(ROT_SPEED) - oldDirY * sin(ROT_SPEED);
+		oldDirY = data->plane->x;
 		data->plane->x = data->plane->x * cos(ROT_SPEED) - data->plane->y * sin(ROT_SPEED);
-		data->plane->y = old * sin(ROT_SPEED) + data->plane->y * cos(ROT_SPEED);
+		data->plane->y = oldDirY * sin(ROT_SPEED) + data->plane->y * cos(ROT_SPEED);
     }
-	if (data->moves->rotate_right)
+	if (data->moves->rotate_left)
 	{
-		old = data->dir->y;
-		data->dir->y = data->dir->x * sin(-ROT_SPEED) + old * cos(-ROT_SPEED);
-		data->dir->x = data->dir->x * cos(-ROT_SPEED) - old * sin(-ROT_SPEED);
-		old = data->plane->x;
+		oldDirY = data->dir->y;
+		data->dir->y = data->dir->x * sin(-ROT_SPEED) + oldDirY * cos(-ROT_SPEED);
+		data->dir->x = data->dir->x * cos(-ROT_SPEED) - oldDirY * sin(-ROT_SPEED);
+		oldDirY = data->plane->x;
 		data->plane->x = data->plane->x * cos(-ROT_SPEED) - data->plane->y * sin(-ROT_SPEED);
-		data->plane->y = old * sin(-ROT_SPEED) + data->plane->y * cos(-ROT_SPEED);
+		data->plane->y = oldDirY * sin(-ROT_SPEED) + data->plane->y * cos(-ROT_SPEED);
 	}
 }

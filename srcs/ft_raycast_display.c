@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/13 20:06:31 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/14 18:28:23 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void    wall_cast(int x, t_mlx *data)
     // get_texture_x(data, tex, asset);
     // printf("after set tex->x = %d\n", tex->x);
 
-    printf("tex->x = %d\n", tex->x);
+    // printf("tex->x = %d\n", tex->x);
 
     double hit_x;
 
@@ -131,11 +131,11 @@ void    wall_cast(int x, t_mlx *data)
     else
         hit_x = (data->pos->x + data->perpWallDist * data->ray->x);
 
-    printf("hit_x = %f\n", hit_x);
+    // printf("hit_x = %f\n", hit_x);
 
     hit_x -= floor((hit_x));
     
-    printf("after set hit_x = %f\n", hit_x);
+    // printf("after set hit_x = %f\n", hit_x);
     
     tex->x = (int)(hit_x * (double)(asset->width));
     
@@ -154,24 +154,24 @@ void    wall_cast(int x, t_mlx *data)
     
     step = 0;
 
-    printf("step = %f\n", step);
+    // printf("step = %f\n", step);
 
     step = 1.0 * asset->height / data->draw->lineheight;
 
-    printf("after step = %f\n", step);
+    // printf("after step = %f\n", step);
 
-    texPos = (data->draw->start - WINHEIGHT / 2 + data->draw->lineheight / 2) * step;
+    texPos = (data->draw->start - 1 - WINHEIGHT / 2 + data->draw->lineheight / 2) * step;
    
-    printf("texPos = %f\n", texPos);
+    // printf("texPos = %f\n", texPos);
    
     y = 0;
     while (y < WINHEIGHT)
     {
     	pixel = x + y * WINWIDTH;
         if (y < data->draw->start)
-    		data->raycasting.addr[pixel] = 0x77b6d1;
+    		data->raycasting.addr[pixel] = data->assets->ceiling;
         else if (y > data->draw->end)
-    		data->raycasting.addr[pixel] = 0x8ed468;
+    		data->raycasting.addr[pixel] = data->assets->floor;
         else
         {
             tex->y = (int)texPos & (asset->height - 1);

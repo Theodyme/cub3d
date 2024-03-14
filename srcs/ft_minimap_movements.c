@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/13 16:07:41 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/14 18:25:50 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	player_finder(t_mlx *data)
 	i = -1;
 	while (data->lvl->map[++i])
 	{
-		printf("checking i[%d]\n", i);
+		// printf("checking i[%d]\n", i);
 		data->square->x = strchr_charset(data->lvl->map[i], "NSEW");
 		if (data->square->x != -1)
 		{

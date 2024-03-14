@@ -1,18 +1,13 @@
-F 34,252,55
-EA assets/eagle.xpm
-WE assets/purplestone.xpm
-C 54,55,56
-SO 					     assets/greystone.xpm
+NO assets/anorth.xpm
+SO assets/asouth.xpm
+EA assets/aeast.xpm
+WE assets/awest.xpm
+C 47,71,90
+F 31,33,47
 
-
-							NO assets/red.xpm
-
-
-1111111
+    111
+1111101
 1000001
-1000001
-1000001
-100N001
-1000001
-1000001
-1111111
+1000S01
+1000011
+111111

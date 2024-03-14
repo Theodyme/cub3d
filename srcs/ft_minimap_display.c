@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minimap_display.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/08 16:16:13 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/14 21:10:25 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@
 // 	char	*pixel;
 // 	int		i;
 
-// 	(void)x;
-// 	(void)y;
-// 	pixel = null;
 // 	i = img->bpp - 8;
 // 	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 // 	while (i >= 0)

@@ -1,9 +1,9 @@
-NO assets/eagle.xpm
-SO assets/south.xpm
-EA assets/east.xpm
-WE assets/west.xpm
-                  C 135,206,235
-         F 100,100,100
+NO assets/anorth.xpm
+SO assets/asouth.xpm
+EA assets/aeast.xpm
+WE assets/awest.xpm
+                  C 47,71,90
+         F 31,33,47
 
              1
             101

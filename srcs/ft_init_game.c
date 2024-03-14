@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/13 16:08:02 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/14 21:09:53 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ int	game_launcher(t_mlx *data)
 	data->win = mlx_new_window(data->mlx, WINWIDTH, WINHEIGHT, "cub3d");
 	if (data->win == NULL)
 		return (1);
-	data->minimap.mlx_img = mlx_new_image(data->mlx, WINWIDTH, WINHEIGHT);
-	data->minimap.addr = (int *)mlx_get_data_addr(data->minimap.mlx_img, &data->minimap.bpp,
-			&data->minimap.line_len, &data->minimap.endian);
+	// data->minimap.mlx_img = mlx_new_image(data->mlx, WINWIDTH, WINHEIGHT);
+	// data->minimap.addr = (int *)mlx_get_data_addr(data->minimap.mlx_img, &data->minimap.bpp,
+	// 		&data->minimap.line_len, &data->minimap.endian);
 	data->raycasting.mlx_img = mlx_new_image(data->mlx, WINWIDTH, WINHEIGHT);
 	data->raycasting.addr = (int *)mlx_get_data_addr(data->raycasting.mlx_img, &data->raycasting.bpp,
 			&data->raycasting.line_len, &data->raycasting.endian);
@@ -102,29 +102,29 @@ int	orientation_finder(t_mlx *data, char c)
 	{
 		data->dir->x = 0;
 		data->dir->y = -1;
-		data->plane->x = -0.66;
+		data->plane->x = 0.66;
 		data->plane->y = 0;
 	}
 	else if (c == 'S')
 	{
 		data->dir->x = 0;
 		data->dir->y = 1;
-		data->plane->x = 0.66;
+		data->plane->x = -0.66;
 		data->plane->y = 0;
 	}
 	else if (c == 'W')
-	{
-		data->dir->x = 1;
-		data->dir->y = 0;
-		data->plane->x = 0;
-		data->plane->y = -0.66;
-	}
-	else if (c == 'E')
 	{
 		data->dir->x = -1;
 		data->dir->y = 0;
 		data->plane->x = 0;
 		data->plane->y = 0.66;
+	}
+	else if (c == 'E')
+	{
+		data->dir->x = 1;
+		data->dir->y = 0;
+		data->plane->x = 0;
+		data->plane->y = -0.66;
 	}
 	return (0);
 }
@@ -147,6 +147,7 @@ int	data_builder(t_parse *parse, t_mlx *data)
 	// map_printer(data->lvl->map, data->lvl->lenY);
 	orientation = player_finder(data);
 	orientation_finder(data, orientation);
+	printf("orientation = [%c], player position = [%d, %d]\n", orientation, data->square->x, data->square->y);
 	data->pos->x = data->square->x + 0.5;
 	data->pos->y = data->square->y + 0.5;
 	return (0);

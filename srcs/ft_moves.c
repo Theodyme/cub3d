@@ -6,11 +6,12 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:10:26 by theophane         #+#    #+#             */
-/*   Updated: 2024/03/07 15:34:18 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/14 21:15:34 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
 
 void	move_forward(t_mlx *data)
 {
@@ -43,10 +44,10 @@ void	move_right(t_mlx *data)
 	if (!data->moves->right)
 		return ;
 	if (data->lvl->map[(int)data->pos->y][(int)(data->pos->x + data->plane->x * MOVE_SPEED)] &&
-			(data->lvl->map[(int)data->pos->y][(int)(data->pos->x + data->plane->x * MOVE_SPEED)] == '0'))
+			(data->lvl->map[(int)data->pos->y][(int)(data->pos->x + data->plane->x * MOVE_SPEED)] != '1'))
 		data->pos->x += data->plane->x * MOVE_SPEED;
 	if (data->lvl->map[(int)(data->pos->y + data->plane->y * MOVE_SPEED)][(int)data->pos->x] &&
-			(data->lvl->map[(int)(data->pos->y + data->plane->y * MOVE_SPEED)][(int)data->pos->x] == '0'))
+			(data->lvl->map[(int)(data->pos->y + data->plane->y * MOVE_SPEED)][(int)data->pos->x] != '1'))
 		data->pos->y += data->plane->y * MOVE_SPEED;
 }
 
@@ -55,12 +56,61 @@ void	move_left(t_mlx *data)
 	if (!data->moves->left)
 		return ;
 	if (data->lvl->map[(int)data->pos->y][(int)(data->pos->x - data->plane->x * MOVE_SPEED)] &&
-			(data->lvl->map[(int)data->pos->y][(int)(data->pos->x - data->plane->x * MOVE_SPEED)] == '0'))
+			(data->lvl->map[(int)data->pos->y][(int)(data->pos->x - data->plane->x * MOVE_SPEED)] != '1'))
 		data->pos->x -= data->plane->x * MOVE_SPEED;
 	if (data->lvl->map[(int)(data->pos->y - data->plane->y * MOVE_SPEED)][(int)data->pos->x] &&
-			(data->lvl->map[(int)(data->pos->y - data->plane->y * MOVE_SPEED)][(int)data->pos->x] == '0'))
+			(data->lvl->map[(int)(data->pos->y - data->plane->y * MOVE_SPEED)][(int)data->pos->x] != '1'))
 		data->pos->y -= data->plane->y * MOVE_SPEED;
 }
+// void	move_forward(t_mlx *data)
+// {
+// 	if (!data->moves->forward)
+// 		return ;
+// 	// printf("testing map[%d][%d] = [%c]\n", (int)(data->pos->x + data->dir->x * MOVE_SPEED), (int)(data->pos->y), data->lvl->map[(int)(data->pos->x + data->dir->x * MOVE_SPEED)][(int)data->pos->y]);
+// 	// printf("line = [%s]\n", data->lvl->map[(int)(data->pos->x + data->dir->x * MOVE_SPEED)]);
+// 	if (data->lvl->map[(int)(data->pos->x + data->dir->x * MOVE_SPEED)][(int)data->pos->y] &&
+// 			(data->lvl->map[(int)(data->pos->x + data->dir->x * MOVE_SPEED)][(int)data->pos->y] != '1'))
+// 		data->pos->x += data->dir->x * MOVE_SPEED;
+// 	if (data->lvl->map[(int)data->pos->x][(int)(data->pos->y + data->dir->y * MOVE_SPEED)] &&
+// 			(data->lvl->map[(int)data->pos->x][(int)(data->pos->y + data->dir->y * MOVE_SPEED)] != '1'))
+// 		data->pos->y += data->dir->y * MOVE_SPEED;
+// }
+
+// void	move_backward(t_mlx *data)
+// {
+// 	if (!data->moves->backward)
+// 		return ;
+// 	if (data->lvl->map[(int)(data->pos->x - data->dir->x * MOVE_SPEED)][(int)data->pos->y] &&
+// 			(data->lvl->map[(int)(data->pos->x - data->dir->x * MOVE_SPEED)][(int)data->pos->y] != '1'))
+// 		data->pos->x -= data->dir->x * MOVE_SPEED;
+// 	if (data->lvl->map[(int)data->pos->x][(int)(data->pos->y - data->dir->y * MOVE_SPEED)] &&
+// 			(data->lvl->map[(int)data->pos->x][(int)(data->pos->y - data->dir->y * MOVE_SPEED)] != '1'))
+// 		data->pos->y -= data->dir->y * MOVE_SPEED;
+// }
+
+// void	move_right(t_mlx *data)
+// {
+// 	if (!data->moves->right)
+// 		return ;
+// 	if (data->lvl->map[(int)(data->pos->x + data->plane->x * MOVE_SPEED)][(int)data->pos->y] &&
+// 			(data->lvl->map[(int)(data->pos->x + data->plane->x * MOVE_SPEED)][(int)data->pos->y] != '1'))
+// 		data->pos->x += data->plane->x * MOVE_SPEED;
+// 	if (data->lvl->map[(int)data->pos->x][(int)(data->pos->y + data->plane->y * MOVE_SPEED)] &&
+// 			(data->lvl->map[(int)data->pos->x][(int)(data->pos->y + data->plane->y * MOVE_SPEED)] != '1'))
+// 		data->pos->y += data->plane->y * MOVE_SPEED;
+// }
+
+// void	move_left(t_mlx *data)
+// {
+// 	if (!data->moves->left)
+// 		return ;
+// 	if (data->lvl->map[(int)(data->pos->x - data->plane->x * MOVE_SPEED)][(int)data->pos->y] &&
+// 			(data->lvl->map[(int)(data->pos->x - data->plane->x * MOVE_SPEED)][(int)data->pos->y] != '1'))
+// 		data->pos->x -= data->plane->x * MOVE_SPEED;
+// 	if (data->lvl->map[(int)data->pos->x][(int)(data->pos->y - data->plane->y * MOVE_SPEED)] &&
+// 			(data->lvl->map[(int)data->pos->x][(int)(data->pos->y - data->plane->y * MOVE_SPEED)] != '1'))
+// 		data->pos->y -= data->plane->y * MOVE_SPEED;
+// }
 
 void	rotation(t_mlx *data)
 {

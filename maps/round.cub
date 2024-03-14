@@ -1,13 +1,12 @@
-NO assets/eagle.xpm
-SO assets/greystone.xpm
-WE assets/purplestone.xpm
-EA assets/red.xpm
-
-F 255,255,255
-C 255,255,255
+NO assets/anorth.xpm
+SO assets/asouth.xpm
+EA assets/aeast.xpm
+WE assets/awest.xpm
+C 47,71,90
+F 31,33,47
 
 	 1111
-	100101
-	101001
-	1100N1
+	110001
+	111011
+	1000W1
 	 1111

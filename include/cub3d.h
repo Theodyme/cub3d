@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/13 19:53:21 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/14 21:00:30 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@
 # define MOVE_SPEED 0.09777
 # define ROT_SPEED 0.06522
 # define TILESIZE 5
-# define ASSET_W 64
-# define ASSET_H 64
 
 typedef struct s_img
 {

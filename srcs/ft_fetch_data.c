@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/13 15:54:56 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/14 22:50:25 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,7 @@ int		rgb_to_int(int r, int g, int b)
 
 void	fetch_xpm_image(void **mlx, t_img *asset, char **textures, int id)
 {
-	int width;
-	int height;
-
-	width = WINWIDTH;
-	height = WINHEIGHT;
-	asset->mlx_img = mlx_xpm_file_to_image(*mlx, textures[id], &width, &height);
+	asset->mlx_img = mlx_xpm_file_to_image(*mlx, textures[id], &asset->width, &asset->height);
 	asset->addr = (int *)mlx_get_data_addr(asset->mlx_img, &asset->bpp, &asset->line_len, &asset->endian);
 	return ;
 }
@@ -91,42 +86,10 @@ void	init_textures(t_parse *parse, t_mlx *data)
 	if (data->assets == NULL)
 		return (printf("Error\nMalloc\n"), ft_free_map(parse), exit(0));
 	assets_init(data->assets);
-	data->assets->nwall->mlx_img = mlx_xpm_file_to_image(data->mlx,
-												parse->textures[parse->n_id],
-												&data->assets->nwall->width,
-												&data->assets->nwall->height);
-	data->assets->nwall->addr = (int *)mlx_get_data_addr(data->assets->nwall->mlx_img,
-												&data->assets->nwall->bpp,
-												&data->assets->nwall->line_len,
-												&data->assets->nwall->endian);
-	data->assets->swall->mlx_img = mlx_xpm_file_to_image(data->mlx,
-												parse->textures[parse->s_id],
-												&data->assets->swall->width,
-												&data->assets->swall->height);
-	data->assets->swall->addr = (int *)mlx_get_data_addr(data->assets->swall->mlx_img,
-												&data->assets->swall->bpp,
-												&data->assets->swall->line_len,
-												&data->assets->swall->endian);
-	data->assets->wwall->mlx_img = mlx_xpm_file_to_image(data->mlx,
-												parse->textures[parse->w_id],
-												&data->assets->wwall->width,
-												&data->assets->wwall->height);
-	data->assets->wwall->addr = (int *)mlx_get_data_addr(data->assets->wwall->mlx_img,
-												&data->assets->wwall->bpp,
-												&data->assets->wwall->line_len,
-												&data->assets->wwall->endian);
-	data->assets->ewall->mlx_img = mlx_xpm_file_to_image(data->mlx,
-												parse->textures[parse->e_id],
-												&data->assets->ewall->width,
-												&data->assets->ewall->height);
-	data->assets->ewall->addr = (int *)mlx_get_data_addr(data->assets->ewall->mlx_img,
-												&data->assets->ewall->bpp,
-												&data->assets->ewall->line_len,
-												&data->assets->ewall->endian);
-	// fetch_xpm_image(&data->mlx, data->assets->nwall, parse->textures, parse->n_id);
-	// fetch_xpm_image(&data->mlx, data->assets->swall, parse->textures, parse->s_id);
-	// fetch_xpm_image(&data->mlx, data->assets->wwall, parse->textures, parse->w_id);
-	// fetch_xpm_image(&data->mlx, data->assets->ewall, parse->textures, parse->e_id);
+	fetch_xpm_image(&data->mlx, data->assets->nwall, parse->textures, parse->n_id);
+	fetch_xpm_image(&data->mlx, data->assets->swall, parse->textures, parse->s_id);
+	fetch_xpm_image(&data->mlx, data->assets->wwall, parse->textures, parse->w_id);
+	fetch_xpm_image(&data->mlx, data->assets->ewall, parse->textures, parse->e_id);
 	data->assets->floor = rgb_to_int(parse->rgb[0], parse->rgb[1],
 			parse->rgb[2]);
 	data->assets->ceiling = rgb_to_int(parse->rgb[3], parse->rgb[4],

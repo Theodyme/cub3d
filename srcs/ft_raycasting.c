@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/14 21:30:14 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/14 23:25:02 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 void    ray_calculator(int x, t_mlx *data)
 {
     data->camerax = 2 * (double)x / (double)WINWIDTH - 1.0;
+	printf("camerax = (%f)\n", data->camerax);
     data->ray->x = data->dir->x + data->plane->x * data->camerax;
     data->ray->y = data->dir->y + data->plane->y * data->camerax;
 	printf("dir = (%f, %f)\n", data->dir->x, data->dir->y);
@@ -50,7 +51,8 @@ void    delta_calculator(t_mlx *data)
         data->delta->y = 1;
     else
         data->delta->y = sqrt(1 + (data->ray->x * data->ray->x) / (data->ray->y * data->ray->y));
-
+	
+    printf("delta = (%f, %f)\n", data->delta->x, data->delta->y);
 }
 
 /* ------------------------------- side_calculator() -------------------------------- */

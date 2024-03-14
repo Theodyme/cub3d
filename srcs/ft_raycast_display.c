@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/14 22:06:54 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/14 23:03:49 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void    y_cast_loop(int x, t_mlx *data, t_draw *draw, t_img *asset, t_vint *tex)
     y = 0;
     while (y < WINHEIGHT)
     {
-    	pixel = x + y * WINWIDTH;
+    	pixel = (x + y) * WINWIDTH;
         if (y < draw->start)
     		data->raycasting.addr[pixel] = 0x77b6d1;
         else if (y > draw->end)
@@ -140,9 +140,9 @@ void    wall_cast(int x, t_mlx *data)
     tex->x = (int)(hit_x * (double)(asset->width));
     
     // // fix symétrie horizontale:
-    if (data->sideHit == 0 && data->ray->x > 0)
+    if (data->sideHit == 0 && data->ray->x < 0)
         tex->x = asset->width - tex->x - 1;
-    if (data->sideHit == 1 && data->ray->y < 0)
+    if (data->sideHit == 1 && data->ray->y > 0)
         tex->x = asset->width - tex->x - 1;
 
 

@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/14 21:09:53 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/14 23:35:09 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	loop_process(t_mlx *data)
 	// render_minimap(data);
 	// mlx_put_image_to_window(data->mlx, data->win, data->minimap.mlx_img, 0, 0);
 	main_process(data);
+	// mlx_put_image_to_window(data->mlx, data->win, data->assets->ewall->mlx_img, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->win, data->raycasting.mlx_img, 0, 0);
 	return (0);
 }
@@ -117,14 +118,14 @@ int	orientation_finder(t_mlx *data, char c)
 		data->dir->x = -1;
 		data->dir->y = 0;
 		data->plane->x = 0;
-		data->plane->y = 0.66;
+		data->plane->y = -0.66;
 	}
 	else if (c == 'E')
 	{
 		data->dir->x = 1;
 		data->dir->y = 0;
 		data->plane->x = 0;
-		data->plane->y = -0.66;
+		data->plane->y = 0.66;
 	}
 	return (0);
 }

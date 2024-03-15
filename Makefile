@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: theophane <theophane@student.42.fr>        +#+  +:+       +#+         #
+#    By: flplace <flplace@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/03/06 19:56:35 by theophane        ###   ########.fr        #
+#    Updated: 2024/03/15 17:52:00 by flplace          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,7 @@ END_COLOR	:= \033[0;39m
 
 SRCS	=	srcs/main.c \
 			srcs/ft_init_game.c \
-			srcs/ft_minimap_movements.c \
-			srcs/ft_minimap_display.c \
+			srcs/ft_player_finder.c \
 			srcs/ft_key_hooks.c \
 			srcs/ft_raycasting.c \
 			srcs/ft_raycast_display.c \

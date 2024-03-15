@@ -6,7 +6,7 @@
 /*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 17:29:01 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/15 17:53:58 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,16 @@ void	move_update(t_mlx *data)
 
 int	loop_process(t_mlx *data)
 {
-	// player_finder(&data);
-	// data->pos->x = data->square->x + 0.5;
-	// data->pos->y = data->square->y + 0.5;
 	move_update(data);
-	// render_minimap(data);
-	// mlx_put_image_to_window(data->mlx, data->win, data->minimap.mlx_img, 0, 0);
 	main_process(data);
-	// mlx_put_image_to_window(data->mlx, data->win, data->assets->ewall->mlx_img, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->win, data->raycasting.mlx_img, 0, 0);
 	return (0);
 }
+/* -----------------------------escape() ------------------------------- */
+/*
+**		wrapper pour le clear_data hook.
+*/
+
 
 int	escape(t_mlx *data)
 {
@@ -82,9 +81,6 @@ int	game_launcher(t_mlx *data)
 	data->win = mlx_new_window(data->mlx, WINWIDTH, WINHEIGHT, "cub3d");
 	if (data->win == NULL)
 		return (1);
-	// data->minimap.mlx_img = mlx_new_image(data->mlx, WINWIDTH, WINHEIGHT);
-	// data->minimap.addr = (int *)mlx_get_data_addr(data->minimap.mlx_img, &data->minimap.bpp,
-	// 		&data->minimap.line_len, &data->minimap.endian);
 	data->raycasting.mlx_img = mlx_new_image(data->mlx, WINWIDTH, WINHEIGHT);
 	data->raycasting.addr = (int *)mlx_get_data_addr(data->raycasting.mlx_img, &data->raycasting.bpp,
 			&data->raycasting.line_len, &data->raycasting.endian);

@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 09:58:57 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 10:46:02 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ void    wall_cast(int x, t_mlx *data)
     // y_cast_loop(x, data, data->draw, asset, tex);
     int y;
     int pixel;
+    // int color;
     double step;
     double texPos;
     
@@ -160,7 +161,7 @@ void    wall_cast(int x, t_mlx *data)
 
     // printf("after step = %f\n", step);
 
-    texPos = (data->draw->start - 2 - WINHEIGHT / 2 + data->draw->lineheight / 2) * step;
+    texPos = (data->draw->start - 1 - WINHEIGHT / 2 + data->draw->lineheight / 2) * step;
    
     // printf("texPos = %f\n", texPos);
    
@@ -174,11 +175,10 @@ void    wall_cast(int x, t_mlx *data)
     		data->raycasting.addr[pixel] = data->assets->floor;
         else
         {
-            tex->y = (int)texPos;
-            // texPos = tex->x + (int)tex->y * asset->width;
+            tex->y = (int)texPos & (asset->height - 1);
             texPos += step;
             data->raycasting.addr[pixel] = asset->addr[asset->height * tex->y + tex->x];
-            // tex->y += step;
+            // printf("casting [%d, %d]\n", x, y);
             // if (data->sideHit == 1)
                 // data->raycasting.addr[pixel] = (data-;
             // printf("casting [%d, %d]\n", x, y);
@@ -187,3 +187,11 @@ void    wall_cast(int x, t_mlx *data)
     }
     free(tex);
 }
+
+
+            // tex->y = (int)texPos & (asset->height - 1);
+            // texPos += step;
+            // if (asset->addr[(int)tex->x * asset->width + (int)tex->y * asset->height] != 0)
+            //     color = asset->addr[(int)tex->x * asset->width + (int)tex->y * asset->height];
+            // // data->raycasting.addr[pixel] = asset->addr[tex->y];
+            // data->raycasting.addr[pixel] = color;

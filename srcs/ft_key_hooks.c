@@ -6,11 +6,18 @@
 /*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 19:52:00 by theophane         #+#    #+#             */
-/*   Updated: 2024/03/15 17:49:27 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:59:17 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+/* ------------------------------- keyrelease_hook() ------------ */
+/*
+**		parle d'elle même; est appelée dans mlx_hook()
+            pour binder des touches à des actions.
+**		est appelée quand on RELEASE une touche.
+*/
 
 int	keyrelease_hook(int keycode, t_mlx *data)
 {
@@ -30,6 +37,13 @@ int	keyrelease_hook(int keycode, t_mlx *data)
 	}
 	return (0);
 }
+
+/* ------------------------------- keypress_hook() --------- */
+/*
+**		parle d'elle même; est appelée dans mlx_hook()
+         pour binder des touches à des actions.
+**		est appelée quand on PRESS une touche.
+*/
 
 int	keypress_hook(int keycode, t_mlx *data)
 {

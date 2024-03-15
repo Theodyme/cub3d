@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_data_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/13 16:19:44 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 18:00:11 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-/* ------------------------------- data_alloc() -------------------------------- */
+/* ------------------------------- data_alloc() ------------ */
 /*
 **		alloue la mémoire pour les structures de données.
 */
@@ -32,12 +32,13 @@ void	data_alloc(t_mlx *data)
 		data->side = malloc(sizeof(t_vector));
 		data->draw = malloc(sizeof(t_draw));
 	}
-	if (!(data->pos) || !(data->step) || !(data->square) || !(data->dir) || !(data->plane) || !(data->ray) || !(data->delta) || !(data->side))
+	if (!(data->pos) || !(data->step) || !(data->square) || !(data->dir)
+		|| !(data->plane) || !(data->ray) || !(data->delta) || !(data->side))
 		data_freer(data);
 	return ;
 }
 
-/* ------------------------------- moves_init() -------------------------------- */
+/* ------------------------------- moves_init() ---------------- */
 /*
 **		initialise les structures d'assets.
 */
@@ -52,7 +53,7 @@ void	moves_init(t_moves *moves)
 	moves->rotate_right = 0;
 }
 
-/* ------------------------------- data_init() -------------------------------- */
+/* ------------------------------- data_init()-------------- */
 /*
 **		initialise les structures de données.
 */
@@ -86,7 +87,7 @@ void	data_init(t_mlx *data)
 	return ;
 }
 
-/* ------------------------------- assets_init() -------------------------------- */
+/* ------------------------ assets_init() --------------- */
 /*
 **		initialise les structures d'assets.
 */

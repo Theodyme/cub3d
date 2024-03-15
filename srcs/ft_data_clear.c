@@ -6,11 +6,18 @@
 /*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 17:48:06 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:00:48 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+/* ------------------------------- destroy_window() ----------------- */
+/*
+**		appelée dans le clear_all().
+**		assez straightforward: elle détruit l'image et le display.
+**
+*/
 
 int	destroy_win(t_mlx *data)
 {
@@ -20,6 +27,11 @@ int	destroy_win(t_mlx *data)
 	mlx_loop_end(data->mlx);
 	return (0);
 }
+
+/* ------------------------------- data_freer() ------------- */
+/*
+**		free les structures de données.
+*/
 
 void	data_freer(t_mlx *data)
 {
@@ -37,13 +49,12 @@ void	data_freer(t_mlx *data)
 		free(data->delta);
 	if (data->side)
 		free(data->side);
-	if (data->draw)
-		free(data->draw);
-	if (data->moves)
-		free(data->moves);
-	if (data->step)
-		free(data->step);
 }
+
+/* ------------------------------- lvl_freer() ------------------- */
+/*
+**		free la structure lvl.
+*/
 
 void	lvl_freer(t_map *lvl)
 {
@@ -63,6 +74,11 @@ void	lvl_freer(t_map *lvl)
 	}
 	free(lvl);
 }
+
+/* ------------------------------- clear_all() -------------------- */
+/*
+**		free toutes les structures.
+*/
 
 void	clear_all(t_mlx *data)
 {

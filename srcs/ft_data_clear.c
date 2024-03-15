@@ -6,7 +6,7 @@
 /*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 18:00:48 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:06:59 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ void	data_freer(t_mlx *data)
 		free(data->delta);
 	if (data->side)
 		free(data->side);
+	if (data->draw)
+		free(data->draw);
+	if (data->step)
+		free(data->step);
+	if (data->moves)
+		free(data->moves);
 }
 
 /* ------------------------------- lvl_freer() ------------------- */

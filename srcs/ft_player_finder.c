@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_minimap_movements.c                             :+:      :+:    :+:   */
+/*   ft_player_finder.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/14 18:25:50 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 18:02:44 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-/* ------------------------------- strchr_charset() ---------------------------------- */
+/* -------------------------- strchr_charset() --------------------- */
 /*
-**		c'est un strchr mais qui cherche tout caractère appartenant au charset précisé.
+**		c'est un strchr mais qui cherche tout caractère
+		appartenant au charset précisé.
 **		je l'ai utilisé parce que le player peut être désigné par NSWE.
 */
 
@@ -33,13 +34,15 @@ int	strchr_charset(char *str, char *charset)
 	return (-1);
 }
 
-/* ------------------------------- player_finder() ---------------------------------- */
+/* ----------------------- player_finder() --------------- */
 /*
-**		récupère les coordonnées du joueur à l'instant T et les stockes dans les data,
+**		récupère les coordonnées du joueur à l'instant T et les
+			stockes dans les data,
 **		dans le tableau d'int data->player[1] et data->player[2].
-**		par convention, l'axe des abscisses (x, à l'horizontal) est toujours cité en premier,
-**		suivi de l'axe des ordonnées (y, à la verticale). pour plus de clarté, j'ai respecté
-**		cette convention!
+**		par convention, l'axe des abscisses (x, à l'horizontal)
+			est toujours cité en premier,
+**		suivi de l'axe des ordonnées (y, à la verticale).
+		pour plus de clarté, j'ai respecté cette convention!
 */
 
 char	player_finder(t_mlx *data)
@@ -49,7 +52,6 @@ char	player_finder(t_mlx *data)
 	i = -1;
 	while (data->lvl->map[++i])
 	{
-		// printf("checking i[%d]\n", i);
 		data->square->x = strchr_charset(data->lvl->map[i], "NSEW");
 		if (data->square->x != -1)
 		{

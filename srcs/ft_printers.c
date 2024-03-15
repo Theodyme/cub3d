@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/28 16:14:42 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 18:03:15 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-/* ------------------------------- map_printer() ---------------------------------- */
+/* --------------------- map_printer() ------------------- */
 /*
 **		print la map!
-**		le paramètre y est là pour vérifier qu'on a bien pu imprimer la map en entier.
-**		elle est là pour débuguer mais je pense qu'on pourra la virer ensuite!
+**		le paramètre y est là pour vérifier qu'on a bien pu
+		imprimer la map en entier.
+**		elle est là pour débuguer mais je pense qu'on
+		pourra la virer ensuite!
 */
 
 void	map_printer(char **map, int y)

@@ -5,19 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/15 16:54:43 by mderkaou         ###   ########.fr       */
+/*   Created: 2024/03/15 18:05:15 by mderkaou          #+#    #+#             */
+/*   Updated: 2024/03/15 18:05:22 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int main(int ac, char **av)
+void	free_te(t_parse *parse)
 {
-	int i = 0;
-	t_parse parse;
-	t_mlx data;
+	int	i;
 
+	i = -1;
+	while (++i < parse->len_textures)
+		free(parse->textures[i]);
+	free(parse->textures);
+}
+
+int	main(int ac, char **av)
+{
+	int		i;
+	t_parse	parse;
+	t_mlx	data;
+
+	i = 0;
 	if (ac == 2)
 	{
 		parse.rgb = NULL;
@@ -28,12 +39,7 @@ int main(int ac, char **av)
 			return (1);
 		init_textures(&parse, &data);
 		if (parse.len_textures > 0)
-		{
-			i = -1;
-			while (++i < parse.len_textures)
-				free(parse.textures[i]);
-			free(parse.textures);
-		}
+			free_te(&parse);
 		if (parse.rgb != NULL)
 			free(parse.rgb);
 		game_launcher(&data);

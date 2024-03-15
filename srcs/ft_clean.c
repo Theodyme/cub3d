@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clean.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:52:41 by diavolo           #+#    #+#             */
-/*   Updated: 2024/02/20 16:45:58 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/15 18:17:07 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,8 @@ void	ft_free_map_cpy(t_parse *parse)
 		{
 			if (parse->map_cpy != NULL && parse->map_cpy[i] != NULL)
 				free(parse->map_cpy[i]);
-			// free(parse->map[i]);
 		}
 		if (parse->map_cpy != NULL)
 			free(parse->map_cpy);
-		// free(parse->map);
 	}
-	// if (parse->len_textures > 0)
-	// {
-	// 	i = -1;
-	// 	while (++i < parse->len_textures)
-	// 		free(parse->textures[i]);
-	// 	free(parse->textures);
-	// }
-	// if (parse->rgb != NULL)
-	// 	free(parse->rgb);
 }

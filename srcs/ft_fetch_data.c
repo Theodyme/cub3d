@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fetch_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/15 11:43:15 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 17:05:01 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int map_cpy(t_parse *parse, t_mlx *data)
 	data->lvl->map[parse->len_map] = NULL;
 	while (parse->map[i])
 	{
-		data->lvl->map[i] = ft_strdup(ft_strtrim_free(parse->map[i], "\n"));
+		data->lvl->map[i] = ft_strtrim_free(parse->map[i], "\n");
 		i++;
 	}
 	// data->lvl->map[i][0] = '\0';

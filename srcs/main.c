@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/15 11:18:32 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 16:58:03 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int ac, char **av)
 {
-	// int i = 0;	
+	int i = 0;
 	t_parse parse;
 	t_mlx data;
 
@@ -28,15 +28,15 @@ int main(int ac, char **av)
 			return (1);
 		init_textures(&parse, &data);
 		// ft_free_map(&parse);
-		// if (parse.len_textures > 0)
-		// {
-		// 	i = -1;
-		// 	while (++i < parse.len_textures)
-		// 		free(parse.textures[i]);
-		// 	free(parse.textures);
-		// }
-		// if (parse.rgb != NULL)
-		// 	free(parse.rgb);
+		if (parse.len_textures > 0)
+		{
+			i = -1;
+			while (++i < parse.len_textures)
+				free(parse.textures[i]);
+			free(parse.textures);
+		}
+		if (parse.rgb != NULL)
+			free(parse.rgb);
 		game_launcher(&data);
 		data_freer(&data);
 	}

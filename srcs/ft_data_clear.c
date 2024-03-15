@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_data_clear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 11:49:57 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 17:10:51 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@
 int	    destroy_win(t_mlx *data)
 {
 	mlx_destroy_image(data->mlx, data->raycasting.mlx_img);
+	if (data->assets != NULL)
+	{
+		mlx_destroy_image(data->mlx, data->assets->nwall->mlx_img);
+		free(data->assets->nwall);
+		mlx_destroy_image(data->mlx, data->assets->wwall->mlx_img);
+		free(data->assets->wwall);
+		mlx_destroy_image(data->mlx, data->assets->swall->mlx_img);
+		free(data->assets->swall);
+		mlx_destroy_image(data->mlx, data->assets->ewall->mlx_img);
+		free(data->assets->ewall);
+	}
 	// mlx_destroy_image(data->mlx, &data->minimap);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
@@ -38,8 +49,12 @@ void	data_freer(t_mlx *data)
 {
 	if (data->pos)
 		free(data->pos);
+	if (data->moves)
+		free(data->moves);
 	if (data->square)
 		free(data->square);
+	if (data->step)
+		free(data->step);
 	if (data->dir)
 		free(data->dir);
 	if (data->plane)
@@ -50,7 +65,8 @@ void	data_freer(t_mlx *data)
 		free(data->delta);
 	if (data->side)
 		free(data->side);
-
+	if (data->draw)
+		free(data->draw);
 }
 
 /* ------------------------------- lvl_freer() -------------------------------- */
@@ -84,22 +100,11 @@ void	lvl_freer(t_map *lvl)
 
 void	clear_all(t_mlx *data)
 {
-	if (data->assets != NULL)
-	{
-		mlx_destroy_image(data->mlx, data->assets->nwall->mlx_img);
-		free(data->assets->nwall);
-		mlx_destroy_image(data->mlx, data->assets->wwall->mlx_img);
-		free(data->assets->wwall);
-		mlx_destroy_image(data->mlx, data->assets->swall->mlx_img);
-		free(data->assets->swall);
-		mlx_destroy_image(data->mlx, data->assets->ewall->mlx_img);
-		free(data->assets->ewall);
-	}
     data_freer(data);
     lvl_freer(data->lvl);
-    free(data->assets);
     destroy_win(data);
 	free(data->mlx);
+    free(data->assets);
     exit(0);
     // free(data);
 }

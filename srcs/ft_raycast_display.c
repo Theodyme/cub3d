@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 10:46:02 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 11:18:10 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,26 @@ void    y_cast_loop(int x, t_mlx *data, t_draw *draw, t_img *asset, t_vint *tex)
 {
     int y;
     int pixel;
-    int step;
-    int texPos;
-
-    step = 1.0 * asset->height / draw->lineheight;
-    // step = 0;
-    texPos = (draw->start - WINHEIGHT / 2 + draw->lineheight / 2) * step;
+    double step;
+    double texPos;
+    
+    step = 0;
+    (void)draw;
+    step = 1.0 * asset->height / data->draw->lineheight;
+    texPos = (data->draw->start - 1 - WINHEIGHT / 2 + data->draw->lineheight / 2) * step;
     y = 0;
     while (y < WINHEIGHT)
     {
-    	pixel = (x + y) * WINWIDTH;
-        if (y < draw->start)
-    		data->raycasting.addr[pixel] = 0x77b6d1;
-        else if (y > draw->end)
-    		data->raycasting.addr[pixel] = 0x8ed468;
+    	pixel = x + y * WINWIDTH;
+        if (y < data->draw->start)
+    		data->raycasting.addr[pixel] = data->assets->ceiling;
+        else if (y > data->draw->end)
+    		data->raycasting.addr[pixel] = data->assets->floor;
         else
         {
-            texPos = tex->x + (int)tex->y * asset->width;
-            data->raycasting.addr[pixel] = asset->addr[texPos];
-            tex->y += step;
-            if (data->sideHit == 1)
-                data->raycasting.addr[pixel] = asset->addr[texPos];
-            // printf("casting [%d, %d]\n", x, y);
+            tex->y = (int)texPos & (asset->height - 1);
+            texPos += step;
+            data->raycasting.addr[pixel] = asset->addr[asset->height * tex->y + tex->x];
         }
         y++;
     }
@@ -51,18 +49,18 @@ void    y_cast_loop(int x, t_mlx *data, t_draw *draw, t_img *asset, t_vint *tex)
 
 void    get_texture_x(t_mlx *data, t_vint *tex, t_img *asset)
 {
-    double hit_x;
+ double hit_x;
 
     hit_x = 0;
-    // calcul de l'endroit où on a touché sur le mur:
     if (data->sideHit == 0)
-        hit_x = (int)(data->pos->y + data->perpWallDist * data->ray->y);
+        hit_x = (data->pos->y + data->perpWallDist * data->ray->y);
     else
-        hit_x = (int)(data->pos->x + data->perpWallDist * data->ray->x);
+        hit_x = (data->pos->x + data->perpWallDist * data->ray->x);
     hit_x -= floor((hit_x));
-    tex->x = (int)(hit_x * (double)(asset->width)); 
-    // // fix symétrie horizontale:
-    if ((data->sideHit == 0 && data->ray->x > 0) || (data->sideHit == 1 && data->ray->y < 0))
+    tex->x = (int)(hit_x * (double)(asset->width));
+    if (data->sideHit == 0 && data->ray->x < 0)
+        tex->x = asset->width - tex->x - 1;
+    if (data->sideHit == 1 && data->ray->y > 0)
         tex->x = asset->width - tex->x - 1;
 }
 
@@ -116,82 +114,7 @@ void    wall_cast(int x, t_mlx *data)
     tex->y = 0;
     lineheight_calculator(data, data->draw);
     asset = get_orientation(data);
-    // printf("tex->x = %d\n", tex->x);
-    // get_texture_x(data, tex, asset);
-    // printf("after set tex->x = %d\n", tex->x);
-
-    // printf("tex->x = %d\n", tex->x);
-
-    double hit_x;
-
-    hit_x = 0;
-    // calcul de l'endroit où on a touché sur le mur:
-    if (data->sideHit == 0)
-        hit_x = (data->pos->y + data->perpWallDist * data->ray->y);
-    else
-        hit_x = (data->pos->x + data->perpWallDist * data->ray->x);
-
-    // printf("hit_x = %f\n", hit_x);
-
-    hit_x -= floor((hit_x));
-    
-    // printf("after set hit_x = %f\n", hit_x);
-    
-    tex->x = (int)(hit_x * (double)(asset->width));
-    
-    // // fix symétrie horizontale:
-    if (data->sideHit == 0 && data->ray->x < 0)
-        tex->x = asset->width - tex->x - 1;
-    if (data->sideHit == 1 && data->ray->y > 0)
-        tex->x = asset->width - tex->x - 1;
-
-
-    // y_cast_loop(x, data, data->draw, asset, tex);
-    int y;
-    int pixel;
-    // int color;
-    double step;
-    double texPos;
-    
-    step = 0;
-
-    // printf("step = %f\n", step);
-
-    step = 1.0 * asset->height / data->draw->lineheight;
-
-    // printf("after step = %f\n", step);
-
-    texPos = (data->draw->start - 1 - WINHEIGHT / 2 + data->draw->lineheight / 2) * step;
-   
-    // printf("texPos = %f\n", texPos);
-   
-    y = 0;
-    while (y < WINHEIGHT)
-    {
-    	pixel = x + y * WINWIDTH;
-        if (y < data->draw->start)
-    		data->raycasting.addr[pixel] = data->assets->ceiling;
-        else if (y > data->draw->end)
-    		data->raycasting.addr[pixel] = data->assets->floor;
-        else
-        {
-            tex->y = (int)texPos & (asset->height - 1);
-            texPos += step;
-            data->raycasting.addr[pixel] = asset->addr[asset->height * tex->y + tex->x];
-            // printf("casting [%d, %d]\n", x, y);
-            // if (data->sideHit == 1)
-                // data->raycasting.addr[pixel] = (data-;
-            // printf("casting [%d, %d]\n", x, y);
-        }
-        y++;
-    }
+    get_texture_x(data, tex, asset);
+    y_cast_loop(x, data, data->draw, asset, tex);
     free(tex);
 }
-
-
-            // tex->y = (int)texPos & (asset->height - 1);
-            // texPos += step;
-            // if (asset->addr[(int)tex->x * asset->width + (int)tex->y * asset->height] != 0)
-            //     color = asset->addr[(int)tex->x * asset->width + (int)tex->y * asset->height];
-            // // data->raycasting.addr[pixel] = asset->addr[tex->y];
-            // data->raycasting.addr[pixel] = color;

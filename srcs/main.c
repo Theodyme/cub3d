@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/13 16:05:51 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 11:18:32 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int main(int ac, char **av)
 	{
 		parse.rgb = NULL;
 		ft_parse(av[1], &parse);
-		printf("\nbien fini\n");
 		data_builder(&parse, &data);
 		data.mlx = mlx_init();
 		if (data.mlx == NULL)

@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/14 23:35:09 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 11:13:40 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,10 +145,8 @@ int	data_builder(t_parse *parse, t_mlx *data)
 		return (1);
 	if (fetch_map_data(data, parse) == 1)
 		return (1);
-	// map_printer(data->lvl->map, data->lvl->lenY);
 	orientation = player_finder(data);
 	orientation_finder(data, orientation);
-	printf("orientation = [%c], player position = [%d, %d]\n", orientation, data->square->x, data->square->y);
 	data->pos->x = data->square->x + 0.5;
 	data->pos->y = data->square->y + 0.5;
 	return (0);

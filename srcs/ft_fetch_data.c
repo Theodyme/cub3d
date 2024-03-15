@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/15 09:35:18 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 11:43:15 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	fetch_map_data(t_mlx *data, t_parse *parse)
 {
 	if (map_cpy(parse, data) == 1)
 		return (printf(RE "Error: Couldn't allocate map.\n" RESET), 1);
-	// map_printer(data->lvl->map, data->lvl->lenY);
 	return (0);
 }
 

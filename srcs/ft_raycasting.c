@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/14 23:25:02 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 11:19:05 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,8 @@
 void    ray_calculator(int x, t_mlx *data)
 {
     data->camerax = 2 * (double)x / (double)WINWIDTH - 1.0;
-	printf("camerax = (%f)\n", data->camerax);
     data->ray->x = data->dir->x + data->plane->x * data->camerax;
     data->ray->y = data->dir->y + data->plane->y * data->camerax;
-	printf("dir = (%f, %f)\n", data->dir->x, data->dir->y);
-	printf("ray = (%f, %f)\n", data->ray->x, data->ray->y);
-	printf("camerax = (%f)\n", data->camerax);
 
 }
 
@@ -51,8 +47,6 @@ void    delta_calculator(t_mlx *data)
         data->delta->y = 1;
     else
         data->delta->y = sqrt(1 + (data->ray->x * data->ray->x) / (data->ray->y * data->ray->y));
-	
-    printf("delta = (%f, %f)\n", data->delta->x, data->delta->y);
 }
 
 /* ------------------------------- side_calculator() -------------------------------- */
@@ -102,7 +96,6 @@ void    hitpoint_calculator(t_mlx *data)
 	double	step_dist_y;
 
     hit = 0;
-    printf("square_x = %d, square_y = %d\n", data->square->x, data->square->y);
     while (hit == 0)
     {
         if (data->side->x < data->side->y)
@@ -117,7 +110,6 @@ void    hitpoint_calculator(t_mlx *data)
             data->square->y += data->step->y;
             data->sideHit = 1;
         }
-        // printf("checking hit position: %c\n", data->lvl->map[data->square->x][data->square->y]);
         if (data->lvl->map[data->square->y][data->square->x] == '1')
             hit = 1;
     }

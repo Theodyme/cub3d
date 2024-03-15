@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_data_clear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/08 17:04:16 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/15 11:49:57 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 
 int	    destroy_win(t_mlx *data)
 {
-	// mlx_destroy_image(data->mlx, &data->raycasting);
+	mlx_destroy_image(data->mlx, data->raycasting.mlx_img);
 	// mlx_destroy_image(data->mlx, &data->minimap);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
+	mlx_loop_end(data->mlx);
 	return (0);
 }
 
@@ -61,10 +62,15 @@ void	lvl_freer(t_map *lvl)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	if (lvl->lenY > 0)
 	{
-		while (++i < lvl->lenY)
+		while (i < lvl->lenY)
+		{
+			free(lvl->map[i]);
+			i++;
+		}
+		if (lvl->map[i] != NULL)
 			free(lvl->map[i]);
 		free(lvl->map);
 	}
@@ -78,11 +84,22 @@ void	lvl_freer(t_map *lvl)
 
 void	clear_all(t_mlx *data)
 {
+	if (data->assets != NULL)
+	{
+		mlx_destroy_image(data->mlx, data->assets->nwall->mlx_img);
+		free(data->assets->nwall);
+		mlx_destroy_image(data->mlx, data->assets->wwall->mlx_img);
+		free(data->assets->wwall);
+		mlx_destroy_image(data->mlx, data->assets->swall->mlx_img);
+		free(data->assets->swall);
+		mlx_destroy_image(data->mlx, data->assets->ewall->mlx_img);
+		free(data->assets->ewall);
+	}
     data_freer(data);
     lvl_freer(data->lvl);
-    // FAUDRA FREE LES ASSETS POTENTIELLEMENT !
     free(data->assets);
     destroy_win(data);
+	free(data->mlx);
     exit(0);
     // free(data);
 }

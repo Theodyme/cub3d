@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:28:39 by diavolo           #+#    #+#             */
-/*   Updated: 2024/02/22 15:27:24 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:30:51 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,6 @@ void	ft_open_rgb(t_parse *parse)
 	if (parse->rgb == NULL)
 		return (printf("Error\nMalloc\n"), ft_free_map(parse), exit(0));
 	ft_count_virgule(parse, 4);
-	printf("rgb_f = %s\n", parse->textures[parse->rgb_f]);
-	printf("rgb_c = %s\n", parse->textures[parse->rgb_c]);
 	ft_verif_rgb(parse, parse->rgb_f, 0, 0);
 	ft_verif_rgb(parse, parse->rgb_c, 3, 0);
 }

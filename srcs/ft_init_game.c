@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 11:13:40 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 17:29:01 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ int	loop_process(t_mlx *data)
 	return (0);
 }
 
+int	escape(t_mlx *data)
+{
+	clear_all(data);
+	return 1;
+}
 /* ----------------------------- game launcher() ------------------------------- */
 /*
 **		initialise tous les éléments de data utiles pour faire tourner la MLX, à savoir:
@@ -84,7 +89,7 @@ int	game_launcher(t_mlx *data)
 	data->raycasting.addr = (int *)mlx_get_data_addr(data->raycasting.mlx_img, &data->raycasting.bpp,
 			&data->raycasting.line_len, &data->raycasting.endian);
 	mlx_loop_hook(data->mlx, &loop_process, data);
-	mlx_hook(data->win, 17, 1L << 5, destroy_win, data);
+	mlx_hook(data->win, 17, 1L << 5, escape, data);
 	mlx_hook(data->win, KeyPress, KeyPressMask, &keypress_hook, data);
 	mlx_hook(data->win, KeyRelease, KeyReleaseMask, &keyrelease_hook, data);
 	mlx_loop(data->mlx);

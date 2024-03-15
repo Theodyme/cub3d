@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 18:14:18 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:49:23 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	side_calculator(t_mlx *data)
 **      en prenant en compte le ratio de limites
         rencontrées en x pour une limite rencontrée en y,
 **      ou vis-versa.
-**      calcule ensuite perpWallDist, à savoir la distance
+**      calcule ensuite pwdist, à savoir la distance
         entre le mur rencontré et le plan parallèle
 **      sur lequel se situe le joueur.
 */
@@ -127,9 +127,9 @@ void	hitpoint_calculator(t_mlx *data)
 	step_dist_x = (data->square->x - data->pos->x + (1 - data->step->x) / 2);
 	step_dist_y = (data->square->y - data->pos->y + (1 - data->step->y) / 2);
 	if (data->sideHit == 0)
-		data->perpWallDist = step_dist_x / data->ray->x;
+		data->pwdist = step_dist_x / data->ray->x;
 	else
-		data->perpWallDist = step_dist_y / data->ray->y;
+		data->pwdist = step_dist_y / data->ray->y;
 	return ;
 }
 

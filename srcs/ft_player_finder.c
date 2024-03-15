@@ -3,14 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player_finder.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 18:02:44 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:46:02 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	vector_set(t_vector *vector, double x, double y)
+{
+	vector->x = x;
+	vector->y = y;
+	return ;
+}
+
+int	orientation_finder(t_mlx *data, char c)
+
+{
+	if (c == 'N')
+	{
+		vector_set(data->dir, 0, -1);
+		vector_set(data->plane, 0.66, 0);
+	}
+	if (c == 'S')
+	{
+		vector_set(data->dir, 0, 1);
+		vector_set(data->plane, -0.66, 0);
+	}
+	if (c == 'W')
+	{
+		vector_set(data->dir, -1, 0);
+		vector_set(data->plane, 0, -0.66);
+	}
+	if (c == 'E')
+	{
+		vector_set(data->dir, 1, 0);
+		vector_set(data->plane, 0, 0.66);
+	}
+	return (0);
+}
 
 /* -------------------------- strchr_charset() --------------------- */
 /*

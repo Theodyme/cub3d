@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/15 09:36:29 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 19:49:23 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct s_mlx
 	t_vector	*dir;
 	t_vector	*plane;
 	double		camerax;
-	double		perpWallDist;
+	double		pwdist;
 	double		time;
 	double		oldTime;
 	t_vector	*ray;
@@ -147,9 +147,11 @@ void	init_textures(t_parse *parse, t_mlx *data);
 
 /* ------------------------------- ft_data_clear -------------------------------- */
 
+int		destroy_win(t_mlx *data);
 void	data_freer(t_mlx *data);
 void	lvl_freer(t_map *lvl);
 void	clear_all(t_mlx *data);
+int		escape(t_mlx *data);
 
 /* ------------------------------- ft_minimap_display -------------------------------- */
 
@@ -159,8 +161,10 @@ int		render_tile(t_img *img, t_tile tile);
 void	render_background(t_img *img, int color, int height, int width);
 void	render_minimap(t_mlx *data);
 
-/* ------------------------------- ft_minimap_update -------------------------------- */
+/* ------------------------------- ft_player_finder -------------------------------- */
 
+void	vector_set(t_vector *vector, double x, double y);
+int		orientation_finder(t_mlx *data, char c);
 int		strchr_charset(char *str, char *charset);
 char	player_finder(t_mlx *data);
 

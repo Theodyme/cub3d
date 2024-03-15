@@ -6,7 +6,7 @@
 /*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 19:07:57 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/15 19:49:23 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	get_texture_x(t_mlx *data, t_vint *tex, t_img *asset)
 
 	hit_x = 0;
 	if (data->sideHit == 0)
-		hit_x = (data->pos->y + data->perpWallDist * data->ray->y);
+		hit_x = (data->pos->y + data->pwdist * data->ray->y);
 	else
-		hit_x = (data->pos->x + data->perpWallDist * data->ray->x);
+		hit_x = (data->pos->x + data->pwdist * data->ray->x);
 	hit_x -= floor((hit_x));
 	tex->x = (int)(hit_x * (double)(asset->width));
 	if (data->sideHit == 0 && data->ray->x < 0)
@@ -88,7 +88,7 @@ t_img	*get_orientation(t_mlx *data)
 
 void	lineheight_calculator(t_mlx *data, t_draw *draw)
 {
-	draw->lineheight = (int)(WINHEIGHT / data->perpWallDist);
+	draw->lineheight = (int)(WINHEIGHT / data->pwdist);
 	draw->start = WINHEIGHT / 2 - draw->lineheight / 2;
 	if (draw->start < 0)
 		draw->start = 0;
@@ -101,7 +101,7 @@ void	lineheight_calculator(t_mlx *data, t_draw *draw)
 /*
 **		calcule la hauteur du mur à afficher (lineheight)
 **		en fonction de sa distance au plan du joueur
-**		(perpWallDist), et les points y ou le programme
+**		(pwdist), et les points y ou le programme
 **		doit commencer et arreter de dessiner le mur.
 */
 
@@ -116,6 +116,6 @@ void	wall_cast(int x, t_mlx *data)
 	lineheight_calculator(data, data->draw);
 	asset = get_orientation(data);
 	get_texture_x(data, tex, asset);
-	y_cast_loop(x, data, data->draw, asset, tex);
+	y_cast_loop(x, data, asset, tex);
 	free(tex);
 }

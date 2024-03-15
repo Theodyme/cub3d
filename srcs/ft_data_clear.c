@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_data_clear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 18:06:59 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:09:39 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,15 @@ void	clear_all(t_mlx *data)
 	destroy_win(data);
 	free(data->mlx);
 	exit(0);
+}
+
+/* -----------------------escape() -------------------- */
+/*
+**		wrapper pour le clear_data hook.
+*/
+
+int	escape(t_mlx *data)
+{
+	clear_all(data);
+	return (1);
 }

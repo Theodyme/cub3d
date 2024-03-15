@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 18:59:05 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:11:28 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,9 @@ void	move_update(t_mlx *data)
 
 /* ---------------- loop_process() ---------------------- */
 /*
-**		fonction appelée par mlx_loop_hook(),
-**		gère le comportement par défaut
-		s'il n'y a pas d'action particulière.
-**		en l'état, il cherche la position du joueur
-		et render la minimap en conséquence.
-**
-**		étant donné que la structure de la map ne bouge pas,
-			à voir si on ne pourrait pas
-**		juste mettre l'affichage du joueur là dedans
-			et l'affichage de la map en dehors de
-**		la boucle pour nous sauver de la perf.
-**
-**		de la façon dont j'ai géré l'affichage,
-		on écrit des pixels directement dans une image
-**		et on l'envoie ensuite à chaque frame
-			à travers mlx_put_image_to_window().
+**		process de la lx loop: update l'affichage en
+**		fonction des mouvements et lance le raycasting.
+**		affiche ensuite l'image sur la fenetre.
 */
 
 int	loop_process(t_mlx *data)
@@ -59,16 +46,6 @@ int	loop_process(t_mlx *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->raycasting.mlx_img, 0,
 		0);
 	return (0);
-}
-/* -----------------------escape() -------------------- */
-/*
-**		wrapper pour le clear_data hook.
-*/
-
-int	escape(t_mlx *data)
-{
-	clear_all(data);
-	return (1);
 }
 /* -------------------- game launcher() ------------------------ */
 /*
@@ -99,48 +76,6 @@ int	game_launcher(t_mlx *data)
 	mlx_loop(data->mlx);
 	return (0);
 }
-
-/* --------------- data_builder() ---------------------- */
-/*
-**		initialise la structure de données data et
-			lance le game_launcher.
-**		voir si ça peut pas être décalé dans
-		game_launcher directement après avoir viré init_testmap.
-*/
-
-int	orientation_finder(t_mlx *data, char c)
-{
-	if (c == 'N')
-	{
-		data->dir->x = 0;
-		data->dir->y = -1;
-		data->plane->x = 0.66;
-		data->plane->y = 0;
-	}
-	else if (c == 'S')
-	{
-		data->dir->x = 0;
-		data->dir->y = 1;
-		data->plane->x = -0.66;
-		data->plane->y = 0;
-	}
-	else if (c == 'W')
-	{
-		data->dir->x = -1;
-		data->dir->y = 0;
-		data->plane->x = 0;
-		data->plane->y = -0.66;
-	}
-	else if (c == 'E')
-	{
-		data->dir->x = 1;
-		data->dir->y = 0;
-		data->plane->x = 0;
-		data->plane->y = 0.66;
-	}
-	return (0);
-}
-
 /* ------------------ data_builder() ------------------- */
 /*
 **		initialise la structure de données data et

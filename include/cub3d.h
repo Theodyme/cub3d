@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/14 21:00:30 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 09:36:29 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # include <stdlib.h>
 
 # define WHITESPACES "\t\r\v\f\n "
-# define WINHEIGHT 600
-# define WINWIDTH 800
+# define WINHEIGHT 700
+# define WINWIDTH 900
 # define MOVE_SPEED 0.09777
 # define ROT_SPEED 0.06522
 # define TILESIZE 5

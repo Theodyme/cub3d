@@ -6,7 +6,7 @@
 /*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/14 23:03:49 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/15 09:58:57 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ void    wall_cast(int x, t_mlx *data)
 
     // printf("after step = %f\n", step);
 
-    texPos = (data->draw->start - 1 - WINHEIGHT / 2 + data->draw->lineheight / 2) * step;
+    texPos = (data->draw->start - 2 - WINHEIGHT / 2 + data->draw->lineheight / 2) * step;
    
     // printf("texPos = %f\n", texPos);
    
@@ -174,7 +174,7 @@ void    wall_cast(int x, t_mlx *data)
     		data->raycasting.addr[pixel] = data->assets->floor;
         else
         {
-            tex->y = (int)texPos & (asset->height - 1);
+            tex->y = (int)texPos;
             // texPos = tex->x + (int)tex->y * asset->width;
             texPos += step;
             data->raycasting.addr[pixel] = asset->addr[asset->height * tex->y + tex->x];

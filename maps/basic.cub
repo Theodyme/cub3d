@@ -1,13 +1,12 @@
-NO assets/anorth.xpm
-SO assets/asouth.xpm
-EA assets/aeast.xpm
-WE assets/awest.xpm
-C 47,71,90
-F 31,33,47
+NO assets/0_1.xpm
+SO assets/beachsouth.xpm
+EA assets/beacheast.xpm
+WE assets/beachwest.xpm
+C 54,113,145
+F 229,231,219
 
-    111
-1111101
+1111111
 1000001
-1000S01
-1000011
-111111
+100N001
+1000001
+1111111

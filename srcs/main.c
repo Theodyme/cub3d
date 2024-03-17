@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:05:15 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 18:05:22 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/17 18:10:25 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ void	free_te(t_parse *parse)
 
 int	main(int ac, char **av)
 {
-	int		i;
 	t_parse	parse;
 	t_mlx	data;
 
-	i = 0;
 	if (ac == 2)
 	{
 		parse.rgb = NULL;

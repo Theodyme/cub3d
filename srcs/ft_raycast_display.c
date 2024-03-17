@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast_display.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 19:49:23 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/17 20:53:26 by theophane        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,48 @@
 **		et des couleurs	du floor et du ceiling!
 */
 
-void	y_cast_loop(int x, t_mlx *data, t_img *asset, t_vint *tex)
+void	y_cast_loop(int x, t_mlx *data, t_img *asset, t_vector *ratio)
 {
 	int		y;
 	int		pixel;
-	double	step;
-	double	texpos;
-
-	step = 1.0 * asset->height / data->draw->lineheight;
-	texpos = (data->draw->start - 1 - WINHEIGHT / 2
-			+ data->draw->lineheight / 2) * step;
+	// double	step;
+    double     block;
+    double     pixel_y;
+    double     pixtex;
+	// double	texpos;
+    
+    block = data->draw->end - data->draw->start;
+	// step = 1.0 * asset->height / data->draw->lineheight;
+	// texpos = (data->draw->start - 1 - WINHEIGHT / 2
+			// + data->draw->lineheight / 2) * step;
 	y = 0;
 	while (y < WINHEIGHT)
 	{
+        // printf("y, end, start : %d, %d, %d\n", y, data->draw->end, data->draw->start);
+        // printf("block : %f\n", block);
+        ratio->y = (y - data->draw->start) / block;
+        // printf("ratio-y : %f\n", ratio->y);
+        pixel_y = ((double)asset->height * ratio->y);
+        // printf("pixel-y : %f\n", pixel_y);
 		pixel = x + y * WINWIDTH;
+        pixtex = ratio->x + pixel_y * (double)asset->height;
+        // printf("pixtex : %f\n", pixtex);
 		if (y < data->draw->start)
 			data->raycasting.addr[pixel] = data->assets->ceiling;
 		else if (y > data->draw->end)
 			data->raycasting.addr[pixel] = data->assets->floor;
 		else
 		{
-			tex->y = (int)texpos & (asset->height - 1);
-			texpos += step;
-			data->raycasting.addr[pixel] = asset->addr[asset->height
-				* tex->y + tex->x];
+			// tex->y = (int)texpos & (asset->height - 1);
+			// texpos += step;
+			data->raycasting.addr[pixel] = asset->addr[(int)pixtex];
+            // data->raycasting.addr[pixel] = asset->addr[pixel_y];
 		}
 		y++;
 	}
 }
 
-void	get_texture_x(t_mlx *data, t_vint *tex, t_img *asset)
+void	get_texture_x(t_mlx *data, t_vector *ratio, t_img *asset)
 {
 	double	hit_x;
 
@@ -57,11 +69,11 @@ void	get_texture_x(t_mlx *data, t_vint *tex, t_img *asset)
 	else
 		hit_x = (data->pos->x + data->pwdist * data->ray->x);
 	hit_x -= floor((hit_x));
-	tex->x = (int)(hit_x * (double)(asset->width));
+	ratio->x = (hit_x * (double)(asset->width));
 	if (data->sideHit == 0 && data->ray->x < 0)
-		tex->x = asset->width - tex->x - 1;
+		ratio->x = asset->width - ratio->x - 1;
 	if (data->sideHit == 1 && data->ray->y > 0)
-		tex->x = asset->width - tex->x - 1;
+		ratio->x = asset->width - ratio->x - 1;
 }
 
 t_img	*get_orientation(t_mlx *data)
@@ -108,14 +120,14 @@ void	lineheight_calculator(t_mlx *data, t_draw *draw)
 void	wall_cast(int x, t_mlx *data)
 {
 	t_img	*asset;
-	t_vint	*tex;
+	t_vector	*ratio;
 
-	tex = malloc(sizeof(t_vint));
-	tex->x = 0;
-	tex->y = 0;
+	ratio = malloc(sizeof(t_vector));
+	ratio->x = 0;
+	ratio->y = 0;
 	lineheight_calculator(data, data->draw);
 	asset = get_orientation(data);
-	get_texture_x(data, tex, asset);
-	y_cast_loop(x, data, asset, tex);
-	free(tex);
+	get_texture_x(data, ratio, asset);
+	y_cast_loop(x, data, asset, ratio);
+	free(ratio);
 }

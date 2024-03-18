@@ -6,7 +6,7 @@
 /*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 19:09:39 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/18 13:09:40 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	destroy_win(t_mlx *data)
 {
 	mlx_destroy_image(data->mlx, data->raycasting.mlx_img);
 	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	mlx_loop_end(data->mlx);
+	// mlx_destroy_display(data->mlx);
+	// mlx_loop_end(data->mlx);
 	return (0);
 }
 
@@ -102,7 +102,10 @@ void	clear_all(t_mlx *data)
 	data_freer(data);
 	lvl_freer(data->lvl);
 	free(data->assets);
-	destroy_win(data);
+	if (data->win != NULL)
+		destroy_win(data);
+	mlx_destroy_display(data->mlx);
+	mlx_loop_end(data->mlx);
 	free(data->mlx);
 	exit(0);
 }

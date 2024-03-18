@@ -6,7 +6,7 @@
 /*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/15 19:49:23 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/18 13:28:53 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define WHITESPACES "\t\r\v\f\n "
 # define WINHEIGHT 700
 # define WINWIDTH 900
-# define MOVE_SPEED 0.09777
-# define ROT_SPEED 0.06522
+# define MOVE_SPEED 0.009777
+# define ROT_SPEED 0.006522
 # define TILESIZE 5
 
 typedef struct s_img
@@ -137,13 +137,12 @@ void	move_right(t_mlx *data);
 void	move_left(t_mlx *data);
 void	rotation(t_mlx *data);
 
-/* ------------------------------- ft_data_handler -------------------------------- */
+/* ------------------------------- ft_data_init -------------------------------- */
 
 void	data_alloc(t_mlx *data);
+void	moves_init(t_moves *moves);
 void	data_init(t_mlx *data);
 void	assets_init(t_assets *assets);
-int		rgb_to_int(int r, int g, int b);
-void	init_textures(t_parse *parse, t_mlx *data);
 
 /* ------------------------------- ft_data_clear -------------------------------- */
 
@@ -152,6 +151,14 @@ void	data_freer(t_mlx *data);
 void	lvl_freer(t_map *lvl);
 void	clear_all(t_mlx *data);
 int		escape(t_mlx *data);
+
+/* ------------------------------- ft_fetch_data -------------------------------- */
+
+int		map_cpy(t_parse *parse, t_mlx *data);
+int		fetch_map_data(t_mlx *data, t_parse *parse);
+int		rgb_to_int(int r, int g, int b);
+int	fetch_xpm_image(void **mlx, t_img *asset, char **textures, int id);
+void	init_textures(t_parse *parse, t_mlx *data);
 
 /* ------------------------------- ft_minimap_display -------------------------------- */
 
@@ -177,9 +184,10 @@ void	map_printer(char **map, int y);
 int 	map_cpy(t_parse *parse, t_mlx *data);
 int		fetch_map_data(t_mlx *data, t_parse *parse);
 
-/* ------------------------------- ft_init_window -------------------------------- */
+/* ------------------------------- ft_init_game -------------------------------- */
 
-int		destroy_win(t_mlx *data);
+void	move_update(t_mlx *data);
+void	main_process(t_mlx *data);
 int		loop_process(t_mlx *data);
 int		game_launcher(t_mlx *data);
 int		data_builder(t_parse *parse, t_mlx *data);

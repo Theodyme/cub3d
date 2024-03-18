@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/22 15:33:47 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:36:11 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_make_textures_tab(char *path, t_parse *parse, int i)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		return (printf("Error\nCan't open file\n"), -1);
+		return (printf(RE "Error\nCan't open file\n" RESET), -1);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -52,7 +52,7 @@ int	ft_make_textures_tab(char *path, t_parse *parse, int i)
 	close(fd);
 	parse->textures = malloc(sizeof(char *) * (i + 1));
 	if (parse->textures == NULL)
-		return (printf("Error\nMalloc error\n"), -1);
+		return (printf(RE "Error\nMalloc error\n" RESET), -1);
 	parse->textures[i] = NULL;
 	parse->len_textures = i;
 	return (0);
@@ -65,14 +65,14 @@ void	ft_change_texture(t_parse *parse, int i, int o)
 
 	if (parse->n > 1 || parse->s > 1 || parse->e > 1 || parse->w > 1
 		|| parse->f > 1 || parse->c > 1)
-		return (printf("Error\nWRONG TEXTURES\n"), ft_free_map(parse), exit(0));
+		return (printf(RE "Error\nWrong number of map parameters\n" RESET), ft_free_map(parse), exit(0));
 	if (o == 0 && parse->textures[i][0] != 'F' && parse->textures[i][0] != 'C')
 		j = 2;
 	else
 		j = 1;
 	tmp = ft_strdup(parse->textures[i] + j);
 	if (tmp == NULL)
-		return (printf("Error\nMalloc error\n"), ft_free_map(parse));
+		return (printf(RE "Error\nMalloc error\n" RESET), ft_free_map(parse));
 	free(parse->textures[i]);
 	parse->textures[i] = tmp;
 }
@@ -116,7 +116,7 @@ void	ft_open_textures(t_parse *parse)
 		{
 			fd = open(parse->textures[i], O_RDONLY);
 			if (fd == -1)
-				return (printf("Error\nCan't open textures\n"),
+				return (printf(RE "Error\nCan't open textures\n" RESET),
 					ft_free_map(parse), exit(0));
 			close(fd);
 		}

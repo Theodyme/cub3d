@@ -6,7 +6,7 @@
 /*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 19:11:28 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/18 12:21:04 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,32 @@ void	move_update(t_mlx *data)
 		rotation(data);
 	return ;
 }
+/* --------------------- main_process() ----------------------- */
+/*
+**		regroupe toutes les fonctions nécessaires
+        pour effectuer les calculs des data,
+**      dans une boucle qui parcourt l'écran horizontalement,
+        afin de faire ces calculs
+**      pour chaque pixel sur l'axe Y.
+*/
+
+void	main_process(t_mlx *data)
+{
+	int	x;
+
+	x = 0;
+	while (x < WINWIDTH)
+	{
+		data->square->x = (int)data->pos->x;
+		data->square->y = (int)data->pos->y;
+		ray_calculator(x, data);
+		delta_calculator(data);
+		side_calculator(data);
+		hitpoint_calculator(data);
+		wall_cast(x, data);
+		x++;
+	}
+}
 
 /* ---------------- loop_process() ---------------------- */
 /*
@@ -47,6 +73,7 @@ int	loop_process(t_mlx *data)
 		0);
 	return (0);
 }
+
 /* -------------------- game launcher() ------------------------ */
 /*
 **	initialise tous les éléments de data utiles pour faire tourner la MLX,

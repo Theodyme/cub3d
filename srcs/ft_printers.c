@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 18:03:15 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:12:53 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	map_printer(char **map, int y)
 	}
 	printf("i = %d, y = %d\n", i, y);
 	if (i != y)
-		printf(RE "ERROR: Couldn't print the full map.\n" RESET);
+		printf(RE "Error: Couldn't print the full map.\n" RESET);
 	return ;
 }

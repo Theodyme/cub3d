@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:12:25 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/20 16:19:11 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:27:50 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,8 @@ void	count_max_len(t_parse *parse)
 	}
 	parse->max_len = max_len;
 	if (parse->max_len < 0)
-		return (printf("Error\nMap too small\n"), ft_free_map(parse), exit(0));
+		return (printf(RE "Error\nMap too small\n" RESET), ft_free_map(parse), exit(0));
 }
-
-void	ft_parse(char *path, t_parse *parse)
-{
-	init_parse(parse);
-	if (name_checker(path, 0) == 1)
-	{
-		return (printf("Error\nWrong file extension\n"), (void)0);
-	}
-	ft_open_file(path, parse);
-	ft_open_rgb(parse);
-	ft_len_map(parse);
-	ft_verif_map(parse);
-	ft_parsing(parse, parse->len_map);
-	count_max_len(parse);
-}
-
 void	ft_open_file(char *path, t_parse *parse)
 {
 	int		fd;
@@ -57,7 +41,7 @@ void	ft_open_file(char *path, t_parse *parse)
 
 	i = ft_make_textures_tab(path, parse, 0);
 	if (i == -1)
-		return (printf("Error\nOpen\n"), ft_free_map(parse), exit(0));
+		return (printf(RE "Error\nOpen\n" RESET), ft_free_map(parse), exit(0));
 	fd = open(path, O_RDONLY);
 	while (1)
 	{
@@ -76,4 +60,29 @@ void	ft_open_file(char *path, t_parse *parse)
 	parse->textures[i] = NULL;
 	close(fd);
 	ft_open_textures(parse);
+}
+
+void	ft_is_directory(char *path)
+{
+	int	fd;
+
+	fd = open(path, __O_DIRECTORY);
+	if (fd != -1)
+		return (printf(RE "Error\nIs a directory\n" RESET), close(fd), exit(0));
+}
+
+void	ft_parse(char *path, t_parse *parse)
+{
+	init_parse(parse);
+	if (name_checker(path, 0) == 1)
+	{
+		return (printf(RE "Error\nWrong file extension\n" RESET), exit(0));
+	}
+	ft_is_directory(path);
+	ft_open_file(path, parse);
+	ft_open_rgb(parse);
+	ft_len_map(parse);
+	ft_verif_map(parse);
+	ft_parsing(parse, parse->len_map);
+	count_max_len(parse);
 }

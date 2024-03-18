@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_useful.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 22:27:34 by diavolo           #+#    #+#             */
-/*   Updated: 2024/02/21 17:05:18 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/03/18 13:13:01 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_len_map(t_parse *parse)
 		j++;
 	parse->map = malloc(sizeof(char *) * (j + 1));
 	if (parse->map == NULL)
-		return (printf("Error\nMalloc\n"), ft_free_map(parse), exit(0));
+		return (printf(RE "Error\nMalloc\n" RESET), ft_free_map(parse), exit(0));
 	parse->map[j] = NULL;
 	parse->len_map = j;
 	i = o;
@@ -88,7 +88,7 @@ void	ft_cpy_map(t_parse *parse)
 	i = 0;
 	parse->map_cpy = malloc(sizeof(char *) * (parse->len_map + 1));
 	if (parse->map_cpy == NULL)
-		return (printf("Error\nMalloc\n"), ft_free_map(parse), exit(0));
+		return (printf(RE "Error\nMalloc\n" RESET), ft_free_map(parse), exit(0));
 	parse->map_cpy[parse->len_map] = NULL;
 	while (parse->map[i] != NULL)
 	{

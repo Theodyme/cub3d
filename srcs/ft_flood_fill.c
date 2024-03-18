@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_flood_fill.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:25:45 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 11:13:30 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/18 13:40:55 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	ft_parsing(t_parse *parse, int tablen)
 	ft_cpy_map(parse);
 	ft_paint(parse, i, o, tablen);
 	if (parse->v == 1)
-		return (printf(RE "Error\nMap\n" RESET), ft_free_map_cpy(parse),
+		return (printf(RE "Error\nInvalid map or parameters\n" RESET), ft_free_map_cpy(parse),
 			ft_free_map(parse), exit(0), 1);
 	if (ft_last_verif(parse) == 1)
 		return (printf(RE "Error\nMap\n" RESET), ft_free_map_cpy(parse),

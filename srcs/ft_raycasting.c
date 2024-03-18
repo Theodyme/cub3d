@@ -6,7 +6,7 @@
 /*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 19:49:23 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/18 12:39:54 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,24 @@ void	side_calculator(t_mlx *data)
 			* data->delta->y;
 	}
 }
+/* -------------------------- pwdist_calculator() ---------------------- */
+/*
+**		calcule la distance entre le point d'impact sur le mur
+**		et la parallele au mur sur laquelle se trouve le joueur.
+**		Cette manipulation sert notamment a corriger l'effet
+**		fisheye.
+*/
+
+void	pwdist_calculator(t_mlx *data, t_vector *step_dist)
+{
+	step_dist->x = (data->square->x - data->pos->x + (1 - data->step->x) / 2);
+	step_dist->y = (data->square->y - data->pos->y + (1 - data->step->y) / 2);
+	if (data->sideHit == 0)
+		data->pwdist = step_dist->x / data->ray->x;
+	else
+		data->pwdist = step_dist->y / data->ray->y;
+	free(step_dist);
+}
 
 /* ---------------------- hitpoint_calculator() ---------------------- */
 /*
@@ -103,10 +121,10 @@ void	side_calculator(t_mlx *data)
 void	hitpoint_calculator(t_mlx *data)
 {
 	int		hit;
-	double	step_dist_x;
-	double	step_dist_y;
+	t_vector	*step_dist;
 
 	hit = 0;
+	step_dist = malloc(sizeof(t_vector));
 	while (hit == 0)
 	{
 		if (data->side->x < data->side->y)
@@ -124,38 +142,6 @@ void	hitpoint_calculator(t_mlx *data)
 		if (data->lvl->map[data->square->y][data->square->x] == '1')
 			hit = 1;
 	}
-	step_dist_x = (data->square->x - data->pos->x + (1 - data->step->x) / 2);
-	step_dist_y = (data->square->y - data->pos->y + (1 - data->step->y) / 2);
-	if (data->sideHit == 0)
-		data->pwdist = step_dist_x / data->ray->x;
-	else
-		data->pwdist = step_dist_y / data->ray->y;
+	pwdist_calculator(data, step_dist);
 	return ;
-}
-
-/* --------------------- main_process() ----------------------- */
-/*
-**		regroupe toutes les fonctions nécessaires
-        pour effectuer les calculs des data,
-**      dans une boucle qui parcourt l'écran horizontalement,
-        afin de faire ces calculs
-**      pour chaque pixel sur l'axe Y.
-*/
-
-void	main_process(t_mlx *data)
-{
-	int	x;
-
-	x = 0;
-	while (x < WINWIDTH)
-	{
-		data->square->x = (int)data->pos->x;
-		data->square->y = (int)data->pos->y;
-		ray_calculator(x, data);
-		delta_calculator(data);
-		side_calculator(data);
-		hitpoint_calculator(data);
-		wall_cast(x, data);
-		x++;
-	}
 }

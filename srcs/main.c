@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:05:15 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/17 18:10:25 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/18 13:13:10 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int ac, char **av)
 		ft_parse(av[1], &parse);
 		data_builder(&parse, &data);
 		data.mlx = mlx_init();
+		data.win = NULL;
 		if (data.mlx == NULL)
 			return (1);
 		init_textures(&parse, &data);
@@ -44,6 +45,6 @@ int	main(int ac, char **av)
 		data_freer(&data);
 	}
 	else
-		printf("Error\nWrong number of arguments\n");
+		printf(RE "Error\nWrong number of arguments\n" RESET);
 	return (1);
 }

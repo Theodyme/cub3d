@@ -6,7 +6,7 @@
 /*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:28:39 by diavolo           #+#    #+#             */
-/*   Updated: 2024/03/15 17:30:51 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/18 13:12:33 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	ft_verif_rgb(t_parse *parse, int i, int l, int index)
 			if (ft_atoi(tmp) >= 0 && ft_atoi(tmp) <= 255)
 				parse->rgb[l++] = ft_atoi(tmp);
 			else
-				return (printf("Error\nRGB\n"), ft_free_map(parse), exit(0));
+				return (printf(RE "Error\nRGB\n" RESET), ft_free_map(parse), exit(0));
 			j++;
 			index = 0;
 		}
 		else if (parse->textures[i][j] >= '0' && parse->textures[i][j] <= '9')
 			tmp[index++] = parse->textures[i][j++];
 		else
-			return (printf("Error\nRGB numbers\n"), ft_free_map(parse),
+			return (printf(RE "Error\nRGB numbers\n" RESET), ft_free_map(parse),
 				exit(0));
 	}
 }
@@ -59,7 +59,7 @@ void	ft_count_virgule(t_parse *parse, int i)
 				j++;
 			}
 			if (count != 2)
-				return (printf("Error\nRGB ','\n"), ft_free_map(parse),
+				return (printf(RE "Error\nRGB ','\n" RESET), ft_free_map(parse),
 					exit(0));
 		}
 		i++;
@@ -83,7 +83,7 @@ void	ft_open_rgb_two(t_parse *parse, int i)
 		ft_change_texture(parse, i, 1);
 	}
 	else if (i == 5 && (parse->f > 1 || parse->c > 1))
-		return (printf("Error\nRGB\n"), ft_free_map(parse), exit(0));
+		return (printf(RE "Error\nRGB\n" RESET), ft_free_map(parse), exit(0));
 }
 
 void	ft_open_rgb(t_parse *parse)
@@ -95,7 +95,7 @@ void	ft_open_rgb(t_parse *parse)
 		ft_open_rgb_two(parse, i);
 	parse->rgb = malloc(sizeof(int) * 6);
 	if (parse->rgb == NULL)
-		return (printf("Error\nMalloc\n"), ft_free_map(parse), exit(0));
+		return (printf(RE "Error\nMalloc\n" RESET), ft_free_map(parse), exit(0));
 	ft_count_virgule(parse, 4);
 	ft_verif_rgb(parse, parse->rgb_f, 0, 0);
 	ft_verif_rgb(parse, parse->rgb_c, 3, 0);

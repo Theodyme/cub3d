@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_verif_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diavolo <diavolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:36:26 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/02/15 16:38:12 by diavolo          ###   ########.fr       */
+/*   Updated: 2024/03/18 13:13:04 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_verif_map(t_parse *parse)
 		}
 	}
 	if (count != 1)
-		return (printf("Error\nPlayer\n"), ft_free_map(parse), exit(0));
+		return (printf(RE "Error\nPlayer\n" RESET), ft_free_map(parse), exit(0));
 }
 
 int	ft_check_wall(t_parse *parse, int i, int o)

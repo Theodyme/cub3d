@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fetch_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:20:27 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 18:56:49 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:20:39 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	fetch_map_data(t_mlx *data, t_parse *parse)
 	if (map_cpy(parse, data) == 1)
 		return (printf(RE "Error: Couldn't allocate map.\n" RESET), 1);
 	free(parse->map);
+	parse->map = NULL;
 	return (0);
 }
 
@@ -67,13 +68,15 @@ int	rgb_to_int(int r, int g, int b)
 **		ouvre les images xpm to image mlx.
 */
 
-void	fetch_xpm_image(void **mlx, t_img *asset, char **textures, int id)
+int	fetch_xpm_image(void **mlx, t_img *asset, char **textures, int id)
 {
 	asset->mlx_img = mlx_xpm_file_to_image(*mlx, textures[id], &asset->width,
 			&asset->height);
 	asset->addr = (int *)mlx_get_data_addr(asset->mlx_img, &asset->bpp,
 			&asset->line_len, &asset->endian);
-	return ;
+	if (asset->height != asset->width)
+		return (1);
+	return (0);
 }
 
 /* ----------------------- init_textures() ------------------ */
@@ -83,18 +86,27 @@ void	fetch_xpm_image(void **mlx, t_img *asset, char **textures, int id)
 
 void	init_textures(t_parse *parse, t_mlx *data)
 {
+	int out;
+
+	out = 0;
 	data->assets = malloc(sizeof(t_assets));
 	if (data->assets == NULL)
-		return (printf("Error\nMalloc\n"), ft_free_map(parse), exit(0));
+		return (printf(RE "Error\nMalloc\n" RESET), ft_free_map(parse), exit(0));
 	assets_init(data->assets);
-	fetch_xpm_image(&data->mlx, data->assets->nwall, parse->textures,
+	out += fetch_xpm_image(&data->mlx, data->assets->nwall, parse->textures,
 		parse->n_id);
-	fetch_xpm_image(&data->mlx, data->assets->swall, parse->textures,
+	out += fetch_xpm_image(&data->mlx, data->assets->swall, parse->textures,
 		parse->s_id);
-	fetch_xpm_image(&data->mlx, data->assets->wwall, parse->textures,
+	out += fetch_xpm_image(&data->mlx, data->assets->wwall, parse->textures,
 		parse->w_id);
-	fetch_xpm_image(&data->mlx, data->assets->ewall, parse->textures,
+	out += fetch_xpm_image(&data->mlx, data->assets->ewall, parse->textures,
 		parse->e_id);
+	if (out)
+	{
+		printf(RE "Error\nWrong asset dimensions.\n" RESET);
+		ft_free_map(parse);
+		escape(data);
+	}
 	data->assets->floor = rgb_to_int(parse->rgb[0], parse->rgb[1],
 			parse->rgb[2]);
 	data->assets->ceiling = rgb_to_int(parse->rgb[3], parse->rgb[4],

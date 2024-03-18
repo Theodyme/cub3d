@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:52:41 by diavolo           #+#    #+#             */
-/*   Updated: 2024/02/27 15:36:13 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/18 12:56:55 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ void	ft_free_map(t_parse *parse)
 	int	i;
 
 	i = -1;
-	if (parse->len_map > 0)
+	if ((parse->map != NULL) && (parse->len_map > 0))
 	{
 		while (++i < parse->len_map)
 			free(parse->map[i]);
 		free(parse->map);
+		parse->map = NULL;
 	}
 	if (parse->len_textures > 0)
 	{

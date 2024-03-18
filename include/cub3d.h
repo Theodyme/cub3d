@@ -6,7 +6,7 @@
 /*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/03/18 13:28:53 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/18 14:17:57 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_img
 {
 	void		*mlx_img;
 	int			*addr;
-	int			bpp; /* bits per pixel */
+	int			bpp;
 	int			line_len;
 	int			endian;
 	int			height;
@@ -56,8 +56,8 @@ typedef struct s_tile
 typedef struct s_map
 {
 	char		**map;
-	int			lenX;
-	int			lenY;
+	int			lenx;
+	int			leny;
 }				t_map;
 
 typedef struct s_assets
@@ -104,7 +104,7 @@ typedef struct s_mlx
 	void		*mlx;
 	void		*win;
 	t_moves		*moves;
-	int			sideHit;
+	int			sidehit;
 	t_draw		*draw;
 	t_img		minimap;
 	t_img		raycasting;
@@ -116,20 +116,18 @@ typedef struct s_mlx
 	t_vector	*plane;
 	double		camerax;
 	double		pwdist;
-	double		time;
-	double		oldTime;
 	t_vector	*ray;
 	t_vector	*delta;
 	t_vector	*side;
 	t_assets	*assets;
 }				t_mlx;
 
-/* ------------------------------- ft_key_hooks ----------------------------------- */
+/* --------------- ft_key_hooks ------------------------- */
 
 int		keyrelease_hook(int keycode, t_mlx *data);
 int		keypress_hook(int keycode, t_mlx *data);
 
-/* --------------------------------- ft_moves ----------------------------------- */
+/* --------------- ft_moves ----------------------------- */
 
 void	move_forward(t_mlx *data);
 void	move_backward(t_mlx *data);
@@ -137,14 +135,14 @@ void	move_right(t_mlx *data);
 void	move_left(t_mlx *data);
 void	rotation(t_mlx *data);
 
-/* ------------------------------- ft_data_init -------------------------------- */
+/* --------------- ft_data_init ------------------------- */
 
 void	data_alloc(t_mlx *data);
 void	moves_init(t_moves *moves);
 void	data_init(t_mlx *data);
 void	assets_init(t_assets *assets);
 
-/* ------------------------------- ft_data_clear -------------------------------- */
+/* --------------- ft_data_clear ------------------------ */
 
 int		destroy_win(t_mlx *data);
 void	data_freer(t_mlx *data);
@@ -152,15 +150,15 @@ void	lvl_freer(t_map *lvl);
 void	clear_all(t_mlx *data);
 int		escape(t_mlx *data);
 
-/* ------------------------------- ft_fetch_data -------------------------------- */
+/* ---------------- ft_fetch_data ----------------------- */
 
 int		map_cpy(t_parse *parse, t_mlx *data);
 int		fetch_map_data(t_mlx *data, t_parse *parse);
 int		rgb_to_int(int r, int g, int b);
-int	fetch_xpm_image(void **mlx, t_img *asset, char **textures, int id);
+int		fetch_xpm_image(void **mlx, t_img *asset, char **textures, int id);
 void	init_textures(t_parse *parse, t_mlx *data);
 
-/* ------------------------------- ft_minimap_display -------------------------------- */
+/* --------------- ft_minimap_display ------------------- */
 
 void	img_pix_put(t_img *img, int x, int y, int color);
 int		render_flat_walls(t_mlx *data);
@@ -168,23 +166,23 @@ int		render_tile(t_img *img, t_tile tile);
 void	render_background(t_img *img, int color, int height, int width);
 void	render_minimap(t_mlx *data);
 
-/* ------------------------------- ft_player_finder -------------------------------- */
+/* --------------- ft_player_finder --------------------- */
 
 void	vector_set(t_vector *vector, double x, double y);
 int		orientation_finder(t_mlx *data, char c);
 int		strchr_charset(char *str, char *charset);
 char	player_finder(t_mlx *data);
 
-/* ------------------------------- ft_printers -------------------------------- */
+/* --------------- ft_printers -------------------------- */
 
 void	map_printer(char **map, int y);
 
-/* ------------------------------- ft_fetch_data -------------------------------- */
+/* --------------- ft_fetch_data ------------------------ */
 
-int 	map_cpy(t_parse *parse, t_mlx *data);
+int		map_cpy(t_parse *parse, t_mlx *data);
 int		fetch_map_data(t_mlx *data, t_parse *parse);
 
-/* ------------------------------- ft_init_game -------------------------------- */
+/* --------------- ft_init_game ------------------------- */
 
 void	move_update(t_mlx *data);
 void	main_process(t_mlx *data);
@@ -192,18 +190,18 @@ int		loop_process(t_mlx *data);
 int		game_launcher(t_mlx *data);
 int		data_builder(t_parse *parse, t_mlx *data);
 
-/* ------------------------------- ft_raycasting -------------------------------- */
+/* --------------- ft_raycasting ------------------------ */
 
-void    ray_calculator(int i, t_mlx *data);
-void    delta_calculator(t_mlx *data);
-void    side_calculator(t_mlx *data);
-void    hitpoint_calculator(t_mlx *data);
-void    main_process(t_mlx *data);
+void	ray_calculator(int i, t_mlx *data);
+void	delta_calculator(t_mlx *data);
+void	side_calculator(t_mlx *data);
+void	hitpoint_calculator(t_mlx *data);
+void	main_process(t_mlx *data);
 
-/* ------------------------------- ft_raycast_display -------------------------------- */
+/* --------------- ft_raycast_display ------------------ */
 
-void    stripe_cast(int x, t_mlx *data, int start, int end);
-void    wall_cast(int x, t_mlx *data);
+void	stripe_cast(int x, t_mlx *data, int start, int end);
+void	wall_cast(int x, t_mlx *data);
 
 void	init_textures(t_parse *parse, t_mlx *data);
 

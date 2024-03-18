@@ -6,7 +6,7 @@
 /*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 19:49:23 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/18 14:16:55 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ void	get_texture_x(t_mlx *data, t_vint *tex, t_img *asset)
 	double	hit_x;
 
 	hit_x = 0;
-	if (data->sideHit == 0)
+	if (data->sidehit == 0)
 		hit_x = (data->pos->y + data->pwdist * data->ray->y);
 	else
 		hit_x = (data->pos->x + data->pwdist * data->ray->x);
 	hit_x -= floor((hit_x));
 	tex->x = (int)(hit_x * (double)(asset->width));
-	if (data->sideHit == 0 && data->ray->x < 0)
+	if (data->sidehit == 0 && data->ray->x < 0)
 		tex->x = asset->width - tex->x - 1;
-	if (data->sideHit == 1 && data->ray->y > 0)
+	if (data->sidehit == 1 && data->ray->y > 0)
 		tex->x = asset->width - tex->x - 1;
 }
 
@@ -68,7 +68,7 @@ t_img	*get_orientation(t_mlx *data)
 {
 	if (data->ray->x < 0)
 	{
-		if (data->sideHit == 0)
+		if (data->sidehit == 0)
 			return (data->assets->wwall);
 		else if (data->ray->y < 0)
 			return (data->assets->nwall);
@@ -77,7 +77,7 @@ t_img	*get_orientation(t_mlx *data)
 	}
 	else
 	{
-		if (data->sideHit == 0)
+		if (data->sidehit == 0)
 			return (data->assets->ewall);
 		else if (data->ray->y > 0)
 			return (data->assets->swall);

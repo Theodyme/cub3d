@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/18 14:10:53 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:16:55 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	pwdist_calculator(t_mlx *data, t_vector *step_dist)
 {
 	step_dist->x = (data->square->x - data->pos->x + (1 - data->step->x) / 2);
 	step_dist->y = (data->square->y - data->pos->y + (1 - data->step->y) / 2);
-	if (data->sideHit == 0)
+	if (data->sidehit == 0)
 		data->pwdist = step_dist->x / data->ray->x;
 	else
 		data->pwdist = step_dist->y / data->ray->y;
@@ -131,13 +131,13 @@ void	hitpoint_calculator(t_mlx *data)
 		{
 			data->side->x += data->delta->x;
 			data->square->x += data->step->x;
-			data->sideHit = 0;
+			data->sidehit = 0;
 		}
 		else
 		{
 			data->side->y += data->delta->y;
 			data->square->y += data->step->y;
-			data->sideHit = 1;
+			data->sidehit = 1;
 		}
 		if (data->lvl->map[data->square->y][data->square->x] == '1')
 			hit = 1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fetch_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:20:27 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/18 14:09:59 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:16:29 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	map_cpy(t_parse *parse, t_mlx *data)
 	data->lvl = malloc(sizeof(t_map));
 	if (data->lvl == NULL)
 		return (printf(RE "Error: Couldn't allocate map.\n" RESET), 1);
-	data->lvl->lenX = parse->max_len;
-	data->lvl->lenY = parse->len_map;
+	data->lvl->lenx = parse->max_len;
+	data->lvl->leny = parse->len_map;
 	data->lvl->map = malloc(sizeof(char *) * (parse->len_map + 1));
 	if (data->lvl->map == NULL)
 		return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_data_clear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/18 14:11:51 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:16:24 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	lvl_freer(t_map *lvl)
 	int	i;
 
 	i = 0;
-	if (lvl->lenY > 0)
+	if (lvl->leny > 0)
 	{
-		while (i < lvl->lenY)
+		while (i < lvl->leny)
 		{
 			free(lvl->map[i]);
 			i++;

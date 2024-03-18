@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 19:04:05 by thenry            #+#    #+#             */
-/*   Updated: 2024/03/06 20:36:05 by theophane        ###   ########.fr       */
+/*   Updated: 2024/03/18 14:23:19 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 static int	is_space(char c)
 {

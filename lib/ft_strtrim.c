@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/19 16:13:14 by theophane        ###   ########.fr       */
+/*   Created: 2024/03/18 14:19:40 by flplace           #+#    #+#             */
+/*   Updated: 2024/03/18 14:21:49 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "utils.h"
 
@@ -23,8 +22,6 @@ char	*ft_strtrim(char *s1, char const *set)
 
 	i = 0;
 	j = 0;
-	if (!s1 || !set)
-		return (NULL);
 	while (*s1 && ft_strchr((char *)set, *s1))
 		s1++;
 	start = s1;
@@ -40,10 +37,7 @@ char	*ft_strtrim(char *s1, char const *set)
 			str[j++] = start[i++];
 	}
 	if (j == 0)
-		{
-			free(str);
-			return (NULL);
-		}
+		return (free(str), NULL);
 	return (str);
 }
 
@@ -51,6 +45,8 @@ char	*ft_strtrim_free(char *s1, char const *set)
 {
 	char	*new_s;
 
+	if (!s1 || !set)
+		return (NULL);
 	new_s = ft_strtrim(s1, set);
 	free(s1);
 	return (new_s);

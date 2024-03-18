@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_data_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/15 18:00:11 by mderkaou         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:22:11 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ void	data_init(t_mlx *data)
 	data->plane->x = 0;
 	data->plane->y = 0;
 	data->camerax = 0;
-	data->time = 0;
-	data->oldTime = 0;
 	data->ray->x = 0;
 	data->ray->y = 0;
 	data->delta->x = 0;

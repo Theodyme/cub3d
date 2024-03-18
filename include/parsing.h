@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophane <theophane@student.42.fr>        +#+  +:+       +#+        */
+/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/02/27 15:16:38 by theophane        ###   ########.fr       */
+/*   Created: 2024/03/18 14:18:50 by flplace           #+#    #+#             */
+/*   Updated: 2024/03/18 14:19:01 by flplace          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fetch_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:20:27 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/18 13:20:39 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/18 14:09:59 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	fetch_xpm_image(void **mlx, t_img *asset, char **textures, int id)
 
 void	init_textures(t_parse *parse, t_mlx *data)
 {
-	int out;
+	int	out;
 
 	out = 0;
 	data->assets = malloc(sizeof(t_assets));
@@ -94,13 +94,13 @@ void	init_textures(t_parse *parse, t_mlx *data)
 		return (printf(RE "Error\nMalloc\n" RESET), ft_free_map(parse), exit(0));
 	assets_init(data->assets);
 	out += fetch_xpm_image(&data->mlx, data->assets->nwall, parse->textures,
-		parse->n_id);
+			parse->n_id);
 	out += fetch_xpm_image(&data->mlx, data->assets->swall, parse->textures,
-		parse->s_id);
+			parse->s_id);
 	out += fetch_xpm_image(&data->mlx, data->assets->wwall, parse->textures,
-		parse->w_id);
+			parse->w_id);
 	out += fetch_xpm_image(&data->mlx, data->assets->ewall, parse->textures,
-		parse->e_id);
+			parse->e_id);
 	if (out)
 	{
 		printf(RE "Error\nWrong asset dimensions.\n" RESET);

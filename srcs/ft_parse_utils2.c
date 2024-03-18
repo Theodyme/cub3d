@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:28:39 by diavolo           #+#    #+#             */
-/*   Updated: 2024/03/18 13:12:33 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/18 14:07:41 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_verif_rgb(t_parse *parse, int i, int l, int index)
 			if (ft_atoi(tmp) >= 0 && ft_atoi(tmp) <= 255)
 				parse->rgb[l++] = ft_atoi(tmp);
 			else
-				return (printf(RE "Error\nRGB\n" RESET), ft_free_map(parse), exit(0));
+				return (printf("Error\nRGB\n"), ft_free_map(parse), exit(0));
 			j++;
 			index = 0;
 		}
@@ -86,6 +86,28 @@ void	ft_open_rgb_two(t_parse *parse, int i)
 		return (printf(RE "Error\nRGB\n" RESET), ft_free_map(parse), exit(0));
 }
 
+void	ft_rgb_int(t_parse *parse)
+{
+	int	i;
+
+	i = -1;
+	while (parse->textures[parse->rgb_f][++i])
+	{
+		if (ft_is_in_charset(parse->textures[parse->rgb_f][i],
+			"0123456789,") == 0)
+			return (printf(RE "Error\nwrong arguments for rgb\n" RESET),
+				ft_free_map(parse), exit(0));
+	}
+	i = -1;
+	while (parse->textures[parse->rgb_c][++i])
+	{
+		if (ft_is_in_charset(parse->textures[parse->rgb_c][i],
+			"0123456789,") == 0)
+			return (printf(RE "Error\nwrong arguments for rgb\n" RESET),
+				ft_free_map(parse), exit(0));
+	}
+}
+
 void	ft_open_rgb(t_parse *parse)
 {
 	int	i;
@@ -97,6 +119,7 @@ void	ft_open_rgb(t_parse *parse)
 	if (parse->rgb == NULL)
 		return (printf(RE "Error\nMalloc\n" RESET), ft_free_map(parse), exit(0));
 	ft_count_virgule(parse, 4);
+	ft_rgb_int(parse);
 	ft_verif_rgb(parse, parse->rgb_f, 0, 0);
 	ft_verif_rgb(parse, parse->rgb_c, 3, 0);
 }

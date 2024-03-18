@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:12:25 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/18 13:27:50 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/18 14:09:18 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ void	count_max_len(t_parse *parse)
 	}
 	parse->max_len = max_len;
 	if (parse->max_len < 0)
-		return (printf(RE "Error\nMap too small\n" RESET), ft_free_map(parse), exit(0));
+		return (printf(RE "Error\nMap too small\n" RESET), ft_free_map(parse),
+			exit(0));
 }
+
 void	ft_open_file(char *path, t_parse *parse)
 {
 	int		fd;

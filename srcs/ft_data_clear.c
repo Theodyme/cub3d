@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_data_clear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/18 13:09:40 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/18 14:11:51 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int	destroy_win(t_mlx *data)
 {
 	mlx_destroy_image(data->mlx, data->raycasting.mlx_img);
 	mlx_destroy_window(data->mlx, data->win);
-	// mlx_destroy_display(data->mlx);
-	// mlx_loop_end(data->mlx);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/18 13:36:11 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/18 14:10:23 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	ft_change_texture(t_parse *parse, int i, int o)
 
 	if (parse->n > 1 || parse->s > 1 || parse->e > 1 || parse->w > 1
 		|| parse->f > 1 || parse->c > 1)
-		return (printf(RE "Error\nWrong number of map parameters\n" RESET), ft_free_map(parse), exit(0));
+		return (printf(RE "Error\nWrong number of map parameters\n" RESET),
+			ft_free_map(parse), exit(0));
 	if (o == 0 && parse->textures[i][0] != 'F' && parse->textures[i][0] != 'C')
 		j = 2;
 	else

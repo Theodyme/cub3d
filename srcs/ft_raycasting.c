@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flplace <flplace@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mderkaou <mderkaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:19:14 by mderkaou          #+#    #+#             */
-/*   Updated: 2024/03/18 12:39:54 by flplace          ###   ########.fr       */
+/*   Updated: 2024/03/18 14:10:53 by mderkaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	pwdist_calculator(t_mlx *data, t_vector *step_dist)
 
 void	hitpoint_calculator(t_mlx *data)
 {
-	int		hit;
+	int			hit;
 	t_vector	*step_dist;
 
 	hit = 0;
